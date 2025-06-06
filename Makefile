@@ -6,13 +6,14 @@
 #    By: elopin <elopin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 22:27:47 by elopin            #+#    #+#              #
-#    Updated: 2025/06/06 22:27:50 by elopin           ###   ########.fr        #
+#    Updated: 2025/06/06 23:30:45 by elopin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=cub3d
 FLAGS=-Wall -Wextra -Werror -g3
-SRCSF=main.c 
+SRCSF=main.c \
+	  init.c
 OBJSF=$(SRCSF:.c=.o)
 SRCDIR=srcs/
 OBJDIR=objs/
@@ -20,20 +21,21 @@ SRCS=$(addprefix srcs/, $(SRCSF))
 OBJS=$(addprefix objs/, $(OBJSF))
 MFLAGS	= -lmlx_Linux -lXext -lX11 -lm -lz -Lmlx -L/usr/lib
 MLX		= mlx/libmlx_Linux.a
+INCL = -I. -Iinc -Imlx
 
 all: $(NAME)
 
 $(NAME): $(OBJDIR) $(MLX) $(OBJS)
 	@echo "\033[0m\033[1;35m|\033[0m"
-	@cc $(FLAGS) -o $(NAME) $(OBJS)
-	@echo "\033[1;32mminishell ready ✓\033[0m"
+	@cc $(FLAGS) -o $(NAME) $(OBJS) $(MFLAGS)
+	@echo "\033[1;32mcub3d ready ✓\033[0m"
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
 	@echo " \c"
-	@cc $(FLAGS) -c $^ -o $@
+	@cc $(FLAGS) -I. -c $^ -o $@ $(INCL)
 
 $(MLX):
-	make -C mlx
+	@make -C mlx
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)

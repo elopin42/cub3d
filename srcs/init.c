@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/06 23:47:29 by elopin           ###   ########.fr       */
+/*   Created: 2025/06/06 23:15:55 by elopin            #+#    #+#             */
+/*   Updated: 2025/06/06 23:32:44 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-#include <stdio.h>
 
-int	handle_key(int keycode, void *param)
+bool	ft_init(t_global *glb)
 {
-		t_global *glb = (t_global *)param;
 
-	if (keycode == 65307)
-		return (mlx_destroy_window(glb->smlx.mlx, glb->smlx.mlx_win), exit(0), 0);
-	return (1);
-}
-
-int main()
-{
-	t_global glb;
-
-	ft_init(&glb);
-	mlx_key_hook(glb.smlx.mlx_win, handle_key, &glb);
-	return (mlx_loop(glb.smlx.mlx), 0);
+	glb->smlx.mlx = mlx_init();
+	glb->smlx.mlx_win = mlx_new_window(glb->smlx.mlx, 1920, 1080, "cub3d!");
+	return (true);
 }

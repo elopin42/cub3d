@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/06 23:47:29 by elopin           ###   ########.fr       */
+/*   Created: 2025/06/06 23:07:53 by elopin            #+#    #+#             */
+/*   Updated: 2025/06/06 23:46:48 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#ifndef CUB3D
+# define CUB3D
+
+#include "../mlx/mlx.h"
+#include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-int	handle_key(int keycode, void *param)
-{
-		t_global *glb = (t_global *)param;
+typedef struct s_mlx{
+	void *mlx;
+	void *mlx_win;
+} t_mlx;
 
-	if (keycode == 65307)
-		return (mlx_destroy_window(glb->smlx.mlx, glb->smlx.mlx_win), exit(0), 0);
-	return (1);
-}
+typedef struct s_global{
+	t_mlx smlx;
+} t_global;
 
-int main()
-{
-	t_global glb;
+bool	ft_init(t_global *glb);
 
-	ft_init(&glb);
-	mlx_key_hook(glb.smlx.mlx_win, handle_key, &glb);
-	return (mlx_loop(glb.smlx.mlx), 0);
-}
+#endif // !CUB3D
