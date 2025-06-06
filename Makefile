@@ -6,14 +6,20 @@
 #    By: elopin <elopin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 22:27:47 by elopin            #+#    #+#              #
-#    Updated: 2025/06/06 23:30:45 by elopin           ###   ########.fr        #
+#    Updated: 2025/06/07 01:40:38 by elopin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=cub3d
 FLAGS=-Wall -Wextra -Werror -g3
 SRCSF=main.c \
-	  init.c
+	  init.c \
+	  ft_clean_up.c \
+	  parsing.c	\
+	  get_next_line.c \
+	  get_next_line_utils.c \
+	  tools.c \
+	  ft_split.c
 OBJSF=$(SRCSF:.c=.o)
 SRCDIR=srcs/
 OBJDIR=objs/

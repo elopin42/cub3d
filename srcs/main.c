@@ -6,27 +6,30 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/06 23:47:29 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/07 01:54:22 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-#include <stdio.h>
 
 int	handle_key(int keycode, void *param)
 {
-		t_global *glb = (t_global *)param;
+	t_global	*glb;
 
+	glb = (t_global *)param;
 	if (keycode == 65307)
-		return (mlx_destroy_window(glb->smlx.mlx, glb->smlx.mlx_win), exit(0), 0);
+		return (printf("echape!\n"), ft_clean_all(glb), 0);
 	return (1);
 }
 
-int main()
+int	main(int ac, char **av)
 {
-	t_global glb;
+	t_global	glb = {0};
 
-	ft_init(&glb);
+	if (ac != 2)
+		return (printf("argument\nerror\n"), 0);
+	if (!ft_init(&glb, av) || !ft_parsing(&glb))
+		return (printf("error\n"), ft_clean_all(&glb), 0);
 	mlx_key_hook(glb.smlx.mlx_win, handle_key, &glb);
 	return (mlx_loop(glb.smlx.mlx), 0);
 }

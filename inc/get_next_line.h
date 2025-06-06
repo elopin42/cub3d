@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/07 01:48:01 by elopin           ###   ########.fr       */
+/*   Updated: 2024/12/18 17:10:02 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef CUB3D
-# define CUB3D
 
-#include "../mlx/mlx.h"
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "get_next_line.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-typedef struct s_mlx{
-	void *mlx;
-	void *mlx_win;
-} t_mlx;
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-typedef struct s_global{
-	t_mlx smlx;
-	char **map;
-} t_global;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10000000
+# endif
 
-void	ft_clean_all(t_global *glb);
-bool	ft_init(t_global *glb, char **av);
-bool	ft_parsing(t_global *glb);
+int		ft_strlen(char *str);
+char	*ft_strjoin(char *s1, char *s2);
+int		ft_read(int fd, char **BUFFER);
+int		ft_write(char **str, char *BUFFER);
 char	*get_next_line(int fd);
-char	**ft_split(char const *s, char c);
-void	*ft_calloc(size_t ec, size_t es);
-int		ft_strstr(const char *b, const char *li);
-void	*ft_memset(void *dest, int c, size_t count);
+char	*ft_substr(char **s, unsigned int start, size_t len);
+int		check_nl(char *buffer);
+int		get_next_line2(int fd, char **buffer);
 
-#endif // !CUB3D
+#endif
