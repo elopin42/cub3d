@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/07 01:54:22 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/07 02:18:08 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ int	main(int ac, char **av)
 	if (!ft_init(&glb, av) || !ft_parsing(&glb))
 		return (printf("error\n"), ft_clean_all(&glb), 0);
 	mlx_key_hook(glb.smlx.mlx_win, handle_key, &glb);
-	return (mlx_loop(glb.smlx.mlx), 0);
+	return (draw_scene(&glb), mlx_loop(glb.smlx.mlx), 0);
 }
