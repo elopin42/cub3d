@@ -22,8 +22,8 @@ void	put_pixel(t_img *img, int x, int y, int color)
 
 void draw_scene(t_global *glb)
 {
-	int w = 1920;
-	int h = 1080;
+	int w = 1136;
+	int h = 768;
 
 	for (int x = 0; x < w; x++)
 	{
@@ -69,7 +69,6 @@ void draw_scene(t_global *glb)
 			side_dist_y = (map_y + 1.0 - glb->player.y) * delta_dist_y;
 		}
 
-		// DDA
 		while (hit == 0)
 		{
 			if (side_dist_x < side_dist_y)
@@ -87,13 +86,11 @@ void draw_scene(t_global *glb)
 			if (glb->map[map_y][map_x] == '1') hit = 1;
 		}
 
-		// Distance projetée sur la caméra
 		if (side == 0)
 			perp_wall_dist = (map_x - glb->player.x + (1 - step_x) / 2) / ray_dir_x;
 		else
 			perp_wall_dist = (map_y - glb->player.y + (1 - step_y) / 2) / ray_dir_y;
 
-		// Hauteur de la ligne
 		int line_height = (int)(h / perp_wall_dist);
 		int draw_start = -line_height / 2 + h / 2;
 		int draw_end = line_height / 2 + h / 2;
@@ -101,11 +98,9 @@ void draw_scene(t_global *glb)
 		if (draw_start < 0) draw_start = 0;
 		if (draw_end >= h) draw_end = h - 1;
 
-		// Dessiner la ligne verticale murale
-		for (int y = draw_start; y < draw_end; y++)
-			mlx_pixel_put(glb->smlx.mlx, glb->smlx.mlx_win, x, y, 0xAAAAAA); // gris
-		mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0, 0);
-
+	  for (int y = draw_start; y < draw_end; y++)
+			mlx_pixel_put(glb->smlx.mlx, glb->smlx.mlx_win, x, y, 0xAAAAAA); 
 	}
+	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0, 0);
 }
 

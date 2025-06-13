@@ -58,11 +58,11 @@ bool	ft_init(t_global *glb, char **av)
 	if (!glb->smlx.mlx)
 		return (printf("mlx_init() échoué\n"), false);
 
-	glb->smlx.mlx_win = mlx_new_window(glb->smlx.mlx, 1920, 1080, "cub3d!");
+	glb->smlx.mlx_win = mlx_new_window(glb->smlx.mlx, 1136, 768, "cub3d!");
 	if (!glb->smlx.mlx_win)
 		return (printf("mlx_new_window() échoué\n"), false);
 
-	glb->img.img = mlx_new_image(glb->smlx.mlx, 1920, 1080);
+	glb->img.img = mlx_new_image(glb->smlx.mlx, 1136, 768);
 	if (!glb->img.img)
 		return (printf("mlx_new_image() échoué\n"), false);
 
