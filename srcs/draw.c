@@ -98,8 +98,8 @@ void draw_scene(t_global *glb)
 		if (draw_start < 0) draw_start = 0;
 		if (draw_end >= h) draw_end = h - 1;
 
-	  for (int y = draw_start; y < draw_end; y++)
-			mlx_pixel_put(glb->smlx.mlx, glb->smlx.mlx_win, x, y, 0xAAAAAA); 
+    for (int y = draw_start; y < draw_end; y++)
+	    put_pixel(&glb->img, x, y, 0xAAAAAA);
 	}
 	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0, 0);
 }
