@@ -19,6 +19,13 @@ int	handle_key(int keycode, void *param)
 	glb = (t_global *)param;
 	if (keycode == 65307)
 		return (printf("echape!\n"), ft_clean_all(glb), 0);
+	if (keycode == KEY_LEFT) // exemple : flèche gauche
+		rotate_camera(glb, -0.05); // rotation à gauche
+
+	if (keycode == KEY_RIGHT) // exemple : flèche droite
+		rotate_camera(glb, 0.05); // rotation à droiteoid	rotate_camera(t_global *glb, double angle)
+
+  draw_scene(glb);
 	return (1);
 }
 

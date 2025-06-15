@@ -20,7 +20,8 @@ SRCSF=main.c \
 	  get_next_line_utils.c \
 	  tools.c \
 	  ft_split.c \
-	  draw.c
+	  draw.c \
+		cam_moove.c
 OBJSF=$(SRCSF:.c=.o)
 SRCDIR=srcs/
 OBJDIR=objs/

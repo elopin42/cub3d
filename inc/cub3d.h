@@ -19,6 +19,9 @@
 #include "get_next_line.h"
 #include <math.h>
 
+#define KEY_LEFT 65363
+#define KEY_RIGHT 65361
+
 typedef struct s_mlx{
 	void *mlx;
 	void *mlx_win;
@@ -57,5 +60,6 @@ void	*ft_calloc(size_t ec, size_t es);
 int		ft_strstr(const char *b, const char *li);
 void	*ft_memset(void *dest, int c, size_t count);
 void draw_scene(t_global *glb);
+void	rotate_camera(t_global *glb, double angle);
 
 #endif // !CUB3D
