@@ -21,6 +21,11 @@
 
 #define KEY_LEFT 65363
 #define KEY_RIGHT 65361
+#define KEY_W 119        // W
+#define KEY_S 115        // S
+#define KEY_A 97         // A
+#define KEY_D 100        // D
+
 
 typedef struct s_mlx{
 	void *mlx;
@@ -61,5 +66,6 @@ int		ft_strstr(const char *b, const char *li);
 void	*ft_memset(void *dest, int c, size_t count);
 void draw_scene(t_global *glb);
 void	rotate_camera(t_global *glb, double angle);
+void	move_player(t_global *glb, int direction);
 
 #endif // !CUB3D

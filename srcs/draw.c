@@ -98,12 +98,11 @@ void draw_scene(t_global *glb)
 		if (draw_start < 0) draw_start = 0;
 		if (draw_end >= h) draw_end = h - 1;
 
-  for (int y = 0; y < draw_start; y++)
-	  put_pixel(&glb->img, x, y, 0x444444);
+    for (int y = 0; y < draw_start; y++)
+	    put_pixel(&glb->img, x, y, 0x444444);
 
-  for (int y = draw_end; y < h; y++)
-	  put_pixel(&glb->img, x, y, 0x880000);
-
+    for (int y = draw_end; y < h; y++)
+	    put_pixel(&glb->img, x, y, 0x880000);
 
     for (int y = draw_start; y < draw_end; y++)
 	    put_pixel(&glb->img, x, y, 0xAAAAAA);
