@@ -39,7 +39,6 @@ void	move_player(t_global *glb, int direction)
 	else
 		return;
 
-	// Collision simple
 	if (glb->map[(int)glb->player.y][(int)new_x] != '1')
 		glb->player.x = new_x;
 	if (glb->map[(int)new_y][(int)glb->player.x] != '1')

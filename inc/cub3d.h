@@ -53,8 +53,22 @@ typedef struct s_global{
 	t_mlx smlx;
 	t_player player;
 	t_img	img;
+  t_texture textures;
 	char **map;
+  bool key_left;
+  bool key_right;
+  bool key_w;
+  bool key_s;
+  bool key_a;
+  bool key_d;
 } t_global;
+
+typedef struct s_texture {
+	t_img	north;
+	t_img	south;
+	t_img	east;
+	t_img	west;
+} t_texture;
 
 void	ft_clean_all(t_global *glb);
 bool	ft_init(t_global *glb, char **av);
