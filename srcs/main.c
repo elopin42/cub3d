@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/07 02:18:08 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/25 17:44:04 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	key_press(int keycode, t_global *glb)
 }
 
 int	key_release(int keycode, t_global *glb)
-{
+{             
 	if (keycode == KEY_LEFT)
 		glb->key_left = false;
 	if (keycode == KEY_RIGHT)
@@ -101,7 +101,7 @@ int	main(int ac, char **av)
 		return (printf("argument\nerror\n"), 0);
 	if (!ft_init(&glb, av) || !ft_parsing(&glb))
 		return (printf("error\n"), ft_clean_all(&glb), 0);
-  mlx_hook(glb.smlx.mlx_win, 2, 1L<<0, key_press, &glb);
+  	mlx_hook(glb.smlx.mlx_win, 2, 1L<<0, key_press, &glb);
 	mlx_hook(glb.smlx.mlx_win, 3, 1L<<1, key_release, &glb);
 	mlx_loop_hook(glb.smlx.mlx, update, &glb); // 👈 appel automatique
 

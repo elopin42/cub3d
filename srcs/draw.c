@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/07 02:17:15 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/25 16:21:09 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	put_pixel(t_img *img, int x, int y, int color)
 
 void draw_scene(t_global *glb)
 {
-	int w = 1136;
-	int h = 768;
+	int w = 2560;
+	int h = 1440;
 
 	for (int x = 0; x < w; x++)
 	{

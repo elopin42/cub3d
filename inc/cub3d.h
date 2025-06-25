@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/07 02:18:05 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/25 17:41:42 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -49,29 +49,32 @@ typedef struct s_player {
 	double plane_y;
 } t_player;
 
+typedef struct s_texture {
+	void	*nord;
+	void	*sud;
+	void	*est;
+	void *ouest;
+	void *sol;
+} t_texture;
+
 typedef struct s_global{
 	t_mlx smlx;
 	t_player player;
 	t_img	img;
-  t_texture textures;
+  	t_texture texture;
 	char **map;
-  bool key_left;
-  bool key_right;
-  bool key_w;
-  bool key_s;
-  bool key_a;
-  bool key_d;
+  	bool key_left;
+  	bool key_right;
+  	bool key_w;
+  	bool key_s;
+  	bool key_a;
+  	bool key_d;
 } t_global;
 
-typedef struct s_texture {
-	t_img	north;
-	t_img	south;
-	t_img	east;
-	t_img	west;
-} t_texture;
 
 void	ft_clean_all(t_global *glb);
 bool	ft_init(t_global *glb, char **av);
+bool	init_texture(t_global *glb);
 bool	ft_parsing(t_global *glb);
 char	*get_next_line(int fd);
 char	**ft_split(char const *s, char c);

@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:15:55 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/07 02:23:10 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/25 17:46:47 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,32 +37,51 @@ bool	ft_write_file(t_global *glb, char **av)
 	return (true);
 }
 
+void	load_texture(void *mlx, t_texture *tex, char *path)
+{
+	tex->img = mlx_xpm_file_to_image(mlx, path, &tex->width, &tex->height);
+	if (!tex->img)
+	{
+		printf("Erreur chargement texture : %s\n", path);
+		exit(1);
+	}
+	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_length, &tex->endian);
+}
+
+
 bool	ft_init(t_global *glb, char **av)
 {
+	int h;
+	int w;
+
 	if (!ft_strstr(av[1], ".cub"))
 		return (printf("ton fichier n'est pas un .cub\n"), false);
 
 	if (!ft_write_file(glb, av))
 		return (printf("lecture fichier échouée\n"), false);
 
-	// Position & direction du joueur (provisoire)
 	glb->player.x = 3.5;
 	glb->player.y = 2.5;
 	glb->player.dir_x = -1;
 	glb->player.dir_y = 0;
 	glb->player.plane_x = 0;
 	glb->player.plane_y = 0.66;
+	glb->texture.nord = mlx_xpm_file_to_image(glb->smlx.mlx, "textures/nord.xpm", &w, &h);
+	glb->texture.sud  = mlx_xpm_file_to_image(glb->smlx.mlx, "textures/sud.xpm", &w, &h);
+	glb->texture.est  = mlx_xpm_file_to_image(glb->smlx.mlx, "textures/est.xpm", &w, &h);
+	glb->texture.ouest= mlx_xpm_file_to_image(glb->smlx.mlx, "textures/ouest.xpm", &w, &h);
+	glb->texture.sol  = mlx_xpm_file_to_image(glb->smlx.mlx, "textures/sol.xpm", &w, &h);
 
-	// Initialisation MLX
+
 	glb->smlx.mlx = mlx_init();
 	if (!glb->smlx.mlx)
 		return (printf("mlx_init() échoué\n"), false);
 
-	glb->smlx.mlx_win = mlx_new_window(glb->smlx.mlx, 1136, 768, "cub3d!");
+	glb->smlx.mlx_win = mlx_new_window(glb->smlx.mlx, 2560, 1440, "cub3d!");
 	if (!glb->smlx.mlx_win)
 		return (printf("mlx_new_window() échoué\n"), false);
 
-	glb->img.img = mlx_new_image(glb->smlx.mlx, 1136, 768);
+	glb->img.img = mlx_new_image(glb->smlx.mlx, 2560, 1440);
 	if (!glb->img.img)
 		return (printf("mlx_new_image() échoué\n"), false);
 
