@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/26 14:43:57 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/26 20:19:41 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -25,6 +25,18 @@
 #define KEY_S 115        // S
 #define KEY_A 97         // A
 #define KEY_D 100        // D
+
+typedef struct s_ray {
+	double camera_x;
+	double ray_dir_x, ray_dir_y;
+	int map_x, map_y;
+	double side_dist_x, side_dist_y;
+	double delta_dist_x, delta_dist_y;
+	double perp_wall_dist;
+	int step_x, step_y;
+	int side;
+	int line_height, draw_start, draw_end;
+} t_ray;
 
 
 typedef struct s_mlx{
@@ -65,6 +77,7 @@ typedef struct s_global{
 	t_player player;
 	t_img	img;
   	t_texture texture;
+	t_ray ray;
 	char **map;
   	bool key_left;
   	bool key_right;
