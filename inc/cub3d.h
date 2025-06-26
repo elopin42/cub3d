@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/25 17:41:42 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/26 14:43:57 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -38,6 +38,8 @@ typedef struct s_img {
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_player {
@@ -50,11 +52,12 @@ typedef struct s_player {
 } t_player;
 
 typedef struct s_texture {
-	void	*nord;
-	void	*sud;
-	void	*est;
-	void *ouest;
-	void *sol;
+	t_img nord;
+	t_img sud;
+	t_img est;
+	t_img ouest;
+	t_img sol;
+	t_img sky;
 } t_texture;
 
 typedef struct s_global{
@@ -69,6 +72,8 @@ typedef struct s_global{
   	bool key_s;
   	bool key_a;
   	bool key_d;
+	int	w;
+	int	h;
 } t_global;
 
 
@@ -84,5 +89,6 @@ void	*ft_memset(void *dest, int c, size_t count);
 void draw_scene(t_global *glb);
 void	rotate_camera(t_global *glb, double angle);
 void	move_player(t_global *glb, int direction);
+char	*ft_strdup(const char *src);
 
 #endif // !CUB3D

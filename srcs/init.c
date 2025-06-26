@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:15:55 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/25 17:46:47 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/26 15:07:13 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,51 @@ bool	ft_write_file(t_global *glb, char **av)
 	int		fd;
 	char	*str;
 	char	*tmp;
+	char	**map;
+	int		i = 0;
 
 	tmp = NULL;
 	str = NULL;
+
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0 || fd > 1024)
 		return (false);
+
 	tmp = get_next_line(fd);
 	while (tmp)
 	{
-		str = ft_strjoin(str, tmp);
+		str = ft_strjoin(str, tmp); // accumule le contenu
 		free(tmp);
 		tmp = get_next_line(fd);
 	}
 	close(fd);
-	glb->map = ft_split(str, '\n');
+
+	map = ft_split(str, '\n');  // découpe
+	free(str);                  // ici c’est OK de free
+
+	int lines = 0;
+	while (map[lines])
+		lines++;
+
+	glb->map = malloc((lines + 1) * sizeof(char *));
 	if (!glb->map)
 		return (false);
+
+	for (i = 0; i < lines; i++)
+		glb->map[i] = ft_strdup(map[i]);
+	glb->map[i] = NULL;
+
+	// libère l'ancien tableau temporaire
+	i = 0;
+	while (map[i])
+		free(map[i++]);
+	free(map);
+
 	return (true);
 }
 
-void	load_texture(void *mlx, t_texture *tex, char *path)
+
+void load_texture(void *mlx, t_img *tex, char *path)
 {
 	tex->img = mlx_xpm_file_to_image(mlx, path, &tex->width, &tex->height);
 	if (!tex->img)
@@ -48,12 +72,8 @@ void	load_texture(void *mlx, t_texture *tex, char *path)
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_length, &tex->endian);
 }
 
-
 bool	ft_init(t_global *glb, char **av)
 {
-	int h;
-	int w;
-
 	if (!ft_strstr(av[1], ".cub"))
 		return (printf("ton fichier n'est pas un .cub\n"), false);
 
@@ -66,22 +86,18 @@ bool	ft_init(t_global *glb, char **av)
 	glb->player.dir_y = 0;
 	glb->player.plane_x = 0;
 	glb->player.plane_y = 0.66;
-	glb->texture.nord = mlx_xpm_file_to_image(glb->smlx.mlx, "textures/nord.xpm", &w, &h);
-	glb->texture.sud  = mlx_xpm_file_to_image(glb->smlx.mlx, "textures/sud.xpm", &w, &h);
-	glb->texture.est  = mlx_xpm_file_to_image(glb->smlx.mlx, "textures/est.xpm", &w, &h);
-	glb->texture.ouest= mlx_xpm_file_to_image(glb->smlx.mlx, "textures/ouest.xpm", &w, &h);
-	glb->texture.sol  = mlx_xpm_file_to_image(glb->smlx.mlx, "textures/sol.xpm", &w, &h);
-
+	glb->w = 1920;
+	glb->h = 1080;
 
 	glb->smlx.mlx = mlx_init();
 	if (!glb->smlx.mlx)
 		return (printf("mlx_init() échoué\n"), false);
 
-	glb->smlx.mlx_win = mlx_new_window(glb->smlx.mlx, 2560, 1440, "cub3d!");
+	glb->smlx.mlx_win = mlx_new_window(glb->smlx.mlx, glb->w, glb->h, "cub3d!");
 	if (!glb->smlx.mlx_win)
 		return (printf("mlx_new_window() échoué\n"), false);
 
-	glb->img.img = mlx_new_image(glb->smlx.mlx, 2560, 1440);
+	glb->img.img = mlx_new_image(glb->smlx.mlx, glb->w, glb->h);
 	if (!glb->img.img)
 		return (printf("mlx_new_image() échoué\n"), false);
 
@@ -89,6 +105,13 @@ bool	ft_init(t_global *glb, char **av)
 		&glb->img.bpp, &glb->img.line_length, &glb->img.endian);
 	if (!glb->img.addr)
 		return (printf("mlx_get_data_addr() échoué\n"), false);
+
+	load_texture(glb->smlx.mlx, &glb->texture.nord, "textures/nord.xpm");
+	load_texture(glb->smlx.mlx, &glb->texture.sud,  "textures/sud.xpm");
+	load_texture(glb->smlx.mlx, &glb->texture.est,  "textures/est.xpm");
+	load_texture(glb->smlx.mlx, &glb->texture.ouest,"textures/ouest.xpm");
+	load_texture(glb->smlx.mlx, &glb->texture.sol,  "textures/sol.xpm");
+	load_texture(glb->smlx.mlx, &glb->texture.sky, "textures/sky.xpm");
 
 	return (true);
 }

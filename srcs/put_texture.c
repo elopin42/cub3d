@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:41:37 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/25 16:43:51 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/26 13:46:57 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 bool	init_texture(t_global *glb)
 {
+	(void) glb;
 	return (true);
 }

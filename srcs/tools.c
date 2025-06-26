@@ -6,11 +6,12 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 00:48:40 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/07 01:52:57 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/26 14:55:21 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+#include <string.h>
 
 void	*ft_calloc(size_t ec, size_t es)
 {
@@ -51,3 +52,27 @@ int	ft_strstr(const char *b, const char *li)
 	}
 	return (0);
 }
+
+char	*ft_strdup(const char *src)
+{
+	int			i;
+	char		*str;
+
+	i = 0;
+	if (!src)
+		return (NULL);
+	while (src[i])
+		i++;
+	str = malloc(sizeof(char) * (i + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (src[i])
+	{
+		str[i] = src[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
