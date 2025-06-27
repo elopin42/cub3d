@@ -6,12 +6,11 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/26 20:41:41 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/27 21:07:00 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-#include <stdbool.h>
 
 void	put_pixel(t_img *img, int x, int y, int color)
 {
@@ -137,20 +136,19 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 	double step, tex_pos;
 	int y;
 	
+	y = 0;
 	if (glb->ray.side == 0)
 		wall_x = glb->player.y + glb->ray.perp_wall_dist * glb->ray.ray_dir_y;
 	else
 		wall_x = glb->player.x + glb->ray.perp_wall_dist * glb->ray.ray_dir_x;
 	wall_x -= floor(wall_x);
-	
 	tex_x = (int)(wall_x * tex->width);
 	if ((glb->ray.side == 0 && glb->ray.ray_dir_x > 0) || (glb->ray.side == 1 && glb->ray.ray_dir_y < 0))
 		tex_x = tex->width - tex_x - 1;
-	
 	step = 1.0 * tex->height / glb->ray.line_height;
 	tex_pos = (glb->ray.draw_start - glb->h / 2 + glb->ray.line_height / 2) * step;
-	
-	for (y = glb->ray.draw_start; y < glb->ray.draw_end; y++)
+	y = glb->ray.draw_start - 1;
+	while (++y < glb->ray.draw_end)
 	{
 		int tex_y = (int)tex_pos & (tex->height - 1);
 		tex_pos += step;
@@ -162,10 +160,29 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 
 void	draw_floor(t_global *glb, int x)
 {
-	int y;
-	
-	for (y = glb->ray.draw_end; y < glb->h; y++)
-		put_pixel(&glb->img, x, y, 0x880000);
+	int		y;
+	double	dist;
+	double	fx;
+	double	fy;
+	char	*pix;
+
+	y = glb->ray.draw_end - 1;
+	while (++y < glb->h)
+	{
+		dist = (0.5 * glb->h) / (y - glb->h / 2);
+		fx = glb->player.x + dist * (
+				(glb->player.dir_x - glb->player.plane_x)
+				+ x * (2.0 * glb->player.plane_x) / glb->w);
+		fy = glb->player.y + dist * (
+				(glb->player.dir_y - glb->player.plane_y)
+				+ x * (2.0 * glb->player.plane_y) / glb->w);
+		pix = glb->texture.sol.addr
+			+ ((int)(fy * glb->texture.sol.height) & (glb->texture.sol.height - 1))
+			* glb->texture.sol.line_length
+			+ ((int)(fx * glb->texture.sol.width) & (glb->texture.sol.width - 1))
+			* (glb->texture.sol.bpp / 8);
+		put_pixel(&glb->img, x, y, *(unsigned int *)pix);
+	}
 }
 
 void	draw_vertical_line(t_global *glb, int x)
