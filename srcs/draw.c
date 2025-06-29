@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/27 21:07:00 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/29 23:53:44 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,12 +129,26 @@ t_img	*select_wall_texture(t_global *glb)
 		return (&glb->texture.sud);
 }
 
+unsigned int effet_noir(unsigned int color, double factor)
+{
+	unsigned char r = (color >> 16) & 0xFF;
+	unsigned char g = (color >> 8) & 0xFF;
+	unsigned char b = color & 0xFF;
+
+	r = (unsigned char)(r * factor);
+	g = (unsigned char)(g * factor);
+	b = (unsigned char)(b * factor);
+
+	return (r << 16) | (g << 8) | b;
+}
+
 void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 {
 	double wall_x;
 	int tex_x;
 	double step, tex_pos;
 	int y;
+	double factor;
 	
 	y = 0;
 	if (glb->ray.side == 0)
@@ -154,6 +168,14 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 		tex_pos += step;
 		char *pixel = tex->addr + (tex_y * tex->line_length + tex_x * (tex->bpp / 8));
 		unsigned int color = *(unsigned int *)pixel;
+		if (glb->ray.perp_wall_dist > 2.0)
+		{
+			factor = 1.0 / (pow(glb->ray.perp_wall_dist - 0.9, 3) + 1);
+			if (factor < 0.02) 
+	   			factor = 0.02;
+			color = effet_noir(color, factor);
+		}
+
 		put_pixel(&glb->img, x, y, color);
 	}
 }
