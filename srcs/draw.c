@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/30 19:39:51 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/30 21:15:49 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,12 +193,10 @@ void draw_floor(t_global *glb, int x)
 		floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
 		floor_y = glb->player.y + dist * glb->ray.ray_dir_y;
 
-		int tex_x = (int)(floor_x * glb->texture.sol.width) % glb->texture.sol.width;
-		int tex_y = (int)(floor_y * glb->texture.sol.height) % glb->texture.sol.height;
+		// int tex_x = (int)(floor_x * glb->texture.sol.width) % glb->texture.sol.width;
+		// int tex_y = (int)(floor_y * glb->texture.sol.height) % glb->texture.sol.height;
 
-		pix = glb->texture.sol.addr
-			+ tex_y * glb->texture.sol.line_length
-			+ tex_x * (glb->texture.sol.bpp / 8);
+		pix = "0xFF0000";
 
 		unsigned int color = *(unsigned int *)pix;
 
