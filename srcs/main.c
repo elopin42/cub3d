@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/29 21:22:47 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/30 18:43:54 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	main(int ac, char **av)
 		return (printf("error\n"), ft_clean_all(&glb), 0);
   	mlx_hook(glb.smlx.mlx_win, 2, 1L<<0, key_press, &glb);
 	mlx_hook(glb.smlx.mlx_win, 3, 1L<<1, key_release, &glb);
-	mlx_loop_hook(glb.smlx.mlx, update, &glb); // 👈 appel automatique
+	mlx_loop_hook(glb.smlx.mlx, update, &glb); 
 
 	return (mlx_loop(glb.smlx.mlx));
 

@@ -44,9 +44,8 @@ void	move_player(t_global *glb, int direction)
 	int px = (int)glb->player.x;
 	int py = (int)glb->player.y;
 
-	// calcul map_h et map_w à la volée
 	int map_h = 0;
-	while (glb->map[map_h])
+	while (glb->map && glb->map[map_h])
 		map_h++;
 
 	int map_w = 0;
