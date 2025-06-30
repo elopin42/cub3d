@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/29 23:53:44 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/30 16:31:40 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,14 +167,14 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 		tex_pos += step;
 		char *pixel = tex->addr + (tex_y * tex->line_length + tex_x * (tex->bpp / 8));
 		unsigned int color = *(unsigned int *)pixel;
-    if (glb->ray.perp_wall_dist > 1.0)
-    {
-	    double d = glb->ray.perp_wall_dist - 1.0;
-	    double factor = 1.0 / (d * d * d + 1.0); // Cube → déclin plus rapide
-	    if (factor < 0.02)
-		    factor = 0.02;
-	    color = effet_noir(color, factor);
-    }
+    	if (glb->ray.perp_wall_dist > 1.0)
+    	{
+	    	double d = glb->ray.perp_wall_dist - 1.0;
+	    	double factor = 1.0 / (d * d * d + 1.0); 
+	    	if (factor < 0.02)
+		    	factor = 0.02;
+	    	color = effet_noir(color, factor);
+    	}
 		put_pixel(&glb->img, x, y, color);
 	}
 }
@@ -188,14 +188,11 @@ void draw_floor(t_global *glb, int x)
 
 	while (y < glb->h)
 	{
-		// Distance du joueur au sol
 		dist = glb->h / (2.0 * y - glb->h);
 
-		// Coordonnées du sol dans le monde
 		floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
 		floor_y = glb->player.y + dist * glb->ray.ray_dir_y;
 
-		// Texture mapping
 		int tex_x = (int)(floor_x * glb->texture.sol.width) % glb->texture.sol.width;
 		int tex_y = (int)(floor_y * glb->texture.sol.height) % glb->texture.sol.height;
 
@@ -205,14 +202,14 @@ void draw_floor(t_global *glb, int x)
 
 		unsigned int color = *(unsigned int *)pix;
 
-    if (dist > 1.0)
-    {
-	    double d = dist - 1.0;
-	    double factor = 1.0 / (d * d * d + 1.0);
-	    if (factor < 0.02)
-		    factor = 0.02;
-	    color = effet_noir(color, factor);
-    }
+    	if (dist > 1.0)
+    	{
+	    	double d = dist - 1.0;
+	    	double factor = 1.0 / (d * d * d + 1.0);
+	    	if (factor < 0.02)
+		    	factor = 0.02;
+	    	color = effet_noir(color, factor);
+    	}
 
 		put_pixel(&glb->img, x, y, color);
 		y++;
