@@ -148,7 +148,6 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 	int tex_x;
 	double step, tex_pos;
 	int y;
-	double factor;
 	
 	y = 0;
 	if (glb->ray.side == 0)
@@ -168,44 +167,58 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 		tex_pos += step;
 		char *pixel = tex->addr + (tex_y * tex->line_length + tex_x * (tex->bpp / 8));
 		unsigned int color = *(unsigned int *)pixel;
-		if (glb->ray.perp_wall_dist > 2.0)
-		{
-			factor = 1.0 / (pow(glb->ray.perp_wall_dist - 0.9, 3) + 1);
-			if (factor < 0.02) 
-	   			factor = 0.02;
-			color = effet_noir(color, factor);
-		}
-
+    if (glb->ray.perp_wall_dist > 1.0)
+    {
+	    double d = glb->ray.perp_wall_dist - 1.0;
+	    double factor = 1.0 / (d * d * d + 1.0); // Cube → déclin plus rapide
+	    if (factor < 0.02)
+		    factor = 0.02;
+	    color = effet_noir(color, factor);
+    }
 		put_pixel(&glb->img, x, y, color);
 	}
 }
 
-void	draw_floor(t_global *glb, int x)
+void draw_floor(t_global *glb, int x)
 {
-	int		y;
-	double	dist;
-	double	fx;
-	double	fy;
-	char	*pix;
+	int y = glb->ray.draw_end + 1;
+	double dist;
+	double floor_x, floor_y;
+	char *pix;
 
-	y = glb->ray.draw_end - 1;
-	while (++y < glb->h)
+	while (y < glb->h)
 	{
-		dist = (0.5 * glb->h) / (y - glb->h / 2);
-		fx = glb->player.x + dist * (
-				(glb->player.dir_x - glb->player.plane_x)
-				+ x * (2.0 * glb->player.plane_x) / glb->w);
-		fy = glb->player.y + dist * (
-				(glb->player.dir_y - glb->player.plane_y)
-				+ x * (2.0 * glb->player.plane_y) / glb->w);
+		// Distance du joueur au sol
+		dist = glb->h / (2.0 * y - glb->h);
+
+		// Coordonnées du sol dans le monde
+		floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
+		floor_y = glb->player.y + dist * glb->ray.ray_dir_y;
+
+		// Texture mapping
+		int tex_x = (int)(floor_x * glb->texture.sol.width) % glb->texture.sol.width;
+		int tex_y = (int)(floor_y * glb->texture.sol.height) % glb->texture.sol.height;
+
 		pix = glb->texture.sol.addr
-			+ ((int)(fy * glb->texture.sol.height) & (glb->texture.sol.height - 1))
-			* glb->texture.sol.line_length
-			+ ((int)(fx * glb->texture.sol.width) & (glb->texture.sol.width - 1))
-			* (glb->texture.sol.bpp / 8);
-		put_pixel(&glb->img, x, y, *(unsigned int *)pix);
+			+ tex_y * glb->texture.sol.line_length
+			+ tex_x * (glb->texture.sol.bpp / 8);
+
+		unsigned int color = *(unsigned int *)pix;
+
+    if (dist > 1.0)
+    {
+	    double d = dist - 1.0;
+	    double factor = 1.0 / (d * d * d + 1.0);
+	    if (factor < 0.02)
+		    factor = 0.02;
+	    color = effet_noir(color, factor);
+    }
+
+		put_pixel(&glb->img, x, y, color);
+		y++;
 	}
 }
+
 
 void	draw_vertical_line(t_global *glb, int x)
 {

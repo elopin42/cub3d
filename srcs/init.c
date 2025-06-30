@@ -86,8 +86,8 @@ bool	ft_init(t_global *glb, char **av)
 	glb->player.dir_y = 0;
 	glb->player.plane_x = 0;
 	glb->player.plane_y = 0.66;
-	glb->w = 1920;
-	glb->h = 1080;
+	glb->w = 1366;
+	glb->h = 768;
 
 	glb->smlx.mlx = mlx_init();
 	if (!glb->smlx.mlx)
