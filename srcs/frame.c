@@ -6,11 +6,13 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 20:25:22 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/01 20:44:22 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/01 20:50:10 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+/*en gros stv rajouter des textures de flammes c'est dans frame_for_flame tu va comprendre et si tu veut rajouter de la rapiditer c'est dans lunch_frame tu modifie le 1 car la sa change toute les secondes*/
 
 void	frame_for_flame(t_global *glb)
 {
