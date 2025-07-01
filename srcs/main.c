@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/01 20:39:26 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/01 21:15:55 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 int	key_press(int keycode, t_global *glb)
 {
-  if (keycode == 65307)
-	{
+	if (keycode == 65307)
 		ft_clean_all(glb);
-		exit(0);
-	}
 	if (keycode == KEY_LEFT)
 		glb->key_left = true;
 	if (keycode == KEY_RIGHT)
@@ -35,7 +32,7 @@ int	key_press(int keycode, t_global *glb)
 }
 
 int	key_release(int keycode, t_global *glb)
-{             
+{
 	if (keycode == KEY_LEFT)
 		glb->key_left = false;
 	if (keycode == KEY_RIGHT)
@@ -77,20 +74,19 @@ int	handle_key(int keycode, void *param)
 	glb = (t_global *)param;
 	if (keycode == 65307)
 		return (printf("echape!\n"), ft_clean_all(glb), 0);
-	if (keycode == KEY_LEFT) // exemple : flèche gauche
-		rotate_camera(glb, -0.05); // rotation à gauche
-	if (keycode == KEY_RIGHT) // exemple : flèche droite
-    rotate_camera(glb, 0.05); // rotation à droiteoid	rotate_camera(t_global *glb, double angle)
-  if (keycode == KEY_W)
-    move_player(glb, 1);
-  if (keycode == KEY_S)
-    move_player(glb, 2);
-  if (keycode == KEY_A)
-    move_player(glb, 3);
-  if (keycode == KEY_D)
-    move_player(glb, 4);
-
-  draw_scene(glb);
+	if (keycode == KEY_LEFT)
+		rotate_camera(glb, -0.05);
+	if (keycode == KEY_RIGHT)
+		rotate_camera(glb, 0.05);
+	if (keycode == KEY_W)
+		move_player(glb, 1);
+	if (keycode == KEY_S)
+		move_player(glb, 2);
+	if (keycode == KEY_A)
+		move_player(glb, 3);
+	if (keycode == KEY_D)
+		move_player(glb, 4);
+	draw_scene(glb);
 	return (1);
 }
 
@@ -102,10 +98,9 @@ int	main(int ac, char **av)
 		return (printf("argument\nerror\n"), 0);
 	if (!ft_init(&glb, av) || !ft_parsing(&glb))
 		return (printf("error\n"), ft_clean_all(&glb), 0);
-  	mlx_hook(glb.smlx.mlx_win, 2, 1L<<0, key_press, &glb);
-	mlx_hook(glb.smlx.mlx_win, 3, 1L<<1, key_release, &glb);
-	mlx_loop_hook(glb.smlx.mlx, update, &glb); 
+	mlx_hook(glb.smlx.mlx_win, 2, 1L << 0, key_press, &glb);
+	mlx_hook(glb.smlx.mlx_win, 3, 1L << 1, key_release, &glb);
+	mlx_loop_hook(glb.smlx.mlx, update, &glb);
 	mlx_hook(glb.smlx.mlx_win, 17, 0, (void *)ft_clean_all, &glb);
 	return (mlx_loop(glb.smlx.mlx));
-
 }

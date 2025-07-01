@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 20:25:22 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/01 20:50:10 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/01 20:55:18 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,18 @@ void	frame_for_flame(t_global *glb)
 
 	i++;
 	if (i == 0)
-		load_texture(glb->smlx.mlx, &glb->texture.torche, "textures/torche.xpm");
+		load_texture(glb->smlx.mlx, &glb->texture.torche,
+			"textures/torche.xpm");
 	if (i == 1)
-		load_texture(glb->smlx.mlx, &glb->texture.torche, "textures/torche1.xpm");
+		load_texture(glb->smlx.mlx, &glb->texture.torche,
+			"textures/torche1.xpm");
 	if (i == 2)
-		load_texture(glb->smlx.mlx, &glb->texture.torche, "textures/torche2.xpm");
+		load_texture(glb->smlx.mlx, &glb->texture.torche,
+			"textures/torche2.xpm");
 	if (i == 3)
 	{
-		load_texture(glb->smlx.mlx, &glb->texture.torche, "textures/torche3.xpm");
+		load_texture(glb->smlx.mlx, &glb->texture.torche,
+			"textures/torche3.xpm");
 		i = -1;
 	}
 }

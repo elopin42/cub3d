@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/01 20:38:57 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/01 21:00:32 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -26,6 +26,10 @@
 #define KEY_S 115        // S
 #define KEY_A 97         // A
 #define KEY_D 100        // D
+#define MINIMAP_START_X 10
+#define MINIMAP_START_Y 10
+#define SQUARE_SIZE     8
+
 
 typedef struct s_ray {
 	double camera_x;
@@ -94,6 +98,7 @@ typedef struct s_global{
 
 void	ft_clean_all(t_global *glb);
 void	frame_for_flame(t_global *glb);
+void	put_pixel(t_img *img, int x, int y, int color);
 void load_texture(void *mlx, t_img *tex, char *path);
 int	lunch_frame(t_global *glb);
 bool	ft_init(t_global *glb, char **av);
