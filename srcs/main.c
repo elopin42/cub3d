@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/01 18:37:33 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/01 20:39:26 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	key_release(int keycode, t_global *glb)
 
 int	update(t_global *glb)
 {
+	lunch_frame(glb);
 	if (glb->key_w)
 		move_player(glb, 1);
 	if (glb->key_s)
@@ -104,7 +105,7 @@ int	main(int ac, char **av)
   	mlx_hook(glb.smlx.mlx_win, 2, 1L<<0, key_press, &glb);
 	mlx_hook(glb.smlx.mlx_win, 3, 1L<<1, key_release, &glb);
 	mlx_loop_hook(glb.smlx.mlx, update, &glb); 
-
+	mlx_hook(glb.smlx.mlx_win, 17, 0, (void *)ft_clean_all, &glb);
 	return (mlx_loop(glb.smlx.mlx));
 
 }

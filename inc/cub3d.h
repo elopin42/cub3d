@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/30 18:44:38 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/01 20:38:57 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include "get_next_line.h"
 #include <math.h>
+#include <time.h>
 
 #define KEY_LEFT 65363
 #define KEY_RIGHT 65361
@@ -92,6 +93,9 @@ typedef struct s_global{
 
 
 void	ft_clean_all(t_global *glb);
+void	frame_for_flame(t_global *glb);
+void load_texture(void *mlx, t_img *tex, char *path);
+int	lunch_frame(t_global *glb);
 bool	ft_init(t_global *glb, char **av);
 bool	init_texture(t_global *glb);
 bool	ft_parsing(t_global *glb);
