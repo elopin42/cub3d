@@ -13,25 +13,25 @@ void	rotate_camera(t_global *glb, double angle)
 
 void	move_player(t_global *glb, int direction)
 {
-	double	speed = 0.05;
+	double	speed = 0.08;
 	double	new_x, new_y;
 
-	if (direction == 1) // Avancer
+	if (direction == 1)
 	{
 		new_x = glb->player.x + glb->player.dir_x * speed;
 		new_y = glb->player.y + glb->player.dir_y * speed;
 	}
-	else if (direction == 2) // Reculer
+	else if (direction == 2)
 	{
 		new_x = glb->player.x - glb->player.dir_x * speed;
 		new_y = glb->player.y - glb->player.dir_y * speed;
 	}
-	else if (direction == 3) // Gauche (strafe)
+	else if (direction == 3)
 	{
 		new_x = glb->player.x - glb->player.plane_x * speed;
 		new_y = glb->player.y - glb->player.plane_y * speed;
 	}
-	else if (direction == 4) // Droite (strafe)
+	else if (direction == 4)
 	{
 		new_x = glb->player.x + glb->player.plane_x * speed;
 		new_y = glb->player.y + glb->player.plane_y * speed;
@@ -52,17 +52,12 @@ void	move_player(t_global *glb, int direction)
 	if (map_h > 0)
 		map_w = ft_strlen(glb->map[0]);
 
-	// bornes de sécurité
 	if (py >= 0 && py < map_h && mx >= 0 && mx < map_w)
-	{
 		if (glb->map[py][mx] != '1')
 			glb->player.x = new_x;
-	}
 	if (my >= 0 && my < map_h && px >= 0 && px < map_w)
-	{
 		if (glb->map[my][px] != '1')
 			glb->player.y = new_y;
-	}
 
 /*
 	if (glb->map[(int)glb->player.y][(int)new_x] != '1')

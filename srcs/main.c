@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/30 18:43:54 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/01 18:37:33 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	update(t_global *glb)
 	if (glb->key_d)
 		move_player(glb, 4);
 	if (glb->key_left)
-		rotate_camera(glb, -0.05);
+		rotate_camera(glb, -0.08);
 	if (glb->key_right)
-		rotate_camera(glb, 0.05);
+		rotate_camera(glb, 0.08);
 	draw_scene(glb);
 	return (0);
 }
