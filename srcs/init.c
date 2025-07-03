@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:15:55 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/03 18:54:32 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/03 23:48:55 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,17 @@ bool	ft_write_file(t_global *glb, char **av)
 	if (!glb->map)
 		return (false);
 
+	glb->map_clone = malloc((lines + 1) * sizeof(char *));
+	if (!glb->map_clone)
+		return (false);
+
+
 	for (i = 0; i < lines; i++)
 		glb->map[i] = ft_strdup(map[i]);
 	glb->map[i] = NULL;
+	for (i = 0; i < lines; i++)
+		glb->map_clone[i] = ft_strdup(map[i]);
+	glb->map_clone[i] = NULL;
 
 	i = 0;
 	while (map[i])

@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/03 20:24:57 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/03 23:45:20 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -87,6 +87,7 @@ typedef struct s_global{
   	t_texture texture;
 	t_ray ray;
 	char **map;
+	char **map_clone;
   	bool key_left;
   	bool key_right;
   	bool key_w;
@@ -103,6 +104,7 @@ typedef struct s_global{
 } t_global;
 
 
+void ft_door(t_global *glb);
 void	ft_clean_all(t_global *glb);
 void	set_map_dimensions(t_global *glb);
 void	frame_for_flame(t_global *glb);

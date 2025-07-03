@@ -6,36 +6,42 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:18:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/03 20:27:05 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/03 23:52:41 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	acces_sorti(t_global *glb, char **map, int y, int x)
+bool	set_xy(t_global *glb, int y, int x)
 {
-	if (map[y] == NULL || map[y][x] == '\0' || x < 0 || y < 0)
-		return ;
-	if (map[y][x] == '1' || map[y][x] == '2')
-		return ;
-	if (!glb->count_door && map[y][x] == 'D')
-	{
-		glb->d_x = x;
-		glb->d_y = y;
-		glb->count_door = 1;
-		return ;
-	}
-	if (map[y][x] == '0')
-		map[y][x] = '2';
-	else
-		map[y][x] += 32;
-	acces_sorti(glb, map, y + 1, x);
-	acces_sorti(glb, map, y - 1, x);
-	acces_sorti(glb, map, y, x + 1);
-	acces_sorti(glb, map, y, x - 1);
+	glb->d_y = y;
+	glb->d_x = x;
+	return (true);
+}
+
+bool	check_door_acces(t_global *glb, int y, int x, char c)
+{
+	if (glb->map_clone[y][x + 1] == c)
+		return (set_xy(glb, y, x + 1));
+	if (glb->map_clone[y][x - 1] == c)
+		return (set_xy(glb, y, x - 1));
+	if (glb->map_clone[y + 1][x] == c)
+		return (set_xy(glb, y + 1, x));
+	if (glb->map_clone[y - 1][x] == c)
+		return (set_xy(glb, y - 1, x));
+	return (false);
 }
 
 void ft_door(t_global *glb)
 {
-	
+	if (check_door_acces(glb, glb->player.y, glb->player.x, 'D'))
+	{
+		glb->map[glb->d_y][glb->d_x] = '0';
+		glb->map_clone[glb->d_y][glb->d_x] = '3';
+	}
+	else if (check_door_acces(glb, glb->player.y, glb->player.x, '3'))
+	{
+		glb->map[glb->d_y][glb->d_x] = 'D';
+		glb->map_clone[glb->d_y][glb->d_x] = 'D';
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/03 20:17:57 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/03 23:23:44 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	key_press(int keycode, t_global *glb)
 {
 	if (keycode == 65307)
 		return (printf("echape!\n"), ft_clean_all(glb), 0);
+	if (keycode == KEY_E)
+		return (ft_door(glb), 0);
 	if (keycode == KEY_LEFT)
 		glb->key_left = true;
 	if (keycode == KEY_RIGHT)
