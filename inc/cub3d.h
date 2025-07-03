@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/01 21:00:32 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/03 20:24:57 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -26,6 +26,7 @@
 #define KEY_S 115        // S
 #define KEY_A 97         // A
 #define KEY_D 100        // D
+#define KEY_E 101        // D
 #define MINIMAP_START_X 10
 #define MINIMAP_START_Y 10
 #define SQUARE_SIZE     8
@@ -72,6 +73,7 @@ typedef struct s_texture {
 	t_img nord;
 	t_img sud;
 	t_img est;
+	t_img door;
 	t_img ouest;
 	t_img sol;
 	t_img sky;
@@ -95,6 +97,9 @@ typedef struct s_global{
 	int	h;
   int m_w;
   int m_h;
+  int	d_x;
+  int d_y;
+  int count_door;
 } t_global;
 
 

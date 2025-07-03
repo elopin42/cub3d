@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/01 18:31:44 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/03 20:11:41 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	perform_dda(t_global *glb)
 		}
 		if (!is_valid_map_position(glb, glb->ray.map_x, glb->ray.map_y) || glb->map[glb->ray.map_y][glb->ray.map_x] == '1')
 			hit = 1;
+		if (!is_valid_map_position(glb, glb->ray.map_x, glb->ray.map_y) || glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
+			hit = 1;
 	}
 }
 
@@ -119,6 +121,8 @@ void	draw_ceiling_and_sky(t_global *glb, int x)
 
 t_img	*select_wall_texture(t_global *glb)
 {
+	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
+		return (&glb->texture.door);
 	if (glb->ray.side == 0 && glb->ray.ray_dir_x > 0)
 		return (&glb->texture.ouest);
 	else if (glb->ray.side == 0 && glb->ray.ray_dir_x < 0)

@@ -6,7 +6,7 @@
 #    By: elopin <elopin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 22:27:47 by elopin            #+#    #+#              #
-#    Updated: 2025/07/01 21:00:47 by elopin           ###   ########.fr        #
+#    Updated: 2025/07/03 20:19:02 by elopin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRCSF=main.c \
 	  cam_moove.c \
 	  put_texture.c \
 	  frame.c  \
-	  small_map.c
+	  small_map.c \
+	  door.c
 OBJSF=$(SRCSF:.c=.o)
 SRCDIR=srcs/
 OBJDIR=objs/

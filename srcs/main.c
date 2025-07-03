@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/01 21:15:55 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/03 20:17:57 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key_press(int keycode, t_global *glb)
 {
 	if (keycode == 65307)
-		ft_clean_all(glb);
+		return (printf("echape!\n"), ft_clean_all(glb), 0);
 	if (keycode == KEY_LEFT)
 		glb->key_left = true;
 	if (keycode == KEY_RIGHT)
@@ -65,29 +65,6 @@ int	update(t_global *glb)
 		rotate_camera(glb, 0.08);
 	draw_scene(glb);
 	return (0);
-}
-
-int	handle_key(int keycode, void *param)
-{
-	t_global	*glb;
-
-	glb = (t_global *)param;
-	if (keycode == 65307)
-		return (printf("echape!\n"), ft_clean_all(glb), 0);
-	if (keycode == KEY_LEFT)
-		rotate_camera(glb, -0.05);
-	if (keycode == KEY_RIGHT)
-		rotate_camera(glb, 0.05);
-	if (keycode == KEY_W)
-		move_player(glb, 1);
-	if (keycode == KEY_S)
-		move_player(glb, 2);
-	if (keycode == KEY_A)
-		move_player(glb, 3);
-	if (keycode == KEY_D)
-		move_player(glb, 4);
-	draw_scene(glb);
-	return (1);
 }
 
 int	main(int ac, char **av)

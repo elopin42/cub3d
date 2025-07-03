@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:15:55 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/30 20:22:03 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/03 18:54:32 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ bool	ft_write_file(t_global *glb, char **av)
 	tmp = get_next_line(fd);
 	while (tmp)
 	{
-		str = ft_strjoin(str, tmp); // accumule le contenu
+		str = ft_strjoin(str, tmp); 
 		free(tmp);
 		tmp = get_next_line(fd);
 	}
 	close(fd);
 
-	map = ft_split(str, '\n');  // découpe
-	free(str);                  // ici c’est OK de free
+	map = ft_split(str, '\n');  
+	free(str);                  
 
 	int lines = 0;
 	while (map[lines])
@@ -51,7 +51,6 @@ bool	ft_write_file(t_global *glb, char **av)
 		glb->map[i] = ft_strdup(map[i]);
 	glb->map[i] = NULL;
 
-	// libère l'ancien tableau temporaire
 	i = 0;
 	while (map[i])
 		free(map[i++]);
@@ -113,6 +112,7 @@ bool	ft_init(t_global *glb, char **av)
 	load_texture(glb->smlx.mlx, &glb->texture.sol,  "textures/sol.xpm");
 	load_texture(glb->smlx.mlx, &glb->texture.sky, "textures/sky.xpm");
 	load_texture(glb->smlx.mlx, &glb->texture.torche, "textures/torche.xpm");
-  set_map_dimensions(glb);
+	load_texture(glb->smlx.mlx, &glb->texture.door, "textures/door.xpm");
+  	set_map_dimensions(glb);
 	return (true);
 }
