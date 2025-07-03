@@ -93,15 +93,19 @@ typedef struct s_global{
   	bool key_d;
 	int	w;
 	int	h;
+  int m_w;
+  int m_h;
 } t_global;
 
 
 void	ft_clean_all(t_global *glb);
+void	set_map_dimensions(t_global *glb);
 void	frame_for_flame(t_global *glb);
 void	put_pixel(t_img *img, int x, int y, int color);
 void load_texture(void *mlx, t_img *tex, char *path);
 int	lunch_frame(t_global *glb);
 bool	ft_init(t_global *glb, char **av);
+void draw_minimap(t_global *glb);
 bool	init_texture(t_global *glb);
 bool	ft_parsing(t_global *glb);
 char	*get_next_line(int fd);

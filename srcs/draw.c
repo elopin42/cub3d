@@ -281,6 +281,7 @@ void	draw_scene(t_global *glb)
 	while (++x < glb->w)
 		draw_vertical_line(glb, x);
 	draw_torch(glb);
+  draw_minimap(glb);
 	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0, 0);
 }
 
