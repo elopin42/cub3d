@@ -164,8 +164,17 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex, int doo)
 		tex_x = tex->width - tex_x - 1;
 	step = 1.0 * tex->height / glb->ray.line_height;
 	tex_pos = (glb->ray.draw_start - glb->h / 2 + glb->ray.line_height / 2) * step;
-	y = glb->ray.draw_start - 1 + doo;
-	while (++y < glb->ray.draw_end)
+  int anim_start = glb->ray.draw_start;
+  int anim_end = glb->ray.draw_end;
+
+  if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
+	  anim_start += doo;
+
+  if (anim_start > anim_end)
+	  anim_start = anim_end;
+
+  y = anim_start - 1;
+  while (++y < anim_end)
 	{
 		int tex_y = (int)tex_pos & (tex->height - 1);
 		tex_pos += step;
@@ -287,12 +296,15 @@ void	draw_scene(t_global *glb)
 	int x = -1;
 	int doo = 0;
 
-	if (glb->door_anim)
-	{
-		glb->door_anim_progress += 3;		
-    doo = glb->door_anim_progress;
-	}
+  if (glb->door_anim)
+  {
+  	glb->door_anim_progress += 5;
+  	if (glb->door_anim_progress > 150)
+  		glb->door_anim_progress = 150;
+  	doo = glb->door_anim_progress;
+  }
 
+  // printf("%d\n", glb->door_anim_progress);
 	while (++x < glb->w)
 		draw_vertical_line(glb, x, doo);
 
@@ -300,10 +312,12 @@ void	draw_scene(t_global *glb)
 	draw_minimap(glb);
 	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0, 0);
 
-	if (glb->door_anim_progress >= glb->ray.draw_end)
+  // printf("end --> %d\n", glb->ray.draw_end);
+	if (glb->door_anim_progress >= 150)
 	{
 		glb->map[glb->d_y][glb->d_x] = '0';
 		glb->map_clone[glb->d_y][glb->d_x] = '3';
+    glb->door_anim_progress = 0;
 		glb->door_anim = false;
 	}
 }
