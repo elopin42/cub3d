@@ -100,7 +100,8 @@ typedef struct s_global{
   int m_h;
   int	d_x;
   int d_y;
-  int count_door;
+  bool door_anim;          // pour savoir si une anim est en cours
+  int door_anim_progress;
 } t_global;
 
 
@@ -124,7 +125,7 @@ void	calculate_step_and_side_dist(t_global *glb);
 void	calculate_wall_distance(t_global *glb);
 void	init_ray(t_global *glb, int x);
 void	*ft_memset(void *dest, int c, size_t count);
-void draw_scene(t_global *glb, int doo);
+void draw_scene(t_global *glb);
 void	rotate_camera(t_global *glb, double angle);
 void	move_player(t_global *glb, int direction);
 char	*ft_strdup(const char *src);

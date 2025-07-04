@@ -282,13 +282,30 @@ void draw_torch(t_global *glb)
 	}
 }
 
-void	draw_scene(t_global *glb, int doo)
+void	draw_scene(t_global *glb)
 {
-	int (x) = -1;
+	int x = -1;
+	int doo = 0;
+
+	if (glb->door_anim)
+	{
+		glb->door_anim_progress += 3;		
+    doo = glb->door_anim_progress;
+	}
+
 	while (++x < glb->w)
 		draw_vertical_line(glb, x, doo);
+
 	draw_torch(glb);
-  draw_minimap(glb);
+	draw_minimap(glb);
 	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0, 0);
+
+	if (glb->door_anim_progress >= glb->ray.draw_end)
+	{
+		glb->map[glb->d_y][glb->d_x] = '0';
+		glb->map_clone[glb->d_y][glb->d_x] = '3';
+		glb->door_anim = false;
+	}
 }
+
 

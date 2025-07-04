@@ -37,15 +37,8 @@ void ft_door(t_global *glb)
 {
 	if (check_door_acces(glb, glb->player.y, glb->player.x, 'D'))
 	{
-    glb->count_door = 0;
-    while(glb->count_door < glb->ray.draw_end)
-    {
-      draw_scene(glb, glb->count_door);
-      usleep(1600);
-      glb->count_door += 100;
-    }
-		glb->map[glb->d_y][glb->d_x] = '0';
-		glb->map_clone[glb->d_y][glb->d_x] = '3';
+    glb->door_anim = true;
+	  glb->door_anim_progress = 0;
 	}
 	else if (check_door_acces(glb, glb->player.y, glb->player.x, '3'))
 	{
