@@ -65,7 +65,7 @@ int	update(t_global *glb)
 		rotate_camera(glb, -0.08);
 	if (glb->key_right)
 		rotate_camera(glb, 0.08);
-	draw_scene(glb);
+	draw_scene(glb ,0);
 	return (0);
 }
 

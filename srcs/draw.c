@@ -146,7 +146,7 @@ unsigned int effet_noir(unsigned int color, double factor)
 	return (r << 16) | (g << 8) | b;
 }
 
-void	draw_wall_texture(t_global *glb, int x, t_img *tex)
+void	draw_wall_texture(t_global *glb, int x, t_img *tex, int doo)
 {
 	double wall_x;
 	int tex_x;
@@ -164,7 +164,7 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 		tex_x = tex->width - tex_x - 1;
 	step = 1.0 * tex->height / glb->ray.line_height;
 	tex_pos = (glb->ray.draw_start - glb->h / 2 + glb->ray.line_height / 2) * step;
-	y = glb->ray.draw_start - 1;
+	y = glb->ray.draw_start - 1 + doo;
 	while (++y < glb->ray.draw_end)
 	{
 		int tex_y = (int)tex_pos & (tex->height - 1);
@@ -221,7 +221,7 @@ void draw_floor(t_global *glb, int x)
 }
 
 
-void	draw_vertical_line(t_global *glb, int x)
+void	draw_vertical_line(t_global *glb, int x, int doo)
 {
 	t_img *tex;
 	
@@ -231,7 +231,10 @@ void	draw_vertical_line(t_global *glb, int x)
 	calculate_wall_distance(glb);
 	draw_ceiling_and_sky(glb, x);
 	tex = select_wall_texture(glb);
-	draw_wall_texture(glb, x, tex);
+	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
+	  draw_wall_texture(glb, x, tex, doo);
+  else
+    draw_wall_texture(glb, x, tex, 0);
 	draw_floor(glb, x);
 }
 
@@ -279,13 +282,13 @@ void draw_torch(t_global *glb)
 	}
 }
 
-void	draw_scene(t_global *glb)
+void	draw_scene(t_global *glb, int doo)
 {
 	int (x) = -1;
 	while (++x < glb->w)
-		draw_vertical_line(glb, x);
+		draw_vertical_line(glb, x, doo);
 	draw_torch(glb);
-  	draw_minimap(glb);
+  draw_minimap(glb);
 	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0, 0);
 }
 
