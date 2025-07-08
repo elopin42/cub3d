@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:15:55 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/03 23:48:55 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/08 20:25:56 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ bool	ft_init(t_global *glb, char **av)
 	load_texture(glb->smlx.mlx, &glb->texture.sky, "textures/sky.xpm");
 	load_texture(glb->smlx.mlx, &glb->texture.torche, "textures/torche.xpm");
 	load_texture(glb->smlx.mlx, &glb->texture.door, "textures/door.xpm");
+	load_texture(glb->smlx.mlx, &glb->texture.white, "textures/white.xpm");
   	set_map_dimensions(glb);
 	return (true);
 }

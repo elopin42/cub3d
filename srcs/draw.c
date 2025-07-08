@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/03 23:45:02 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/08 20:26:21 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,15 @@ void	draw_ceiling_and_sky(t_global *glb, int x)
 	}
 }
 
-t_img	*select_wall_texture(t_global *glb)
+t_img	*select_wall_texture(t_global *glb, int x)
 {
+	if (glb->anim_door)
+	{
+		if (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3' && x < glb->anim_door)
+			return (&glb->texture.white);
+		else if (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3' && x > glb->anim_door)
+			return (&glb->texture.door);
+	}
 	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
 		return (&glb->texture.door);
 	if (glb->ray.side == 0 && glb->ray.ray_dir_x > 0)
@@ -232,7 +239,7 @@ void	draw_vertical_line(t_global *glb, int x)
 	perform_dda(glb);
 	calculate_wall_distance(glb);
 	draw_ceiling_and_sky(glb, x);
-	tex = select_wall_texture(glb);
+	tex = select_wall_texture(glb, x);
 	draw_wall_texture(glb, x, tex);
 	draw_floor(glb, x);
 }

@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/03 23:45:20 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/08 20:25:41 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -78,6 +78,7 @@ typedef struct s_texture {
 	t_img sol;
 	t_img sky;
 	t_img torche;
+	t_img white;
 } t_texture;
 
 typedef struct s_global{
@@ -100,7 +101,7 @@ typedef struct s_global{
   int m_h;
   int	d_x;
   int d_y;
-  int count_door;
+  int anim_door;
 } t_global;
 
 

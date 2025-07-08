@@ -6,11 +6,12 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:18:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/03 23:52:41 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/08 20:06:15 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+#include <unistd.h>
 
 bool	set_xy(t_global *glb, int y, int x)
 {
@@ -34,12 +35,13 @@ bool	check_door_acces(t_global *glb, int y, int x, char c)
 
 void ft_door(t_global *glb)
 {
-	if (check_door_acces(glb, glb->player.y, glb->player.x, 'D'))
+	if (!glb->anim_door && check_door_acces(glb, glb->player.y, glb->player.x, 'D'))
 	{
-		glb->map[glb->d_y][glb->d_x] = '0';
+		glb->anim_door = 1;
 		glb->map_clone[glb->d_y][glb->d_x] = '3';
+		draw_scene(glb);
 	}
-	else if (check_door_acces(glb, glb->player.y, glb->player.x, '3'))
+	else if (!glb->anim_door && check_door_acces(glb, glb->player.y, glb->player.x, '3'))
 	{
 		glb->map[glb->d_y][glb->d_x] = 'D';
 		glb->map_clone[glb->d_y][glb->d_x] = 'D';
