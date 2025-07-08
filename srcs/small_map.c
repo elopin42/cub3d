@@ -58,9 +58,9 @@ void	draw_minimap(t_global *glb)
 		{
 			screen_x = MINIMAP_START_X + x * SQUARE_SIZE;
 			screen_y = MINIMAP_START_Y + y * SQUARE_SIZE;
-			if (glb->map[y][x] == '1')
+			if (glb->map_clone[y][x] == '1')
 				draw_square(glb, screen_x, screen_y, 1);
-			else if (glb->map[y][x] == 'D')
+			else if (glb->map_clone[y][x] == 'D' || glb->map_clone[y][x] == '3')
 				draw_square(glb, screen_x, screen_y, 4);
 			else
 				draw_square(glb, screen_x, screen_y, 2);

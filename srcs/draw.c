@@ -183,6 +183,8 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 	}
 }
 
+// donc c'est la que je dois faire une boucle while pour le mur;
+
 void draw_floor(t_global *glb, int x)
 {
 	int y = glb->ray.draw_end + 1;
