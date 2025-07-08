@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:18:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/08 20:06:15 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/09 00:15:06 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ void ft_door(t_global *glb)
 	{
 		glb->anim_door = 1;
 		glb->map_clone[glb->d_y][glb->d_x] = '3';
+		printf("wsh\n");
 		draw_scene(glb);
 	}
 	else if (!glb->anim_door && check_door_acces(glb, glb->player.y, glb->player.x, '3'))
 	{
 		glb->map[glb->d_y][glb->d_x] = 'D';
 		glb->map_clone[glb->d_y][glb->d_x] = 'D';
+		printf("waaa\n");
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/08 20:06:14 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/09 00:29:29 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,16 @@ int	update(t_global *glb)
 	if (glb->key_right)
 		rotate_camera(glb, 0.08);
 	draw_scene(glb);
-	if (glb->anim_door && glb->anim_door++ >= glb->w)
+	if (glb->anim_door > 0)
 	{
-		glb->anim_door = 0;
-		glb->map[glb->d_y][glb->d_x] = '0';
+		glb->anim_door += 10;
+		if (glb->anim_door >= glb->ray.line_height)
+		{
+			glb->anim_door = 0;
+			glb->map[glb->d_y][glb->d_x] = '0'; 
+		}
 	}
+
 	return (0);
 }
 

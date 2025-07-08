@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/08 20:26:21 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/09 00:48:04 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,10 @@ t_img	*select_wall_texture(t_global *glb, int x)
 {
 	if (glb->anim_door)
 	{
-		if (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3' && x < glb->anim_door)
+		printf("%d, %d\n", x, glb->anim_door - glb->ray.draw_start);
+		if (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3' && x <= glb->anim_door - glb->ray.draw_start)
 			return (&glb->texture.white);
-		else if (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3' && x > glb->anim_door)
+		if (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3' && x > glb->anim_door - glb->ray.draw_start)
 			return (&glb->texture.door);
 	}
 	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
@@ -171,23 +172,33 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 		tex_x = tex->width - tex_x - 1;
 	step = 1.0 * tex->height / glb->ray.line_height;
 	tex_pos = (glb->ray.draw_start - glb->h / 2 + glb->ray.line_height / 2) * step;
+	if (glb->map[glb->ray.map_y][glb->ray.map_x] == '3')
+		tex_pos += glb->anim_door;
+
 	y = glb->ray.draw_start - 1;
+	// printf("you --> %d\n", y + 1);
 	while (++y < glb->ray.draw_end)
 	{
+		if (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3'
+			&& glb->anim_door > 0
+			&& y > glb->ray.draw_start + glb->anim_door)
+			break;
+	
 		int tex_y = (int)tex_pos & (tex->height - 1);
 		tex_pos += step;
 		char *pixel = tex->addr + (tex_y * tex->line_length + tex_x * (tex->bpp / 8));
-		unsigned int color = *(unsigned int *)pixel;
-    	if (glb->ray.perp_wall_dist > 1.0)
-    	{
-	    	double d = glb->ray.perp_wall_dist - 1.0;
-	    	double factor = 1.0 / (d * d * d + 1.0); 
-	    	if (factor < 0.02)
-		    	factor = 0.02;
-	    	color = effet_noir(color, factor);
-    	}
+			unsigned int color = *(unsigned int *)pixel;
+		if (glb->ray.perp_wall_dist > 1.0)
+		{
+			double d = glb->ray.perp_wall_dist - 1.0;
+			double factor = 1.0 / (d * d * d + 1.0); 
+			if (factor < 0.02)
+				factor = 0.02;
+			color = effet_noir(color, factor);
+		}
 		put_pixel(&glb->img, x, y, color);
 	}
+
 }
 
 // donc c'est la que je dois faire une boucle while pour le mur;
@@ -240,6 +251,16 @@ void	draw_vertical_line(t_global *glb, int x)
 	calculate_wall_distance(glb);
 	draw_ceiling_and_sky(glb, x);
 	tex = select_wall_texture(glb, x);
+	if (glb->anim_door == 1)
+	{
+		glb->anim_door = glb->ray.draw_start;
+		printf("wbbb --> %d ---> %d\n", glb->anim_door, glb->ray.draw_start);
+	}
+	else if (glb->anim_door > 0)
+	{
+		glb->anim_door += 10;
+		printf("wxccc\n");
+	}
 	draw_wall_texture(glb, x, tex);
 	draw_floor(glb, x);
 }
