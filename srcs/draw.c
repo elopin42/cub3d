@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/09 00:48:04 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/11 18:52:15 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,14 +176,8 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 		tex_pos += glb->anim_door;
 
 	y = glb->ray.draw_start - 1;
-	// printf("you --> %d\n", y + 1);
 	while (++y < glb->ray.draw_end)
 	{
-		// if (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3'
-		// 	&& glb->anim_door > 0
-		// 	&& y > glb->ray.draw_start + glb->anim_door)
-		// 	break;
-	
 		int tex_y = (int)tex_pos & (tex->height - 1);
 		tex_pos += step;
 		char *pixel = tex->addr + (tex_y * tex->line_length + tex_x * (tex->bpp / 8));

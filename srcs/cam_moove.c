@@ -39,10 +39,10 @@ void	move_player(t_global *glb, int direction)
 	else
 		return;
 
-	int mx = (int)new_x;
-	int my = (int)new_y;
-	int px = (int)glb->player.x;
-	int py = (int)glb->player.y;
+	int (mx) = (int)new_x;
+	int (my) = (int)new_y;
+	int (px) = (int)glb->player.x;
+	int (py) = (int)glb->player.y;
 
 	int map_h = 0;
 	while (glb->map && glb->map[map_h])
@@ -58,11 +58,5 @@ void	move_player(t_global *glb, int direction)
 	if (my >= 0 && my < map_h && px >= 0 && px < map_w)
 		if (glb->map[my][px] != '1' && glb->map[my][px] != 'D')
 			glb->player.y = new_y;
-
-/*
-	if (glb->map[(int)glb->player.y][(int)new_x] != '1')
-		glb->player.x = new_x;
-	if (glb->map[(int)new_y][(int)glb->player.x] != '1')
-		glb->player.y = new_y;*/
 }
 

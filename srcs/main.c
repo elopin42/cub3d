@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/09 00:29:29 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/10 18:53:35 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	update(t_global *glb)
 		glb->anim_door += 10;
 		if (glb->anim_door >= glb->ray.line_height)
 		{
+			printf("ptn");
 			glb->anim_door = 0;
 			glb->map[glb->d_y][glb->d_x] = '0'; 
 		}
