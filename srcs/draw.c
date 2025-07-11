@@ -179,10 +179,10 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 	// printf("you --> %d\n", y + 1);
 	while (++y < glb->ray.draw_end)
 	{
-		if (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3'
-			&& glb->anim_door > 0
-			&& y > glb->ray.draw_start + glb->anim_door)
-			break;
+		// if (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3'
+		// 	&& glb->anim_door > 0
+		// 	&& y > glb->ray.draw_start + glb->anim_door)
+		// 	break;
 	
 		int tex_y = (int)tex_pos & (tex->height - 1);
 		tex_pos += step;
@@ -251,15 +251,10 @@ void	draw_vertical_line(t_global *glb, int x)
 	calculate_wall_distance(glb);
 	draw_ceiling_and_sky(glb, x);
 	tex = select_wall_texture(glb, x);
-	if (glb->anim_door == 1)
+	if (glb->anim_door > 0 && glb->ray.draw_start > 0)
 	{
 		glb->anim_door = glb->ray.draw_start;
 		printf("wbbb --> %d ---> %d\n", glb->anim_door, glb->ray.draw_start);
-	}
-	else if (glb->anim_door > 0)
-	{
-		glb->anim_door += 10;
-		printf("wxccc\n");
 	}
 	draw_wall_texture(glb, x, tex);
 	draw_floor(glb, x);
