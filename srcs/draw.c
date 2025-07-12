@@ -119,26 +119,17 @@ void	draw_ceiling_and_sky(t_global *glb, int x)
 	}
 }
 
-t_img	*select_wall_texture(t_global *glb, int x)
+t_img *select_wall_texture(t_global *glb)
 {
-	if (glb->anim_door)
-	{
-		printf("%d, %d\n", x, glb->anim_door - glb->ray.draw_start);
-		if (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3' && x <= glb->anim_door - glb->ray.draw_start)
-			return (&glb->texture.white);
-		if (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3' && x > glb->anim_door - glb->ray.draw_start)
-			return (&glb->texture.door);
-	}
-	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
-		return (&glb->texture.door);
-	if (glb->ray.side == 0 && glb->ray.ray_dir_x > 0)
-		return (&glb->texture.ouest);
-	else if (glb->ray.side == 0 && glb->ray.ray_dir_x < 0)
-		return (&glb->texture.est);
-	else if (glb->ray.side == 1 && glb->ray.ray_dir_y > 0)
-		return (&glb->texture.nord);
-	else
-		return (&glb->texture.sud);
+    if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
+        return (&glb->texture.door);
+    if (glb->ray.side == 0 && glb->ray.ray_dir_x > 0)
+        return (&glb->texture.ouest);
+    if (glb->ray.side == 0 && glb->ray.ray_dir_x < 0)
+        return (&glb->texture.est);
+    if (glb->ray.side == 1 && glb->ray.ray_dir_y > 0)
+        return (&glb->texture.nord);
+    return (&glb->texture.sud);
 }
 
 unsigned int effet_noir(unsigned int color, double factor)
@@ -154,46 +145,71 @@ unsigned int effet_noir(unsigned int color, double factor)
 	return (r << 16) | (g << 8) | b;
 }
 
-void	draw_wall_texture(t_global *glb, int x, t_img *tex)
+void draw_wall_texture(t_global *glb, int x, t_img *tex)
 {
-	double wall_x;
-	int tex_x;
-	double step, tex_pos;
-	int y;
-	
-	y = 0;
-	if (glb->ray.side == 0)
-		wall_x = glb->player.y + glb->ray.perp_wall_dist * glb->ray.ray_dir_y;
-	else
-		wall_x = glb->player.x + glb->ray.perp_wall_dist * glb->ray.ray_dir_x;
-	wall_x -= floor(wall_x);
-	tex_x = (int)(wall_x * tex->width);
-	if ((glb->ray.side == 0 && glb->ray.ray_dir_x > 0) || (glb->ray.side == 1 && glb->ray.ray_dir_y < 0))
-		tex_x = tex->width - tex_x - 1;
-	step = 1.0 * tex->height / glb->ray.line_height;
-	tex_pos = (glb->ray.draw_start - glb->h / 2 + glb->ray.line_height / 2) * step;
-	if (glb->map[glb->ray.map_y][glb->ray.map_x] == '3')
-		tex_pos += glb->anim_door;
+    // 1) Calcul de wall_x et tex_x
+    double wall_x = (glb->ray.side == 0)
+        ? glb->player.y + glb->ray.perp_wall_dist * glb->ray.ray_dir_y
+        : glb->player.x + glb->ray.perp_wall_dist * glb->ray.ray_dir_x;
+    wall_x -= floor(wall_x);
 
-	y = glb->ray.draw_start - 1;
-	while (++y < glb->ray.draw_end)
-	{
-		int tex_y = (int)tex_pos & (tex->height - 1);
-		tex_pos += step;
-		char *pixel = tex->addr + (tex_y * tex->line_length + tex_x * (tex->bpp / 8));
-			unsigned int color = *(unsigned int *)pixel;
-		if (glb->ray.perp_wall_dist > 1.0)
-		{
-			double d = glb->ray.perp_wall_dist - 1.0;
-			double factor = 1.0 / (d * d * d + 1.0); 
-			if (factor < 0.02)
-				factor = 0.02;
-			color = effet_noir(color, factor);
-		}
-		put_pixel(&glb->img, x, y, color);
-	}
+    int tex_x = (int)(wall_x * tex->width);
+    if ((glb->ray.side == 0 && glb->ray.ray_dir_x > 0) ||
+        (glb->ray.side == 1 && glb->ray.ray_dir_y < 0))
+        tex_x = tex->width - tex_x - 1;
 
+    // 2) Préparation du pas vertical dans la texture
+    double step    = (double)tex->height / glb->ray.line_height;
+    double tex_pos = (glb->ray.draw_start - glb->h / 2
+                    + glb->ray.line_height / 2) * step;
+
+    // 3) Paramètres de l’animation de porte
+    bool  door_anim      = (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3');
+    int   clip_height    = glb->anim_door;
+    if (clip_height > glb->door_height)
+        clip_height = glb->door_height;
+    int   white_start    = glb->door_start_y;
+    int   white_end      = white_start + clip_height;
+    t_img *white_tex     = &glb->texture.white;
+
+    // 4) Boucle de dessin de la ligne verticale
+    for (int y = glb->ray.draw_start; y < glb->ray.draw_end; y++)
+    {
+        int tex_y = ((int)tex_pos) & (tex->height - 1);
+        tex_pos += step;
+
+        char *pixel;
+        if (door_anim && y >= white_start && y < white_end)
+        {
+            // zone blanche du wipe
+            pixel = white_tex->addr
+                  + tex_y * white_tex->line_length
+                  + tex_x * (white_tex->bpp / 8);
+        }
+        else
+        {
+            // mur ou porte normale
+            pixel = tex->addr
+                  + tex_y * tex->line_length
+                  + tex_x * (tex->bpp / 8);
+        }
+
+        unsigned int color = *(unsigned int *)pixel;
+
+        // 5) Assombrissement pour la distance
+        if (glb->ray.perp_wall_dist > 1.0)
+        {
+            double d      = glb->ray.perp_wall_dist - 1.0;
+            double factor = 1.0 / (d * d * d + 1.0);
+            if (factor < 0.02) factor = 0.02;
+            color = effet_noir(color, factor);
+        }
+
+        put_pixel(&glb->img, x, y, color);
+    }
 }
+
+
 
 // donc c'est la que je dois faire une boucle while pour le mur;
 
@@ -244,12 +260,7 @@ void	draw_vertical_line(t_global *glb, int x)
 	perform_dda(glb);
 	calculate_wall_distance(glb);
 	draw_ceiling_and_sky(glb, x);
-	tex = select_wall_texture(glb, x);
-	if (glb->anim_door > 0 && glb->ray.draw_start > 0)
-	{
-		glb->anim_door = glb->ray.draw_start;
-		printf("wbbb --> %d ---> %d\n", glb->anim_door, glb->ray.draw_start);
-	}
+	tex = select_wall_texture(glb);
 	draw_wall_texture(glb, x, tex);
 	draw_floor(glb, x);
 }
@@ -307,4 +318,33 @@ void	draw_scene(t_global *glb)
   	draw_minimap(glb);
 	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0, 0);
 }
+
+void ft_door(t_global *glb)
+{
+    int mid = glb->w / 2;
+
+    if (!glb->anim_door 
+        && check_door_acces(glb, glb->player.y, glb->player.x, 'D'))
+    {
+        // 1) on calcule un rayon centré pour connaître draw_start/line_height
+        init_ray(glb, mid);
+        calculate_step_and_side_dist(glb);
+        perform_dda(glb);
+        calculate_wall_distance(glb);
+        // 2) on sauve les bornes de la porte à l'écran
+        glb->door_start_y = glb->ray.draw_start;
+        glb->door_height  = glb->ray.line_height;
+        // 3) on démarre l'anim
+        glb->anim_door = 1;
+        glb->map_clone[glb->d_y][glb->d_x] = '3';
+        draw_scene(glb);
+    }
+    else if (!glb->anim_door 
+             && check_door_acces(glb, glb->player.y, glb->player.x, '3'))
+    {
+		  glb->map[glb->d_y][glb->d_x] = 'D';
+		  glb->map_clone[glb->d_y][glb->d_x] = 'D';
+    }
+}
+
 

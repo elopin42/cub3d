@@ -69,9 +69,8 @@ int	update(t_global *glb)
 	if (glb->anim_door > 0)
 	{
 		glb->anim_door += 10;
-		if (glb->anim_door >= glb->ray.line_height)
+		if (glb->anim_door >= glb->door_height)
 		{
-			printf("ptn");
 			glb->anim_door = 0;
 			glb->map[glb->d_y][glb->d_x] = '0'; 
 		}

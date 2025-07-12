@@ -102,6 +102,9 @@ typedef struct s_global{
   int	d_x;
   int d_y;
   int anim_door;
+  int door_start_y;
+  int door_height;
+
 } t_global;
 
 
@@ -117,6 +120,7 @@ void draw_minimap(t_global *glb);
 bool	init_texture(t_global *glb);
 bool	ft_parsing(t_global *glb);
 char	*get_next_line(int fd);
+bool	check_door_acces(t_global *glb, int y, int x, char c);
 char	**ft_split(char const *s, char c);
 void	*ft_calloc(size_t ec, size_t es);
 int		ft_strstr(const char *b, const char *li);

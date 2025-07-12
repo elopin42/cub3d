@@ -33,19 +33,3 @@ bool	check_door_acces(t_global *glb, int y, int x, char c)
 	return (false);
 }
 
-void ft_door(t_global *glb)
-{
-	if (!glb->anim_door && check_door_acces(glb, glb->player.y, glb->player.x, 'D'))
-	{
-		glb->anim_door = 1;
-		glb->map_clone[glb->d_y][glb->d_x] = '3';
-		printf("wsh\n");
-		draw_scene(glb);
-	}
-	else if (!glb->anim_door && check_door_acces(glb, glb->player.y, glb->player.x, '3'))
-	{
-		glb->map[glb->d_y][glb->d_x] = 'D';
-		glb->map_clone[glb->d_y][glb->d_x] = 'D';
-		printf("waaa\n");
-	}
-}
