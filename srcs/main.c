@@ -6,39 +6,46 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 18:49:15 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 20:08:39 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int	mouse_moved(int x, int y, void *param)
+int	mouse_moved_advanced(int x, int y, void *param)
 {
-	static int	prev_x = -1;
+	(void) y;
 	t_global	*glb = (t_global *)param;
 	double		sensitivity = 0.003;
+	int			center_x = WIN_WIDTH / 2;
+	int			center_y = WIN_HEIGHT / 2;
 	int			delta_x;
-
-	if (prev_x == -1)
-		prev_x = x;
-
-	delta_x = x - prev_x;
-
-	// Si déplacement trop grand (souris sortie), on ignore
-	if (delta_x > 100 || delta_x < -100)
+	static int	mouse_locked = 1;
+	
+	// Toggle du verrouillage souris avec TAB par exemple
+	if (glb->key_tab) // Ajoute cette key dans tes structures
 	{
-		prev_x = x;
-		return (0);
+		mouse_locked = !mouse_locked;
+		glb->key_tab = false;
 	}
-
-	if (delta_x != 0)
-		rotate_camera(glb, delta_x * sensitivity);
-
-	prev_x = x;
-	(void)y;
+	
+	if (!mouse_locked)
+		return (0);
+	
+	delta_x = x - center_x;
+	
+	// Seuil pour éviter les boucles infinies
+	if (abs(delta_x) < 3)
+		return (0);
+	
+	// Rotation
+	rotate_camera(glb, -delta_x * sensitivity);
+	
+	// Recentrage
+	mlx_mouse_move(glb->smlx.mlx, glb->smlx.mlx_win, center_x, center_y);
+	
 	return (0);
 }
-
 
 int	key_press(int keycode, t_global *glb)
 {
@@ -97,7 +104,7 @@ int	update(t_global *glb)
 	if (glb->anim_door > 0)
 	{
 		glb->anim_door += 10;
-		if (get_current_time_ms() - glb->door_timing >= 1000)
+		if (get_current_time_ms() - glb->door_timing >= 1500)
 		{
 			glb->anim_door = 0;
 			glb->map[glb->d_y][glb->d_x] = '0'; 
@@ -106,19 +113,21 @@ int	update(t_global *glb)
 	return (0);
 }
 
-
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
 	t_global	glb = {0};
-
+	
 	if (ac != 2)
 		return (printf("argument\nerror\n"), 0);
 	if (!ft_init(&glb, av) || !ft_parsing(&glb))
 		return (printf("error\n"), ft_clean_all(&glb), 0);
+	
 	mlx_hook(glb.smlx.mlx_win, 2, 1L << 0, key_press, &glb);
 	mlx_hook(glb.smlx.mlx_win, 3, 1L << 1, key_release, &glb);
-	mlx_hook(glb.smlx.mlx_win, 6, 1L << 6, mouse_moved, &glb);
+	mlx_hook(glb.smlx.mlx_win, 6, 1L << 6, mouse_moved_advanced, &glb);
 	mlx_loop_hook(glb.smlx.mlx, update, &glb);
 	mlx_hook(glb.smlx.mlx_win, 17, 0, (void *)ft_clean_all, &glb);
+	mlx_mouse_move(glb.smlx.mlx, glb.smlx.mlx_win, WIN_WIDTH/2, WIN_HEIGHT/2);
+	
 	return (mlx_loop(glb.smlx.mlx));
 }

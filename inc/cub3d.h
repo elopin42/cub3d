@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 18:45:44 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 20:06:13 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -123,6 +123,8 @@ typedef struct s_global{
   int door_height;
   int el_muros_invisible;
   long	door_timing;
+  bool	mouse_locked;   // Pour toggle le verrouillage
+  bool	key_tab;  
 } t_global;
 
 // calcul_for_draw.c
