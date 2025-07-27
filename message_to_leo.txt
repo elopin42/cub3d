@@ -1,1 +1,12 @@
-il me reste la norme et mes leaks et je veut te faire une doc sur mon code car c'ets le bordel mais sa fait 10 foit je refait ce ptn de code pour l'animation de la porte sa me clc mdrrrrr
+il me reste les leaks et je veut te faire une doc sur mon code car c'ets le bordel mais sa fait 10 foit je refait ce ptn de code pour l'animation de la porte sa me clc mdrrrrr
+
+--> main
+	first step parsing normal
+	ensuite on capte tout les mlx hook rien de plus pour les touches
+	-->function mouse_moved_advanced 
+		pour bouger la souris de gauche a droite
+		!!! si on cache sa souris sa leaks
+		j'ai mit une fonction pour toujours recentrer la souris sinon bizare c'est la dernier fonction que je call 
+	-->key_press et key_release 
+		c'est pour capter si on appuie sur la touche comme sa on peut detecter quand on appuie et relache
+		il set true ou false pour pas faire que de appuyer sur la touche
