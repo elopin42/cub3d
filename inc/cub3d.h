@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 17:08:20 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 17:57:06 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -130,6 +130,16 @@ void perform_dda_ignoring_doors(t_global *glb, t_ray *ray);
 // draw_wall_tex.c
 void draw_wall_texture(t_global *glb, int x, t_img *tex);
 //
+unsigned int	get_normal_wall_color(t_global *glb, t_img *tex,
+		int tex_x, int tex_y);
+unsigned int	apply_distance_effect(unsigned int color, double dist);
+unsigned int	handle_door_opening(t_global *glb, int x, int y);
+void	calculate_texture_params(t_global *glb, t_img *tex, int *tex_x,
+		double *step);
+void	calculate_secondary_ray(t_global *glb);
+unsigned int	draw_wall_behind_door(t_global *glb, int y);
+unsigned int	handle_sky_part(t_global *glb, int x, int y);
+unsigned int	handle_floor_part(t_global *glb, int y);
 void draw_torch(t_global *glb);
 t_img *select_wall_texture_from_ray(t_global *glb, t_ray *ray);
 t_img *select_wall_texture(t_global *glb);
