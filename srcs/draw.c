@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 15:27:26 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 15:36:22 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ t_img *select_wall_texture_from_ray(t_global *glb, t_ray *ray)
 
 void draw_wall_texture(t_global *glb, int x, t_img *tex)
 {
+	unsigned int color;
     // 1) Calcul de wall_x et tex_x
     double wall_x = (glb->ray.side == 0)
         ? glb->player.y + glb->ray.perp_wall_dist * glb->ray.ray_dir_y
@@ -255,13 +256,13 @@ void draw_wall_texture(t_global *glb, int x, t_img *tex)
         		+ tmp_tex_x * (tmp_tex->bpp / 8);
 
     		color = *(unsigned int *)pixel_tmp;
-    		if (dist > 1.0)
-    		{
-        		double d = dist - 1.0;
-        		double factor = 1.0 / (d * d * d + 1.0);
-        		if (factor < 0.02) factor = 0.02;
-        			color = effet_noir(color, factor);
-    		}
+    		// if (dist > 1.0)
+    		// {
+    		//   		double d = dist - 1.0;
+    		//   		double factor = 1.0 / (d * d * d + 1.0);
+    		//   		if (factor < 0.02) factor = 0.02;
+    		//   			color = effet_noir(color, factor);
+    		//}
     		put_pixel(&glb->img, x, y, color);
     		continue;
 		}
@@ -271,9 +272,9 @@ void draw_wall_texture(t_global *glb, int x, t_img *tex)
             pixel = tex->addr
                   + tex_y * tex->line_length
                   + tex_x * (tex->bpp / 8);
+        	color = *(unsigned int *)pixel;
         }
 
-        unsigned int color = *(unsigned int *)pixel;
         if (glb->ray.perp_wall_dist > 1.0)
         {
             double d      = glb->ray.perp_wall_dist - 1.0;
