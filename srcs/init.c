@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:15:55 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 17:09:34 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 18:45:11 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ bool	ft_init(t_global *glb, char **av)
 	glb->player.dir_y = 0;
 	glb->player.plane_x = 0;
 	glb->player.plane_y = 0.66;
-	glb->w = 1366;
-	glb->h = 768;
+	glb->w = WIN_WIDTH;
+	glb->h = WIN_HEIGHT;
 
 	glb->smlx.mlx = mlx_init();
 	if (!glb->smlx.mlx)

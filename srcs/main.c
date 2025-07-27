@@ -6,11 +6,39 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 15:56:14 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 18:49:15 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+int	mouse_moved(int x, int y, void *param)
+{
+	static int	prev_x = -1;
+	t_global	*glb = (t_global *)param;
+	double		sensitivity = 0.003;
+	int			delta_x;
+
+	if (prev_x == -1)
+		prev_x = x;
+
+	delta_x = x - prev_x;
+
+	// Si déplacement trop grand (souris sortie), on ignore
+	if (delta_x > 100 || delta_x < -100)
+	{
+		prev_x = x;
+		return (0);
+	}
+
+	if (delta_x != 0)
+		rotate_camera(glb, delta_x * sensitivity);
+
+	prev_x = x;
+	(void)y;
+	return (0);
+}
+
 
 int	key_press(int keycode, t_global *glb)
 {
@@ -75,9 +103,9 @@ int	update(t_global *glb)
 			glb->map[glb->d_y][glb->d_x] = '0'; 
 		}
 	}
-
 	return (0);
 }
+
 
 int	main(int ac, char **av)
 {
@@ -89,6 +117,7 @@ int	main(int ac, char **av)
 		return (printf("error\n"), ft_clean_all(&glb), 0);
 	mlx_hook(glb.smlx.mlx_win, 2, 1L << 0, key_press, &glb);
 	mlx_hook(glb.smlx.mlx_win, 3, 1L << 1, key_release, &glb);
+	mlx_hook(glb.smlx.mlx_win, 6, 1L << 6, mouse_moved, &glb);
 	mlx_loop_hook(glb.smlx.mlx, update, &glb);
 	mlx_hook(glb.smlx.mlx_win, 17, 0, (void *)ft_clean_all, &glb);
 	return (mlx_loop(glb.smlx.mlx));

@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 17:57:06 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 18:45:44 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -20,6 +20,8 @@
 #include <math.h>
 #include <time.h>
 #include <sys/time.h>
+#include <stdint.h>
+#include <X11/Xlib.h>
 
 #define KEY_LEFT 65363
 #define KEY_RIGHT 65361
@@ -31,6 +33,8 @@
 #define MINIMAP_START_X 10
 #define MINIMAP_START_Y 10
 #define SQUARE_SIZE     8
+#define WIN_WIDTH  1280
+#define WIN_HEIGHT 720
 
 
 typedef struct s_ray {
