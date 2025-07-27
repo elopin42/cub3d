@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 20:52:34 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 21:00:54 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ void				draw_scene(t_global *glb);
 void				rotate_camera(t_global *glb, double angle);
 void				move_player(t_global *glb, int direction);
 
-// libft functions
+// libftou functions
 char				*get_next_line(int fd);
 char				**ft_split(char const *s, char c);
 void				*ft_calloc(size_t ec, size_t es);
