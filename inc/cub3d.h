@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/08 20:25:41 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 14:37:21 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -104,7 +104,7 @@ typedef struct s_global{
   int anim_door;
   int door_start_y;
   int door_height;
-
+  int el_muros_invisible;
 } t_global;
 
 

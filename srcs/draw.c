@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/11 18:52:15 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 15:27:26 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	perform_dda(t_global *glb)
 		}
 		if (!is_valid_map_position(glb, glb->ray.map_x, glb->ray.map_y) || glb->map[glb->ray.map_y][glb->ray.map_x] == '1')
 			hit = 1;
-		if (!is_valid_map_position(glb, glb->ray.map_x, glb->ray.map_y) || glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
+		if ((!is_valid_map_position(glb, glb->ray.map_x, glb->ray.map_y) || glb->map[glb->ray.map_y][glb->ray.map_x] == 'D') && glb->el_muros_invisible)
 			hit = 1;
 	}
 }
@@ -145,6 +145,47 @@ unsigned int effet_noir(unsigned int color, double factor)
 	return (r << 16) | (g << 8) | b;
 }
 
+void perform_dda_ignoring_doors(t_global *glb, t_ray *ray)
+{
+	int hit = 0;
+
+	while (!hit)
+	{
+		if (ray->side_dist_x < ray->side_dist_y)
+		{
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
+		}
+		else
+		{
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
+		}
+
+		char tile = glb->map[ray->map_y][ray->map_x];
+		if (tile == '1' || tile == 'D') // porte fermée et mur
+			hit = 1;
+		else if (!is_valid_map_position(glb, ray->map_x, ray->map_y))
+			hit = 1;
+		// case '3' est ignorée
+	}
+}
+
+t_img *select_wall_texture_from_ray(t_global *glb, t_ray *ray)
+{
+    if (glb->map[ray->map_y][ray->map_x] == 'D')
+        return (&glb->texture.door);
+    if (ray->side == 0 && ray->ray_dir_x > 0)
+        return (&glb->texture.ouest);
+    if (ray->side == 0 && ray->ray_dir_x < 0)
+        return (&glb->texture.est);
+    if (ray->side == 1 && ray->ray_dir_y > 0)
+        return (&glb->texture.nord);
+    return (&glb->texture.sud);
+}
+
 void draw_wall_texture(t_global *glb, int x, t_img *tex)
 {
     // 1) Calcul de wall_x et tex_x
@@ -181,22 +222,58 @@ void draw_wall_texture(t_global *glb, int x, t_img *tex)
         char *pixel;
         if (door_anim && y >= white_start && y < white_end)
         {
-            // zone blanche du wipe
             pixel = white_tex->addr
                   + tex_y * white_tex->line_length
                   + tex_x * (white_tex->bpp / 8);
+			glb->el_muros_invisible = 0;
         }
+		if (door_anim && y >= white_start && y < white_end)
+		{
+        	unsigned int color = *(unsigned int *)pixel;
+	  		  // Créer une copie du ray
+  		  	t_ray tmp_ray = glb->ray;
+    		perform_dda_ignoring_doors(glb, &tmp_ray);
+
+    		// Recalcule de la distance
+    		double dist = (tmp_ray.side == 0)
+        		? (tmp_ray.map_x - glb->player.x + (1 - tmp_ray.step_x) / 2) / tmp_ray.ray_dir_x
+        		: (tmp_ray.map_y - glb->player.y + (1 - tmp_ray.step_y) / 2) / tmp_ray.ray_dir_y;
+
+    		double wall_x = (tmp_ray.side == 0)
+        		? glb->player.y + dist * tmp_ray.ray_dir_y
+        		: glb->player.x + dist * tmp_ray.ray_dir_x;
+    		wall_x -= floor(wall_x);
+
+			t_img *tmp_tex = select_wall_texture_from_ray(glb, &tmp_ray);
+    		int tmp_tex_x = (int)(wall_x * tex->width);
+    		if ((tmp_ray.side == 0 && tmp_ray.ray_dir_x > 0) ||
+        		(tmp_ray.side == 1 && tmp_ray.ray_dir_y < 0))
+        		tmp_tex_x = tex->width - tmp_tex_x - 1;
+
+    		char *pixel_tmp = tmp_tex->addr
+        		+ tex_y * tmp_tex->line_length
+        		+ tmp_tex_x * (tmp_tex->bpp / 8);
+
+    		color = *(unsigned int *)pixel_tmp;
+    		if (dist > 1.0)
+    		{
+        		double d = dist - 1.0;
+        		double factor = 1.0 / (d * d * d + 1.0);
+        		if (factor < 0.02) factor = 0.02;
+        			color = effet_noir(color, factor);
+    		}
+    		put_pixel(&glb->img, x, y, color);
+    		continue;
+		}
         else
         {
-            // mur ou porte normale
+			glb->el_muros_invisible = 1;
             pixel = tex->addr
                   + tex_y * tex->line_length
                   + tex_x * (tex->bpp / 8);
         }
 
         unsigned int color = *(unsigned int *)pixel;
-
-        // 5) Assombrissement pour la distance
         if (glb->ray.perp_wall_dist > 1.0)
         {
             double d      = glb->ray.perp_wall_dist - 1.0;
@@ -208,8 +285,6 @@ void draw_wall_texture(t_global *glb, int x, t_img *tex)
         put_pixel(&glb->img, x, y, color);
     }
 }
-
-
 
 // donc c'est la que je dois faire une boucle while pour le mur;
 
@@ -251,6 +326,7 @@ void draw_floor(t_global *glb, int x)
 }
 
 
+
 void	draw_vertical_line(t_global *glb, int x)
 {
 	t_img *tex;
@@ -263,6 +339,8 @@ void	draw_vertical_line(t_global *glb, int x)
 	tex = select_wall_texture(glb);
 	draw_wall_texture(glb, x, tex);
 	draw_floor(glb, x);
+	// if (!glb->el_muros_invisible)
+	// 	draw_wall_texture(glb, x, tex);
 }
 
 void draw_torch(t_global *glb)
@@ -326,15 +404,12 @@ void ft_door(t_global *glb)
     if (!glb->anim_door 
         && check_door_acces(glb, glb->player.y, glb->player.x, 'D'))
     {
-        // 1) on calcule un rayon centré pour connaître draw_start/line_height
         init_ray(glb, mid);
         calculate_step_and_side_dist(glb);
         perform_dda(glb);
         calculate_wall_distance(glb);
-        // 2) on sauve les bornes de la porte à l'écran
         glb->door_start_y = glb->ray.draw_start;
         glb->door_height  = glb->ray.line_height;
-        // 3) on démarre l'anim
         glb->anim_door = 1;
         glb->map_clone[glb->d_y][glb->d_x] = '3';
         draw_scene(glb);
