@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 20:57:48 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/03 20:07:36 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 20:53:50 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ void	draw_minimap(t_global *glb)
 {
 	int	screen_x;
 	int	screen_y;
+	int x;
 
 	int (y) = -1;
 	while (++y < glb->m_h)
 	{
-		int (x) = -1;
+		x = -1;
 		while (++x < glb->m_w)
 		{
 			screen_x = MINIMAP_START_X + x * SQUARE_SIZE;

@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:18:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 16:41:27 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 20:37:18 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,29 @@ bool	check_door_acces(t_global *glb, int y, int x, char c)
 	return (false);
 }
 
-void ft_door(t_global *glb)
+void	ft_door(t_global *glb)
 {
-    int mid = glb->w / 2;
+	int	mid;
 
-    if (!glb->anim_door 
-        && check_door_acces(glb, glb->player.y, glb->player.x, 'D'))
-    {
+	mid = glb->w / 2;
+	if (!glb->anim_door && check_door_acces(glb, glb->player.y, glb->player.x,
+			'D'))
+	{
 		glb->door_timing = get_current_time_ms();
-        init_ray(glb, mid);
-        calculate_step_and_side_dist(glb);
-        perform_dda(glb);
-        calculate_wall_distance(glb);
-        glb->door_start_y = glb->ray.draw_start;
-        glb->door_height  = glb->ray.line_height;
-        glb->anim_door = 1;
-        glb->map_clone[glb->d_y][glb->d_x] = '3';
-        draw_scene(glb);
-    }
-    else if (!glb->anim_door 
-             && check_door_acces(glb, glb->player.y, glb->player.x, '3'))
-    {
-		  glb->map[glb->d_y][glb->d_x] = 'D';
-		  glb->map_clone[glb->d_y][glb->d_x] = 'D';
-    }
+		init_ray(glb, mid);
+		calculate_step_and_side_dist(glb);
+		perform_dda(glb);
+		calculate_wall_distance(glb);
+		glb->door_start_y = glb->ray.draw_start;
+		glb->door_height = glb->ray.line_height;
+		glb->anim_door = 1;
+		glb->map_clone[glb->d_y][glb->d_x] = '3';
+		draw_scene(glb);
+	}
+	else if (!glb->anim_door && check_door_acces(glb, glb->player.y,
+			glb->player.x, '3'))
+	{
+		glb->map[glb->d_y][glb->d_x] = 'D';
+		glb->map_clone[glb->d_y][glb->d_x] = 'D';
+	}
 }
-

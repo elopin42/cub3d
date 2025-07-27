@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:57:45 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 18:04:55 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 20:47:09 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,10 @@ void	calculate_secondary_ray(t_global *glb)
 
 unsigned int	draw_wall_behind_door(t_global *glb, int y)
 {
-	double			tmp_wall_x;
-	double			tmp_step;
-	double			tmp_tex_pos;
-	char			*pixel_tmp;
-	int				tmp_tex_y;
+	double	tmp_wall_x;
+	double	tmp_step;
+	double	tmp_tex_pos;
+	char	*pixel_tmp;
 
 	if (glb->door_params->tmp_ray.side == 0)
 		tmp_wall_x = glb->player.y + glb->door_params->tmp_dist
@@ -68,7 +67,8 @@ unsigned int	draw_wall_behind_door(t_global *glb, int y)
 	tmp_tex_pos = (glb->door_params->tmp_draw_start - glb->h / 2
 			+ glb->door_params->tmp_line_height / 2) * tmp_step;
 	tmp_tex_pos += (y - glb->door_params->tmp_draw_start) * tmp_step;
-	tmp_tex_y = ((int)tmp_tex_pos) & (glb->door_params->tmp_tex->height - 1);
+	int (tmp_tex_y) = ((int)tmp_tex_pos) & (glb->door_params->tmp_tex->height
+			- 1);
 	pixel_tmp = glb->door_params->tmp_tex->addr + tmp_tex_y
 		* glb->door_params->tmp_tex->line_length + tmp_tex_x
 		* (glb->door_params->tmp_tex->bpp / 8);
@@ -85,8 +85,8 @@ unsigned int	handle_sky_part(t_global *glb, int x, int y)
 	tex_x_sky = (x * glb->texture.sky.width) / glb->w;
 	tex_y_sky = (y * glb->texture.sky.height) / (glb->h / 2);
 	pixel_sky = glb->texture.sky.addr + (tex_y_sky
-			* glb->texture.sky.line_length + tex_x_sky
-			* (glb->texture.sky.bpp / 8));
+			* glb->texture.sky.line_length + tex_x_sky * (glb->texture.sky.bpp
+				/ 8));
 	return (*(unsigned int *)pixel_sky);
 }
 
@@ -106,8 +106,8 @@ unsigned int	handle_floor_part(t_global *glb, int y)
 	int (tex_y_floor) = (int)(floor_y * glb->texture.sol.height)
 		% glb->texture.sol.height;
 	pixel_floor = glb->texture.sol.addr + tex_y_floor
-		* glb->texture.sol.line_length + tex_x_floor
-		* (glb->texture.sol.bpp / 8);
+		* glb->texture.sol.line_length + tex_x_floor * (glb->texture.sol.bpp
+			/ 8);
 	color = *(unsigned int *)pixel_floor;
 	return (apply_distance_effect(color, dist));
 }
@@ -118,13 +118,12 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 	int				tex_y;
 	double			step;
 	double			tex_pos;
-	bool			door_anim;
 	unsigned int	color;
 
 	calculate_texture_params(glb, tex, &tex_x, &step);
 	tex_pos = (glb->ray.draw_start - glb->h / 2 + glb->ray.line_height / 2)
 		* step;
-	door_anim = (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3');
+	bool(door_anim) = (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3');
 	int (clip_height) = glb->anim_door;
 	if (clip_height > glb->door_height)
 		clip_height = glb->door_height;

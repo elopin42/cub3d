@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 20:25:22 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 16:47:43 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 20:49:24 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,47 +36,75 @@ void	frame_for_flame(t_global *glb)
 	}
 }
 
-void draw_torch(t_global *glb)
+static void	calculate_torch_dimensions(t_global *glb, t_torch_data *data)
 {
-	if (!glb || !glb->texture.torche.img || !glb->texture.torche.addr)
-		return;
+	data->screen_w = glb->w;
+	data->screen_h = glb->h;
+	data->target_height = (data->screen_h / 3) * 2;
+	data->scale = (double)data->target_height / glb->texture.torche.height;
+	data->scaled_width = glb->texture.torche.width * data->scale;
+	data->scaled_height = data->target_height;
+	data->x_offset = data->screen_w - data->screen_w / 2 + (data->screen_w / 2
+			- data->scaled_width) / 2;
+	data->y_offset = data->screen_h - data->scaled_height;
+}
 
-	int screen_w = glb->w;
-	int screen_h = glb->h;
+static void	draw_scaled_pixel(t_global *glb, t_torch_data *data, int x, int y,
+		unsigned int color)
+{
+	int	dx;
+	int	dy;
+	int	screen_x;
+	int	screen_y;
 
-	int target_height = (screen_h / 3) * 2;
-	double scale = (double)target_height / glb->texture.torche.height;
-
-	int scaled_width = glb->texture.torche.width * scale;
-	int scaled_height = target_height;
-
-	int x_offset = screen_w - screen_w / 2 + (screen_w / 2 - scaled_width) / 2;
-	int y_offset = screen_h - scaled_height;
-
-	for (int y = 0; y < glb->texture.torche.height; y++)
+	dy = 0;
+	while (dy < data->scale)
 	{
-		for (int x = 0; x < glb->texture.torche.width; x++)
+		dx = 0;
+		while (dx < data->scale)
 		{
-			char *pixel = glb->texture.torche.addr
-				+ y * glb->texture.torche.line_length
-				+ x * (glb->texture.torche.bpp / 8);
-			unsigned int color = *(unsigned int *)pixel;
-
-			if (color != 0xFF000000)
-			{
-				for (int dy = 0; dy < scale; dy++)
-				{
-					for (int dx = 0; dx < scale; dx++)
-					{
-						int screen_x = x_offset + x * scale + dx;
-						int screen_y = y_offset + y * scale + dy;
-
-						if (screen_x >= 0 && screen_x < screen_w && screen_y >= 0 && screen_y < screen_h)
-							put_pixel(&glb->img, screen_x, screen_y, color);
-					}
-				}
-			}
+			screen_x = data->x_offset + x * data->scale + dx;
+			screen_y = data->y_offset + y * data->scale + dy;
+			if (screen_x >= 0 && screen_x < data->screen_w && screen_y >= 0
+				&& screen_y < data->screen_h)
+				put_pixel(&glb->img, screen_x, screen_y, color);
+			dx++;
 		}
+		dy++;
+	}
+}
+
+static void	process_torch_pixel(t_global *glb, t_torch_data *data, int x, int y)
+{
+	char			*pixel;
+	unsigned int	color;
+
+	pixel = glb->texture.torche.addr + y * glb->texture.torche.line_length + x
+		* (glb->texture.torche.bpp / 8);
+	color = *(unsigned int *)pixel;
+	if (color != 0xFF000000)
+		draw_scaled_pixel(glb, data, x, y, color);
+}
+
+void	draw_torch(t_global *glb)
+{
+	t_torch_data	data;
+	int				x;
+	int				y;
+
+	if (!glb || !glb->texture.torche.img || !glb->texture.torche.addr)
+		return ;
+	calculate_torch_dimensions(glb, &data);
+	y = 0;
+	while (y < glb->texture.torche.height)
+	{
+		x = 0;
+		while (x < glb->texture.torche.width)
+		{
+			process_torch_pixel(glb, &data, x, y);
+			x++;
+		}
+		y++;
 	}
 }
 

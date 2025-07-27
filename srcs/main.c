@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 20:08:39 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 20:55:42 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,29 @@
 
 int	mouse_moved_advanced(int x, int y, void *param)
 {
-	(void) y;
-	t_global	*glb = (t_global *)param;
-	double		sensitivity = 0.003;
-	int			center_x = WIN_WIDTH / 2;
-	int			center_y = WIN_HEIGHT / 2;
-	int			delta_x;
+	t_global	*glb;
+	double		sensitivity;
+	int			center_x;
+	int			center_y;
 	static int	mouse_locked = 1;
-	
-	// Toggle du verrouillage souris avec TAB par exemple
-	if (glb->key_tab) // Ajoute cette key dans tes structures
+
+	(void)y;
+	glb = (t_global *)param;
+	sensitivity = 0.003;
+	center_x = WIN_WIDTH / 2;
+	center_y = WIN_HEIGHT / 2;
+	if (glb->key_tab)
 	{
-		mouse_locked = !mouse_locked;
+		mouse_locked = 0;
 		glb->key_tab = false;
 	}
-	
 	if (!mouse_locked)
 		return (0);
-	
-	delta_x = x - center_x;
-	
-	// Seuil pour éviter les boucles infinies
+	int (delta_x) = x - center_x;
 	if (abs(delta_x) < 3)
 		return (0);
-	
-	// Rotation
 	rotate_camera(glb, -delta_x * sensitivity);
-	
-	// Recentrage
 	mlx_mouse_move(glb->smlx.mlx, glb->smlx.mlx_win, center_x, center_y);
-	
 	return (0);
 }
 
@@ -107,27 +100,26 @@ int	update(t_global *glb)
 		if (get_current_time_ms() - glb->door_timing >= 1500)
 		{
 			glb->anim_door = 0;
-			glb->map[glb->d_y][glb->d_x] = '0'; 
+			glb->map[glb->d_y][glb->d_x] = '0';
 		}
 	}
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_global	glb = {0};
-	
+
 	if (ac != 2)
 		return (printf("argument\nerror\n"), 0);
 	if (!ft_init(&glb, av) || !ft_parsing(&glb))
 		return (printf("error\n"), ft_clean_all(&glb), 0);
-	
 	mlx_hook(glb.smlx.mlx_win, 2, 1L << 0, key_press, &glb);
 	mlx_hook(glb.smlx.mlx_win, 3, 1L << 1, key_release, &glb);
 	mlx_hook(glb.smlx.mlx_win, 6, 1L << 6, mouse_moved_advanced, &glb);
 	mlx_loop_hook(glb.smlx.mlx, update, &glb);
 	mlx_hook(glb.smlx.mlx_win, 17, 0, (void *)ft_clean_all, &glb);
-	mlx_mouse_move(glb.smlx.mlx, glb.smlx.mlx_win, WIN_WIDTH/2, WIN_HEIGHT/2);
-	
+	mlx_mouse_move(glb.smlx.mlx, glb.smlx.mlx_win, WIN_WIDTH / 2, WIN_HEIGHT
+		/ 2);
 	return (mlx_loop(glb.smlx.mlx));
 }
