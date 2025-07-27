@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/10 18:53:35 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 15:56:14 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	update(t_global *glb)
 	if (glb->anim_door > 0)
 	{
 		glb->anim_door += 10;
-		if (glb->anim_door >= glb->door_height)
+		if (get_current_time_ms() - glb->door_timing >= 1000)
 		{
 			glb->anim_door = 0;
 			glb->map[glb->d_y][glb->d_x] = '0'; 

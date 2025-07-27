@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 14:37:21 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 15:54:46 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -19,6 +19,7 @@
 #include "get_next_line.h"
 #include <math.h>
 #include <time.h>
+#include <sys/time.h>
 
 #define KEY_LEFT 65363
 #define KEY_RIGHT 65361
@@ -105,9 +106,11 @@ typedef struct s_global{
   int door_start_y;
   int door_height;
   int el_muros_invisible;
+  long	door_timing;
 } t_global;
 
 
+long get_current_time_ms(void);
 void ft_door(t_global *glb);
 void	ft_clean_all(t_global *glb);
 void	set_map_dimensions(t_global *glb);

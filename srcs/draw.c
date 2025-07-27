@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 15:42:18 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 15:56:23 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -562,6 +562,13 @@ void	draw_scene(t_global *glb)
 	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0, 0);
 }
 
+long get_current_time_ms(void)
+{
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+}
+
 void ft_door(t_global *glb)
 {
     int mid = glb->w / 2;
@@ -569,6 +576,7 @@ void ft_door(t_global *glb)
     if (!glb->anim_door 
         && check_door_acces(glb, glb->player.y, glb->player.x, 'D'))
     {
+		glb->door_timing = get_current_time_ms();
         init_ray(glb, mid);
         calculate_step_and_side_dist(glb);
         perform_dda(glb);
