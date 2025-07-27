@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:15:55 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 14:38:20 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 17:09:34 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,10 @@ bool	ft_init(t_global *glb, char **av)
 		&glb->img.bpp, &glb->img.line_length, &glb->img.endian);
 	if (!glb->img.addr)
 		return (printf("mlx_get_data_addr() échoué\n"), false);
+
+	glb->door_params = malloc(sizeof(t_door_params));
+	if (!glb->door_params)
+    	return (printf("error\n"), 1);
 
 	load_texture(glb->smlx.mlx, &glb->texture.nord, "textures/nord.xpm");
 	load_texture(glb->smlx.mlx, &glb->texture.sud,  "textures/sud.xpm");

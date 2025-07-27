@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/07/27 15:54:46 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 17:08:20 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D
@@ -61,6 +61,17 @@ typedef struct s_img {
 	int		height;
 }	t_img;
 
+typedef struct s_door_params
+{
+    t_ray   tmp_ray;
+    double  tmp_dist;
+    t_img   *tmp_tex;
+    int     tmp_line_height;
+    int     tmp_draw_start;
+    int     tmp_draw_end;
+    bool    ray_calculated;
+}   t_door_params;
+
 typedef struct s_player {
 	double x;      // position
 	double y;
@@ -87,6 +98,7 @@ typedef struct s_global{
 	t_player player;
 	t_img	img;
   	t_texture texture;
+	t_door_params   *door_params;
 	t_ray ray;
 	char **map;
 	char **map_clone;
@@ -109,7 +121,24 @@ typedef struct s_global{
   long	door_timing;
 } t_global;
 
-
+// calcul_for_draw.c
+void	calculate_wall_distance(t_global *glb);
+void	perform_dda(t_global *glb);
+void	calculate_step_and_side_dist(t_global *glb);
+void	init_ray(t_global *glb, int x);
+void perform_dda_ignoring_doors(t_global *glb, t_ray *ray);
+// draw_wall_tex.c
+void draw_wall_texture(t_global *glb, int x, t_img *tex);
+//
+void draw_torch(t_global *glb);
+t_img *select_wall_texture_from_ray(t_global *glb, t_ray *ray);
+t_img *select_wall_texture(t_global *glb);
+bool	is_valid_map_position(t_global *glb, int x, int y);
+unsigned int effet_noir(unsigned int color, double factor);
+void	calculate_wall_distance(t_global *glb);
+void	perform_dda(t_global *glb);
+void	calculate_step_and_side_dist(t_global *glb);
+void	init_ray(t_global *glb, int x);
 long get_current_time_ms(void);
 void ft_door(t_global *glb);
 void	ft_clean_all(t_global *glb);

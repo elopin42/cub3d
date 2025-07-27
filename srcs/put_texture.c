@@ -6,14 +6,43 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:41:37 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/26 13:46:57 by elopin           ###   ########.fr       */
+/*   Updated: 2025/07/27 16:50:00 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-bool	init_texture(t_global *glb)
+void	put_pixel(t_img *img, int x, int y, int color)
 {
-	(void) glb;
-	return (true);
+	char	*dst;
+
+	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
+	*(unsigned int *)dst = color;
 }
+
+t_img *select_wall_texture(t_global *glb)
+{
+    if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
+        return (&glb->texture.door);
+    if (glb->ray.side == 0 && glb->ray.ray_dir_x > 0)
+        return (&glb->texture.ouest);
+    if (glb->ray.side == 0 && glb->ray.ray_dir_x < 0)
+        return (&glb->texture.est);
+    if (glb->ray.side == 1 && glb->ray.ray_dir_y > 0)
+        return (&glb->texture.nord);
+    return (&glb->texture.sud);
+}
+
+t_img *select_wall_texture_from_ray(t_global *glb, t_ray *ray)
+{
+    if (glb->map[ray->map_y][ray->map_x] == 'D')
+        return (&glb->texture.door);
+    if (ray->side == 0 && ray->ray_dir_x > 0)
+        return (&glb->texture.ouest);
+    if (ray->side == 0 && ray->ray_dir_x < 0)
+        return (&glb->texture.est);
+    if (ray->side == 1 && ray->ray_dir_y > 0)
+        return (&glb->texture.nord);
+    return (&glb->texture.sud);
+}
+
