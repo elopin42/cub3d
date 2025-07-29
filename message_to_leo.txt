@@ -4,9 +4,11 @@ il me reste les leaks et je veut te faire une doc sur mon code car c'ets le bord
 	first step parsing normal
 	ensuite on capte tout les mlx hook rien de plus pour les touches
 	-->function mouse_moved_advanced 
-		pour bouger la souris de gauche a droite
-		!!! si on cache sa souris sa leaks
-		j'ai mit une fonction pour toujours recentrer la souris sinon bizare c'est la dernier fonction que je call 
+		  pour bouger la souris de gauche a droite
+		  !!! si on cache sa souris sa leaks
+		  j'ai mit une fonction pour toujours recentrer la souris sinon bizare c'est la dernier fonction que je call 
 	-->key_press et key_release 
-		c'est pour capter si on appuie sur la touche comme sa on peut detecter quand on appuie et relache
-		il set true ou false pour pas faire que de appuyer sur la touche
+		  c'est pour capter si on appuie sur la touche comme sa on peut detecter quand on appuie et relache
+		  il set true ou false pour pas faire que de appuyer sur la touche sinon injouable
+  -->update function
+      update es call casiment toute les seconde et du coup c'est comme sa que on gere le system de frame mouv joueur et les doors que je vais expliquer apres.
