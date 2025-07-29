@@ -61,6 +61,8 @@ bool	ft_write_file(t_global *glb, char **av)
 
 void	load_texture(void *mlx, t_img *tex, char *path)
 {
+  if (tex->img)
+    mlx_destroy_image(mlx, tex->img);
 	tex->img = mlx_xpm_file_to_image(mlx, path, &tex->width, &tex->height);
 	if (!tex->img)
 	{
@@ -109,7 +111,6 @@ bool	ft_init(t_global *glb, char **av)
 	load_texture(glb->smlx.mlx, &glb->texture.sky, "textures/sky.xpm");
 	load_texture(glb->smlx.mlx, &glb->texture.torche, "textures/torche.xpm");
 	load_texture(glb->smlx.mlx, &glb->texture.door, "textures/door.xpm");
-	load_texture(glb->smlx.mlx, &glb->texture.white, "textures/white.xpm");
 	set_map_dimensions(glb);
 	glb->el_muros_invisible = 0;
 	return (true);

@@ -43,7 +43,7 @@ int	mouse_moved_advanced(int x, int y, void *param)
 int	key_press(int keycode, t_global *glb)
 {
 	if (keycode == 65307)
-		return (printf("echape!\n"), ft_clean_all(glb), 0);
+		return (printf("echape!\n"), ft_clean_all(glb, 0), 0);
 	if (keycode == KEY_E)
 		return (ft_door(glb), 0);
 	if (keycode == KEY_LEFT)
@@ -113,7 +113,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (printf("argument\nerror\n"), 0);
 	if (!ft_init(&glb, av) || !ft_parsing(&glb))
-		return (printf("error\n"), ft_clean_all(&glb), 0);
+		return (printf("error\n"), ft_clean_all(&glb, 1), 0);
 	mlx_hook(glb.smlx.mlx_win, 2, 1L << 0, key_press, &glb);
 	mlx_hook(glb.smlx.mlx_win, 3, 1L << 1, key_release, &glb);
 	mlx_hook(glb.smlx.mlx_win, 6, 1L << 6, mouse_moved_advanced, &glb);

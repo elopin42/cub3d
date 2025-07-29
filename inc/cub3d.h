@@ -186,7 +186,7 @@ bool				check_door_acces(t_global *glb, int y, int x, char c);
 
 // core functions
 void				ft_door(t_global *glb);
-void				ft_clean_all(t_global *glb);
+void				ft_clean_all(t_global *glb, int exit_code);
 void				set_map_dimensions(t_global *glb);
 void				frame_for_flame(t_global *glb);
 void				put_pixel(t_img *img, int x, int y, int color);
