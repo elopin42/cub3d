@@ -1,4 +1,5 @@
-il me reste les leaks et je veut te faire une doc sur mon code car c'ets le bordel mais sa fait 10 foit je refait ce ptn de code pour l'animation de la porte sa me clc mdrrrrr
+
+si gros probleme si on change la taille de fenetre sa nique tout donc on va voir sa ensemble 
 
 --> main
 	first step parsing normal
@@ -12,3 +13,41 @@ il me reste les leaks et je veut te faire une doc sur mon code car c'ets le bord
 		  il set true ou false pour pas faire que de appuyer sur la touche sinon injouable
   -->update function
       update es call casiment toute les seconde et du coup c'est comme sa que on gere le system de frame mouv joueur et les doors que je vais expliquer apres.
+
+--> system_de_rendu
+  donc pour le system de rendu on appel draw_scene a chaque update donc extremement souvent donc je pense on peut opti sa si sa lague au lieu de le call a chaque loop mais dcp il imprime la l'image de rendu
+  premiere fonction appeler es draw_scene qui va imprimer chaque ligne verticale de l'ecran 1 par 1 de gauche a doite grace a x et glb->w pour la largeur de l'ecran.
+  donc on call draw_vertical_line qui effectue en prmier les calcules avec le fichier calcul_for_draw
+  --> calcul_for_draw
+    on fait tout le bordel a recuperer la position du joueurs ansi que ou il regarde
+    on calcule le rayon de la direction du rayon tout sa je vais pas te mentir les  formules exact elle sont flou defoit mais bon le principale c'est de comprendre la logique global de comment sa fonctionne et le mieux soit tu me demande soit tu regarde une video sur la logique du calcule des rayon car par ecris je galere
+    sinon perform dda sa permet de voir si on va toucher un mur ou autre ok donc on va balancer un rayon et quand on touch un mur on arret ce qui permet de pourvoir calculer la distance du rayon et ce qui nous permet de implementer l'ombre du coup pareil pour calcule wall distance sa va calculer la distance fin je crois perform dda juste il execute les rayon et calcul wall lui c'est pour refaire les calcule de rayon fin bon on verra en vrai sa sera mieux ou call ou autre car je begaye sorry,
+    dans le fichier de calcul on a une fonction perform_dda_ignoring_doors qui es juste pour gerer la transparance car ducoup il faut calculer un autre rayon mais sa je te explique apres
+  --> select_wall_texture
+    cette fonction basic te renvoi la texture que tu veut il y en a deux c'est vrai j'ai grave pas opti jaurais pu en faire 1 pour 2 mais az jetais ko au bout de ma vie ptdr, la deuxieme c'est pour la double rayon a louverture des porte
+  -->draw_wall_texture 
+    bon cette foncion prend 2 fichier c'est pour ducoup print le rendu des mures 
+    globalement elle fait tout ces calcules de merde et ensuite dans la dernier boucle while on a 2 if le premier c'est pour detecter si on ouvre une porte je te explique plus comment je le detect apres mais pour la parti technique en gros on incremente une variables et quand je detect que le rayon ne doit pas affichier a la base je metais un pixel blanc et du coup maintenant on doit refair tout les calcules comme si il n'y avais pas de porte pour pouvoir affichier derriere
+    le deuxieme if c'est pour le effect transparance donc simplement on calcule la distance et plus c'est loing plus on rajoute du noir avec un facteur qui va changer chaque pixel r g b de la couleur grace a la fonction effet_noir 
+    et ensuite on put pixel tout
+  --> floor
+    pour le floor les gens en temps normal mettre une couleur mais ducoup je voulais des textures donc sa peut buger a toi de voir mais oai on refait plein de calcule pour pourvoir choper les info de quel pixel on print
+  bon pui ensuite on afficher la torche qui es une image qui affiche pas les pixel que j'ai choisi et je les centrer en bas a droite je crois j'ai laisser les coms pour savoir comment augmenter la frame et tout c'est juste une loop de memoire
+  la minimap ou j'ai mit les porte violet les mur gris sol noir et joueur rouge je te laisse regarder le code
+  et ensuite une foit on a construit notre image pixel par pixel on la balance a l'ecran!!!
+
+--> pour la door !!!!!
+ft_door
+sa c'est plus frais dans ma tete c'est le dernier truc fait 
+
+certaines variables je croit elle sont pu utils mais j'ai tellement recommencer c'est un poil le bordel sorry
+en gros dans le main on detecte si la touche e es appuyer  et ensuite on regarde si une porte es a coter on chope ces coordonner et avec set xy on les met en variable pour savoir ou es la portes.
+la variables glb->anim_door es true si une execution es en cours sinon false ok 
+ 
+ donc le system que j'ai fait j'ai 2 map une map normal et une clone pour pourvoir faire re apparaitre les porte que elle sont ouverte car sur la map que on print on va changer le D en 0 comme le sol alors que la map clone on ma mettre un 3 ce qui permet de pourvoir faire apparaitre la porte si ya rien et du coup ce system est utiliser un peu partout
+ ensuite j'ai mit en place un system de timming pour savoir quand on peut traverser la porte car a la base je fesai des calcul mais comme le joueurs peut bouger sa fou la merde et en gros on peut jamais la traverser meme apres l'anim donc la en gros au bout de 1500 ms on peut traverser 
+ ensuite calcule de nouveau je sais pu pouruqoi 
+ et ensuite on fair draw scene et comme la glb->anim door es a 1 et ba quand on print on detecte que une animation es en cours et on repart des variables que on vien de set avant le draw scene  ensuite dans le main.c update on incremente pour un rendu de coulissement de 10 par 10  et au bout de 1500 sec on arrte l'animation et on enleve la porte sur la vrai map.
+
+bon j'ai toujours du mal a exprimer ce que je fait je pense pas tu va comprendre trop ce que j'ai fait donc hesite pas a me appeler ou on se voit pour les details.
+
