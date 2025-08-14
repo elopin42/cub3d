@@ -3,71 +3,63 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: elopin <elopin@student.42.fr>              +#+  +:+       +#+         #
+#    By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 22:27:47 by elopin            #+#    #+#              #
-#    Updated: 2025/07/27 17:57:26 by elopin           ###   ########.fr        #
+#    Updated: 2025/08/14 16:14:26 by lle-cout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=cub3d
-FLAGS=-Wall -Wextra -Werror -g3
-SRCSF=main.c \
-	  init.c \
-	  ft_clean_up.c \
-	  parsing.c	\
-	  get_next_line.c \
-	  get_next_line_utils.c \
-	  tools.c \
-	  ft_split.c \
-	  draw.c \
-	  cam_moove.c \
-	  put_texture.c \
-	  frame.c  \
-	  small_map.c \
-	  door.c \
-	  small_function.c \
-	  calcul_for_draw.c \
-	  draw_wall_tex.c \
-	  draw_wall_tex2.c
-OBJSF=$(SRCSF:.c=.o)
-SRCDIR=srcs/
-OBJDIR=objs/
-SRCS=$(addprefix srcs/, $(SRCSF))
-OBJS=$(addprefix objs/, $(OBJSF))
-MFLAGS	= -lmlx_Linux -lXext -lX11 -lm -lz -Lmlx -L/usr/lib
+NAME = cub3d
+CC = cc
+CFLAGS = -std=gnu11 -Wall -Wextra -Werror -g3
+
+SRCDIR = src/
+SRCSF = main.c init.c ft_clean_up.c parsing.c draw.c cam_moove.c put_texture.c frame.c  small_map.c \
+	door.c small_function.c calcul_for_draw.c draw_wall_tex.c draw_wall_tex2.c
+SRCS = $(addprefix src/, $(SRCSF))
+
+OBJDIR = objs/
+OBJSF = $(SRCSF:.c=.o)
+OBJS = $(addprefix objs/, $(OBJSF))
+
+INCL = -I. -Iinc -Imlx -Ilibft
+LIBFT_AR = libft/libft.a
 MLX		= mlx/libmlx_Linux.a
-INCL = -I. -Iinc -Imlx
+MFLAGS	= -lmlx_Linux -lXext -lX11 -lm -lz -Lmlx -L/usr/lib
 
 all: $(NAME)
 
-$(NAME): $(OBJDIR) $(MLX) $(OBJS)
-	@echo "\033[0m\033[1;35m|\033[0m"
-	@cc $(FLAGS) -o $(NAME) $(OBJS) $(MFLAGS)
-	@echo "\033[1;32mcub3d ready ✓\033[0m"
+$(NAME): $(OBJDIR) $(OBJS) $(MLX)
+	@make --no-print-directory -C libft
+	@printf "\033[0m\033[1;35m|\033[0m"
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_AR) $(MLX) $(MFLAGS) -o $(NAME)
+	@printf "\033[1;32mcub3d ready ✓\033[0m\n"
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
-	@echo " \c"
-	@cc $(FLAGS) -I. -c $^ -o $@ $(INCL)
+	@printf " \c"
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INCL)
 
 $(MLX):
 	@make -C mlx
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
-	@echo "\033[1;35mcub3d compiling... |\033[0m\033[45m\c"
+	@printf "\033[1;35mcub3d compiling... |\033[0m\033[45m\c\n"
 
 clean:
 	@rm -rf $(OBJDIR)
-	@echo "\033[1;31mcub3d objects deleted\033[0m"
+	@printf "\033[1;31mcub3d objects deleted\033[0m\n"
 	@make -C mlx clean
-	@echo "\033[1;31mmlx objects deleted\033[0m"
+	@printf "\033[1;31mmlx objects deleted\033[0m\n"
+	@make --no-print-directory -C libft/ clean
 
 fclean: clean
 	@rm -rf $(NAME)
-	@echo "\033[1;31mcub3d binary file deleted\033[0m"
+	@printf "\033[1;31mcub3d binary file deleted\033[0m\n"
 	@make -C mlx clean
-	@echo "\033[1;31mmlx binary file deleted\033[0m"
+	@printf "\033[1;31mmlx binary file deleted\033[0m\n"
+	@make --no-print-directory -C libft fclean
 
 re: fclean all
 
