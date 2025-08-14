@@ -1,6 +1,6 @@
 NAME = libft.a
 CC = cc
-CFLAGS = -std=gnu11 -Wall -Wextra -Werror
+CFLAGS = -std=gnu11 -Wall -Wextra -Werror -ggdb
 
 GREEN = \033[32m
 YELLOW = \e[0;33m

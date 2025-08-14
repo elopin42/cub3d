@@ -6,13 +6,13 @@
 #    By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 22:27:47 by elopin            #+#    #+#              #
-#    Updated: 2025/08/14 16:14:26 by lle-cout         ###   ########.fr        #
+#    Updated: 2025/08/14 23:41:31 by lle-cout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = cc
-CFLAGS = -std=gnu11 -Wall -Wextra -Werror -g3
+CFLAGS = -std=gnu11 -Wall -Wextra -Werror -ggdb
 
 SRCDIR = src/
 SRCSF = main.c init.c ft_clean_up.c parsing.c draw.c cam_moove.c put_texture.c frame.c  small_map.c \
