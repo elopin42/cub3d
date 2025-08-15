@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:25:29 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/03/07 03:16:37 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/15 13:08:47 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(void *s, int c, size_t n)
 {
 	unsigned char	*tmp;
 	unsigned char	needle;

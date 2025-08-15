@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:28:09 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/04/19 01:25:19 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/15 13:06:18 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static size_t	word_len(char *s, char c);
 static char		*fill_tab(char *split, char *s, char c);
 static void		free_tab(char **split, size_t i);
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	size_t	w_count;
 	size_t	i;

@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:30:20 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/03/07 03:16:37 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/15 13:09:49 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strnstr(const char *s1, const char *s2, size_t n)
+char	*ft_strnstr(char *s1, char *s2, size_t n)
 {
-	size_t		i;
-	size_t		j;
-	const char	*tmp1;
+	size_t	i;
+	size_t	j;
+	char	*tmp1;
 
 	i = 0;
 	j = 0;
-	tmp1 = (const char *)s1;
+	tmp1 = (char *)s1;
 	if (s2[i] == '\0')
 		return ((char *)tmp1);
 	while (i < n && tmp1[i] != 0)

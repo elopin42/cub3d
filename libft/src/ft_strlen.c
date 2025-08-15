@@ -6,18 +6,20 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:29:45 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/15 12:16:47 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/15 12:52:32 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(char *str)
 {
-	size_t	i;
+	int	i;
 
+	if (!str)
+		return (-1);
 	i = 0;
-	while (s[i])
+	while (str[i])
 		i++;
 	return (i);
 }
