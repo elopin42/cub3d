@@ -95,31 +95,33 @@ typedef struct s_texture
 
 typedef struct s_global
 {
-	t_mlx			smlx;
-	t_player		player;
-	t_img			img;
-	t_texture		texture;
-	t_door_params	*door_params;
-	t_ray			ray;
-	char			**map;
-	char			**map_clone;
+	t_mlx			smlx; //pointer mlx
+	t_player		player; //struct info joueurs
+	t_img			img; //struct pour la window
+	t_texture		texture; //struct  pour les texture
+	t_door_params	*door_params; //strucut pour gerer l'ouverture de porte
+	t_ray			ray; //pour le calcul de rayon
+	char			**map; //la map sous forme de char **
+	char			**map_clone; //clone de la map pour toujours retrouver ou son les portes quand elle son ouverte
+  // -------- ce que permet de rester appuyer sur la touche pour avancer
 	bool			key_left;
 	bool			key_right;
 	bool			key_w;
 	bool			key_s;
 	bool			key_a;
 	bool			key_d;
-	bool			key_tab;
-	bool			mouse_locked;
-	int				w;
-	int				h;
-	int				m_w;
-	int				m_h;
-	int				d_x;
-	int				d_y;
-	int				anim_door;
-	int				door_start_y;
-	int				door_height;
-	int				el_muros_invisible;
-	long			door_timing;
+  //-------------
+	bool			key_tab;// je crois on peut suprimer sa a reverifier quand sa marche 
+	bool			mouse_locked; //sa aussi a reverifier j'ai un doute car de memoir je me souviens pourquoi il y a sa mais la dans le code sa a l'air de pas servir
+	int				w; //size de la fenetre
+	int				h; //same
+	int				m_w; //taille max du char** utiliser pour la mini map
+	int				m_h; //same
+	int				d_x; //pour l'animation de la door en gros sa save l'emplacement de la porte que on a voulu ouvrir
+	int				d_y; // comme sa toute les porte n'on pas de animation seulement celle select
+	int				anim_door; // pour savoir si une animation es en cours
+	int				door_start_y; //calcule pour savoir ou on en es dans l'animation de la porte, ce qui permet le degrader
+	int				door_height; // de memoir c'est ce qui permet de garder le rendu en gros si on seloigne ou autre mais j'ai un doute
+	int				el_muros_invisible; // je crois cette variables ne sert pu a rien car quand je regarde dans le code elle es dans aucune condition
+	long			door_timing;// pour gerer le temps ou on en es pour l'ouverture mais dailleur le temps de ouverture ou on peut traverser la porte es fixe.
 }					t_global;
