@@ -6,7 +6,7 @@
 #    By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 22:27:47 by elopin            #+#    #+#              #
-#    Updated: 2025/08/14 23:41:31 by lle-cout         ###   ########.fr        #
+#    Updated: 2025/08/15 12:04:49 by lle-cout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,10 @@ $(NAME): $(OBJDIR) $(OBJS) $(MLX)
 	@printf "\033[1;32mcub3d ready ✓\033[0m\n"
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
-	@printf " \c"
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCL)
 
 $(MLX):
-	@make -C mlx
+	@make --no-print-directory -C mlx > /dev/null
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
@@ -50,14 +49,14 @@ $(OBJDIR):
 clean:
 	@rm -rf $(OBJDIR)
 	@printf "\033[1;31mcub3d objects deleted\033[0m\n"
-	@make -C mlx clean
+	@make --no-print-directory -C mlx clean > /dev/null
 	@printf "\033[1;31mmlx objects deleted\033[0m\n"
 	@make --no-print-directory -C libft/ clean
 
 fclean: clean
 	@rm -rf $(NAME)
 	@printf "\033[1;31mcub3d binary file deleted\033[0m\n"
-	@make -C mlx clean
+	@make --no-print-directory -C mlx clean > /dev/null
 	@printf "\033[1;31mmlx binary file deleted\033[0m\n"
 	@make --no-print-directory -C libft fclean
 
