@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/14 16:18:23 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/16 17:54:23 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,18 @@
 # include "macros.h"
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
+
+
+// ----- TMP -----------
+
+void				init_parsing(int argc, char **argv, t_global *glb);
+char				**load_file(int fd, char *filename, t_parsing *parsing);
+void				load_file_error(int fd, void *ptr);
+ssize_t				get_file_size(int fd);
+int					handle_arguments(int argc, char **argv);
+void				check_filename(char *filename);
+
+// ----- TMP -----------
 
 // calcul_for_draw.c
 void				calculate_wall_distance(t_global *glb);
@@ -60,6 +72,7 @@ long				get_current_time_ms(void);
 bool				check_door_acces(t_global *glb, int y, int x, char c);
 
 // core functions
+void				ft_free_map(char **map);
 void				ft_door(t_global *glb);
 void				ft_clean_all(t_global *glb, int exit_code);
 void				set_map_dimensions(t_global *glb);

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/14 15:28:40 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/16 17:51:52 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,20 +106,33 @@ int	update(t_global *glb)
 	return (0);
 }
 
+void	load_texture(void *mlx, t_img *tex, char *path)
+{
+	if (tex->img)
+		mlx_destroy_image(mlx, tex->img);
+	tex->img = mlx_xpm_file_to_image(mlx, path, &tex->width, &tex->height);
+	if (!tex->img)
+	{
+		printf("Erreur chargement texture : %s\n", path);
+		exit(1);
+	}
+	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_length,
+			&tex->endian);
+}
+
 int	main(int ac, char **av)
 {
-	t_global	glb = {0};
+	t_global	glb;
 
-	if (ac != 2)
-		return (printf("argument\nerror\n"), 0);
-	if (!ft_init(&glb, av) || !ft_parsing(&glb))
-		return (printf("error\n"), ft_clean_all(&glb, 1), 0);
-	mlx_hook(glb.smlx.mlx_win, 2, 1L << 0, key_press, &glb);
+	ft_bzero(&glb, sizeof (t_global));
+	init_parsing(ac, av, &glb);
+/* 	mlx_hook(glb.smlx.mlx_win, 2, 1L << 0, key_press, &glb);
 	mlx_hook(glb.smlx.mlx_win, 3, 1L << 1, key_release, &glb);
 	mlx_hook(glb.smlx.mlx_win, 6, 1L << 6, mouse_moved_advanced, &glb);
 	mlx_loop_hook(glb.smlx.mlx, update, &glb);
 	mlx_hook(glb.smlx.mlx_win, 17, 0, (void *)ft_clean_all, &glb);
 	mlx_mouse_move(glb.smlx.mlx, glb.smlx.mlx_win, WIN_WIDTH / 2, WIN_HEIGHT
 		/ 2);
-	return (mlx_loop(glb.smlx.mlx));
+	return (mlx_loop(glb.smlx.mlx)); */
+	return (0);
 }

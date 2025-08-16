@@ -6,9 +6,29 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/14 16:17:23 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/16 18:29:08 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+typedef struct s_parsing
+{
+	struct s_global	*glb;
+	char			**file_content;
+	char			**map;
+	char			*no_path;
+	char			*so_path;
+	char			*we_path;
+	char			*ea_path;
+	t_rgb			*floor;
+	t_rgb			*ceiling;
+}	t_parsing;
+
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
 
 typedef struct s_torch_data
 {
@@ -111,7 +131,7 @@ typedef struct s_global
 	bool			key_a;
 	bool			key_d;
   //-------------
-	bool			key_tab;// je crois on peut suprimer sa a reverifier quand sa marche 
+	bool			key_tab;// je crois on peut suprimer sa a reverifier quand sa marche
 	bool			mouse_locked; //sa aussi a reverifier j'ai un doute car de memoir je me souviens pourquoi il y a sa mais la dans le code sa a l'air de pas servir
 	int				w; //size de la fenetre
 	int				h; //same

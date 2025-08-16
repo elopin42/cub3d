@@ -4,3 +4,5 @@ objs
 mlx
 libft/obj
 libft/libft.a
+save.c
+sujet.cub

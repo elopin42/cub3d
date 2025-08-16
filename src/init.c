@@ -6,112 +6,129 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:15:55 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/14 15:28:40 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/16 17:56:59 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-bool	ft_write_file(t_global *glb, char **av)
+void	init_parsing(int argc, char **argv, t_global *glb)
 {
-	int		fd;
-	char	*str;
-	char	*tmp;
-	char	**map;
-	int		i;
-	int		lines;
+	int			fd;
+	t_parsing	parsing;
 
-	i = 0;
-	tmp = NULL;
-	str = NULL;
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0 || fd > 1024)
-		return (false);
-	tmp = get_next_line(fd);
-	while (tmp)
+	ft_bzero(&parsing, sizeof (t_parsing));
+	fd = handle_arguments(argc, argv);
+	parsing.file_content = load_file(fd, argv[1], &parsing);
+/* 	ft_print_strarray(parsing.file_content);
+	ft_free_map(parsing.file_content); */
+}
+
+char	**load_file(int fd, char *filename, t_parsing *parsing)
+{
+	ssize_t	total_size;
+	char	*content;
+	char	**ret;
+
+	total_size = get_file_size(fd);
+	content = malloc(sizeof(char) * (total_size + 1));
+	fd = open(filename, O_RDONLY);
+	if (fd == -1 || content == NULL)
+		load_file_error(fd, content);
+	if (read(fd, content, total_size) == -1)
 	{
-		str = ft_strjoin(str, tmp);
-		free(tmp);
-		tmp = get_next_line(fd);
+		perror("Error: read()");
+		close(fd);
+		exit(EXIT_FAILURE);
 	}
 	close(fd);
-	map = ft_split(str, '\n');
-	free(str);
-	lines = 0;
-	while (map[lines])
-		lines++;
-	glb->map = malloc((lines + 1) * sizeof(char *));
-	if (!glb->map)
-		return (false);
-	glb->map_clone = malloc((lines + 1) * sizeof(char *));
-	if (!glb->map_clone)
-		return (false);
-	for (i = 0; i < lines; i++)
-		glb->map[i] = ft_strdup(map[i]);
-	glb->map[i] = NULL;
-	for (i = 0; i < lines; i++)
-		glb->map_clone[i] = ft_strdup(map[i]);
-	glb->map_clone[i] = NULL;
-	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);
-	return (true);
-}
-
-void	load_texture(void *mlx, t_img *tex, char *path)
-{
-  if (tex->img)
-    mlx_destroy_image(mlx, tex->img);
-	tex->img = mlx_xpm_file_to_image(mlx, path, &tex->width, &tex->height);
-	if (!tex->img)
+	content[total_size] = '\0';
+	ret = ft_split(content, '\n');
+	free(content);
+	if (ret == NULL)
 	{
-		printf("Erreur chargement texture : %s\n", path);
-		exit(1);
+		perror("Error: ft_split()");
+		exit(EXIT_FAILURE);
 	}
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_length,
-			&tex->endian);
+	return(ret);
 }
 
-bool	ft_init(t_global *glb, char **av)
+void	load_file_error(int fd, void *ptr)
 {
-	if (!ft_strstr(av[1], ".cub"))
-		return (printf("ton fichier n'est pas un .cub\n"), false);
-	if (!ft_write_file(glb, av))
-		return (printf("lecture fichier échouée\n"), false);
-	glb->player.x = 3.5;
-	glb->player.y = 2.5;
-	glb->player.dir_x = -1;
-	glb->player.dir_y = 0;
-	glb->player.plane_x = 0;
-	glb->player.plane_y = 0.66;
-	glb->w = WIN_WIDTH;
-	glb->h = WIN_HEIGHT;
-	glb->smlx.mlx = mlx_init();
-	if (!glb->smlx.mlx)
-		return (printf("mlx_init() échoué\n"), false);
-	glb->smlx.mlx_win = mlx_new_window(glb->smlx.mlx, glb->w, glb->h, "cub3d!");
-	if (!glb->smlx.mlx_win)
-		return (printf("mlx_new_window() échoué\n"), false);
-	glb->img.img = mlx_new_image(glb->smlx.mlx, glb->w, glb->h);
-	if (!glb->img.img)
-		return (printf("mlx_new_image() échoué\n"), false);
-	glb->img.addr = mlx_get_data_addr(glb->img.img, &glb->img.bpp,
-			&glb->img.line_length, &glb->img.endian);
-	if (!glb->img.addr)
-		return (printf("mlx_get_data_addr() échoué\n"), false);
-	glb->door_params = malloc(sizeof(t_door_params));
-	if (!glb->door_params)
-		return (printf("error\n"), 1);
-	load_texture(glb->smlx.mlx, &glb->texture.nord, "textures/nord.xpm");
-	load_texture(glb->smlx.mlx, &glb->texture.sud, "textures/sud.xpm");
-	load_texture(glb->smlx.mlx, &glb->texture.est, "textures/est.xpm");
-	load_texture(glb->smlx.mlx, &glb->texture.ouest, "textures/ouest.xpm");
-	load_texture(glb->smlx.mlx, &glb->texture.sol, "textures/sol.xpm");
-	load_texture(glb->smlx.mlx, &glb->texture.sky, "textures/sky.xpm");
-	load_texture(glb->smlx.mlx, &glb->texture.torche, "textures/torche.xpm");
-	load_texture(glb->smlx.mlx, &glb->texture.door, "textures/door.xpm");
-	set_map_dimensions(glb);
-	glb->el_muros_invisible = 0;
-	return (true);
+	if (fd == -1 || ptr == NULL)
+	{
+		if (fd == -1)
+			perror("Error: open()");
+		else
+		{
+			perror("Error: malloc()");
+			close(fd);
+		}
+		exit(EXIT_FAILURE);
+	}
+}
+
+ssize_t	get_file_size(int fd)
+{
+	ssize_t	read_ret;
+	ssize_t	total_size;
+	char	buf[1000];
+
+	read_ret = read(fd, buf, 1000);
+	if (read_ret == -1)
+	{
+		perror("Error: read()");
+		close(fd);
+		exit(EXIT_FAILURE);
+	}
+	total_size = read_ret;
+	while (read_ret == 1000)
+	{
+		read_ret = read(fd, buf, 1000);
+		if (read_ret == -1)
+		{
+			perror("Error: read()");
+			close(fd);
+			exit(EXIT_FAILURE);
+		}
+		total_size += read_ret;
+	}
+	close(fd);
+	return(total_size);
+}
+
+int	handle_arguments(int argc, char **argv)
+{
+	int	fd;
+
+	if (argc != 2)
+	{
+		ft_printf(STDERR_FILENO, ARGERR);
+		exit(EXIT_FAILURE);
+	}
+	check_filename(argv[1]);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Error: open()");
+		exit(EXIT_FAILURE);
+	}
+	return (fd);
+}
+
+void	check_filename(char *filename)
+{
+	size_t	len;
+
+	len = ft_strlen(filename);
+	if (len < 5)
+	{
+		ft_printf(STDERR_FILENO, "Error: File name too short\n");
+		exit(EXIT_FAILURE);
+	}
+	else if (ft_strncmp(filename + len - 4, ".cub", 4))
+	{
+		ft_printf(STDERR_FILENO, "Error: Wrong file type\n");
+		exit(EXIT_FAILURE);
+	}
 }
