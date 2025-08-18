@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:48:39 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/14 15:28:40 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:50:59 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ long	get_current_time_ms(void)
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }

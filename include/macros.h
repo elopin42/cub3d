@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:18:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/16 12:10:25 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:50:13 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@
 #define SQUARE_SIZE 8
 #define WIN_WIDTH 1280
 #define WIN_HEIGHT 720
+
+#define SPACES " \f\n\r\t\v"
 
 #define ARGERR "Error: Invalid number of arguments\n"

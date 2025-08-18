@@ -6,60 +6,71 @@
 #    By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 22:27:47 by elopin            #+#    #+#              #
-#    Updated: 2025/08/16 12:09:59 by lle-cout         ###   ########.fr        #
+#    Updated: 2025/08/18 18:48:01 by lle-cout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = cc
 CFLAGS = -std=gnu11 -Wall -Wextra -ggdb
+LINK = -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz
 
-SRCDIR = src/
-SRCSF = main.c init.c ft_clean_up.c draw.c cam_moove.c put_texture.c frame.c  small_map.c \
-	door.c small_function.c calcul_for_draw.c draw_wall_tex.c draw_wall_tex2.c
-SRCS = $(addprefix src/, $(SRCSF))
+MAKE = make --no-print-directory
+MAKE_LIBFT = $(MAKE) -C libft/
+MAKE_MLX = $(MAKE) -C mlx
+LIBFT = libft/libft.a
+MLX = mlx/libmlx.a
 
-OBJDIR = objs/
-OBJSF = $(SRCSF:.c=.o)
-OBJS = $(addprefix objs/, $(OBJSF))
 
-INCL = -I. -Iinc -Imlx -Ilibft
-LIBFT_AR = libft/libft.a
-MLX		= mlx/libmlx_Linux.a
-MFLAGS	= -lmlx_Linux -lXext -lX11 -lm -lz -Lmlx -L/usr/lib
+SRCS = src/parser/error_handlers.c src/parser/get_config.c src/parser/load_file.c src/parser/parser.c src/parser/utils.c \
+	src/calcul_for_draw.c src/cam_moove.c src/door.c src/draw.c src/draw_wall_tex2.c src/draw_wall_tex.c src/frame.c \
+	src/ft_clean_up.c src/main.c src/put_texture.c src/small_function.c src/small_map.c
+
+OBJ_DIR = obj
+OBJ = $(SRCS:%.c=$(OBJ_DIR)/%.o)
+
+GREEN = \033[32m
+YELLOW = \e[0;33m
+RED = \e[0;31m
+RESET = \033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJDIR) $(OBJS) $(MLX)
-	@make --no-print-directory -C libft
-	@printf "\033[0m\033[1;35m|\033[0m"
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_AR) $(MLX) $(MFLAGS) -o $(NAME)
-	@printf "\033[1;32mcub3d ready ✓\033[0m\n"
+bonus: all
 
-$(OBJDIR)%.o:$(SRCDIR)%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCL)
+$(NAME): $(OBJ) $(LIBFT) $(MLX)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LINK) -o $(NAME)
+	@printf "$(GREEN)cub3d ready!$(RESET)"
+
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	@mkdir -p $(dir $@)
+	@printf "$(YELLOW)Compiling %-30s$(RESET)\r" "$<"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
+$(LIBFT):
+	@$(MAKE_LIBFT) all
 
 $(MLX):
-	@make --no-print-directory -C mlx > /dev/null
-
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
-	@printf "\033[1;35mcub3d compiling... |\033[0m\033[45m\c\n"
+	@$(MAKE_MLX) > /dev/null
+	@printf "$(GREEN)mlx done ✅$(RESET)\n"
 
 clean:
-	@rm -rf $(OBJDIR)
-	@printf "\033[1;31mcub3d objects deleted\033[0m\n"
-	@make --no-print-directory -C mlx clean > /dev/null
-	@printf "\033[1;31mmlx objects deleted\033[0m\n"
-	@make --no-print-directory -C libft/ clean
+	@$(MAKE_LIBFT) clean
+	@printf "$(RED)libft objects deleted$(RESET)\n"
+	@$(MAKE_MLX) clean > /dev/null
+	@printf "$(RED)mlx deleted$(RESET)\n"
+	@rm -rf $(OBJ_DIR)
+	@printf "$(RED)cub3d objects deleted$(RESET)\n"
 
 fclean: clean
-	@rm -rf $(NAME)
-	@printf "\033[1;31mcub3d binary file deleted\033[0m\n"
-	@make --no-print-directory -C mlx clean > /dev/null
-	@printf "\033[1;31mmlx binary file deleted\033[0m\n"
-	@make --no-print-directory -C libft fclean
+	@$(MAKE_LIBFT) fclean
+	@printf "$(RED)libft.a deleted$(RESET)\n"
+	@rm -f $(NAME)
+	@printf "$(RED)cub3d deleted$(RESET)\n"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

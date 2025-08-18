@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/16 18:29:08 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:50:37 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@ typedef struct s_parsing
 {
 	struct s_global	*glb;
 	char			**file_content;
+	char			**config;
 	char			**map;
 	char			*no_path;
 	char			*so_path;
 	char			*we_path;
 	char			*ea_path;
-	t_rgb			*floor;
-	t_rgb			*ceiling;
+	struct s_rgb	*floor;
+	struct s_rgb	*ceiling;
 }	t_parsing;
 
 typedef struct s_rgb
@@ -70,6 +71,7 @@ typedef struct s_mlx
 
 typedef struct s_img
 {
+	bool			is_rgb;
 	void			*img;
 	char			*addr;
 	int				bpp;
@@ -77,6 +79,7 @@ typedef struct s_img
 	int				endian;
 	int				width;
 	int				height;
+	t_rgb			*rgb;
 }					t_img;
 
 typedef struct s_door_params
@@ -92,13 +95,13 @@ typedef struct s_door_params
 
 typedef struct s_player
 {
-	double			x;
-	double			y;
-	double			dir_x;
-	double			dir_y;
-	double			plane_x;
-	double			plane_y;
-}					t_player;
+	double	x;		// Position X du joueur dans la map (coordonnée flottante)
+	double	y;		// Position Y du joueur dans la map
+	double	dir_x;	// Direction du joueur sur l'axe X (vers où il regarde)
+	double	dir_y;	// Direction du joueur sur l'axe Y
+	double	plane_x; // Plan de la caméra X (détermine le champ de vision horizontal)
+	double	plane_y; // Plan de la caméra Y (détermine le champ de vision horizontal)
+} t_player;
 
 typedef struct s_texture
 {
@@ -123,7 +126,7 @@ typedef struct s_global
 	t_ray			ray; //pour le calcul de rayon
 	char			**map; //la map sous forme de char **
 	char			**map_clone; //clone de la map pour toujours retrouver ou son les portes quand elle son ouverte
-  // -------- ce que permet de rester appuyer sur la touche pour avancer
+// -------- ce que permet de rester appuyer sur la touche pour avancer
 	bool			key_left;
 	bool			key_right;
 	bool			key_w;

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/16 17:54:23 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:50:08 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,34 @@
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
 
+/* --------------- PARSER --------------- */
 
-// ----- TMP -----------
-
-void				init_parsing(int argc, char **argv, t_global *glb);
-char				**load_file(int fd, char *filename, t_parsing *parsing);
+// error_handlers.c
 void				load_file_error(int fd, void *ptr);
+void				handle_trim_fail(
+						char **array, char **config, size_t fail_idx);
+
+// get_config.c
+char				**get_config(char **file_content);
+char				**dup_trim_config(char **array, size_t delim);
+char				**fill_config_array(
+						char **array, char **config, size_t delim);
+
+// load_file.c
+char				**load_file(int fd, char *filename, t_parsing *parsing);
 ssize_t				get_file_size(int fd);
+
+// parser.c
+void				init_parsing(int argc, char **argv, t_global *glb);
+void				split_config_and_map(t_parsing *parsing);
 int					handle_arguments(int argc, char **argv);
 void				check_filename(char *filename);
 
-// ----- TMP -----------
+// utils.c
+size_t				count_skips(char **array, size_t delim);
+bool				is_map_line(char *line);
+
+/* --------------- RAYCASTER --------------- */
 
 // calcul_for_draw.c
 void				calculate_wall_distance(t_global *glb);

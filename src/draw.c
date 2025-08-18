@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/14 15:28:40 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/17 16:53:10 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	draw_floor(t_global *glb, int x)
 	}
 }
 
+
+/* Fait l'image entière, call par draw_scene */
 void	draw_vertical_line(t_global *glb, int x)
 {
 	t_img	*tex;
