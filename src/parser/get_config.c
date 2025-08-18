@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:43 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/18 18:04:53 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/18 19:39:10 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,16 @@ char	**get_config(char **file_content)
 	if (i == ft_arraylen((void **)file_content))
 	{
 		ft_free_array(file_content);
-		ft_printf(STDERR_FILENO, "Error: No map in config file.\n");
+		ft_printf(STDERR_FILENO, NOMAPERR);
 		exit(EXIT_FAILURE);
 	}
 	config = dup_trim_config(file_content, i);
+	if (config != NULL && validate_config_identifier(config) == false)
+	{
+		ft_free_array(file_content);
+		ft_free_array(config);
+		exit(EXIT_FAILURE);
+	}
 	return (config);
 }
 
@@ -68,4 +74,33 @@ char	**fill_config_array(char **array, char **config, size_t delim)
 		i++;
 	}
 	return (config);
+}
+
+bool	validate_config_identifier(char **config)
+{
+	size_t	i;
+
+	i = 0;
+	while (config[i])
+	{
+		if (ft_strncmp("NO", config[i], 2) && ft_isspace(config[i][2]))
+			;
+		else if (ft_strncmp("SO", config[i], 2) && ft_isspace(config[i][2]))
+			;
+		else if (ft_strncmp("WE", config[i], 2) && ft_isspace(config[i][2]))
+			;
+		else if (ft_strncmp("EA", config[i], 2) && ft_isspace(config[i][2]))
+			;
+		else if (config[i][0] == 'F' && ft_isspace(config[i][1]))
+			;
+		else if (config[i][0] == 'C' && ft_isspace(config[i][1]))
+			;
+		else
+		{
+			ft_printf(STDERR_FILENO, CONFIGFMTERR, config[i]);
+			return (false);
+		}
+		i++;
+	}
+	return (true);
 }

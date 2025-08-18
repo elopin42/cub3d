@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:18:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/18 18:50:13 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/18 19:33:57 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,8 @@
 
 #define SPACES " \f\n\r\t\v"
 
-#define ARGERR "Error: Invalid number of arguments\n"
+#define CONFIGFMTERR "\x1b[31mError\x1b[0m: Invalid config identifier: %s\n"
+#define ARGERR "\x1b[31mError\x1b[0m: Invalid number of arguments\n"
+#define NOMAPERR "\x1b[31mError\x1b[0m: No map in config file\n"
+#define TOOSHORTERR "\x1b[31mError\x1b[0m: File name too short\n"
+#define FTYPEERR "\x1b[31mError\x1b[0m: Wrong file type\n"

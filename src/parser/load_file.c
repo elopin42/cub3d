@@ -6,13 +6,13 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:49 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/18 18:01:52 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:56:58 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-char	**load_file(int fd, char *filename, t_parsing *parsing)
+char	**load_file(int fd, char *filename)
 {
 	ssize_t	total_size;
 	char	*content;

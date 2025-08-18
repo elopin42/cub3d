@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/18 18:50:08 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/18 19:39:26 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ char				**get_config(char **file_content);
 char				**dup_trim_config(char **array, size_t delim);
 char				**fill_config_array(
 						char **array, char **config, size_t delim);
-
+bool				validate_config_identifier(char **config);
 // load_file.c
-char				**load_file(int fd, char *filename, t_parsing *parsing);
+char				**load_file(int fd, char *filename);
 ssize_t				get_file_size(int fd);
 
 // parser.c

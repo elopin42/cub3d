@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:57 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/18 18:04:18 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/18 19:33:58 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_parsing(int argc, char **argv, t_global *glb)
 	ft_bzero(&parsing, sizeof (t_parsing));
 	parsing.glb = glb;
 	fd = handle_arguments(argc, argv);
-	parsing.file_content = load_file(fd, argv[1], &parsing);
+	parsing.file_content = load_file(fd, argv[1]);
 	split_config_and_map(&parsing);
 }
 
@@ -62,12 +62,12 @@ void	check_filename(char *filename)
 	len = ft_strlen(filename);
 	if (len < 5)
 	{
-		ft_printf(STDERR_FILENO, "Error: File name too short\n");
+		ft_printf(STDERR_FILENO, TOOSHORTERR);
 		exit(EXIT_FAILURE);
 	}
 	else if (ft_strncmp(filename + len - 4, ".cub", 4))
 	{
-		ft_printf(STDERR_FILENO, "Error: Wrong file type\n");
+		ft_printf(STDERR_FILENO, FTYPEERR);
 		exit(EXIT_FAILURE);
 	}
 }
