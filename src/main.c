@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/16 17:51:52 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/19 00:24:21 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int	main(int ac, char **av)
 	t_global	glb;
 
 	ft_bzero(&glb, sizeof (t_global));
-	init_parsing(ac, av, &glb);
+	parsing(ac, av, &glb);
 /* 	mlx_hook(glb.smlx.mlx_win, 2, 1L << 0, key_press, &glb);
 	mlx_hook(glb.smlx.mlx_win, 3, 1L << 1, key_release, &glb);
 	mlx_hook(glb.smlx.mlx_win, 6, 1L << 6, mouse_moved_advanced, &glb);

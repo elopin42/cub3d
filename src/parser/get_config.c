@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:43 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/18 19:39:10 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/19 02:08:57 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 char	**get_config(char **file_content)
 {
 	char	**config;
-	size_t	i;
+	size_t	delim;
 
-	i = 0;
-	while (file_content[i] && is_map_line(file_content[i]) == false)
-		i++;
-	if (i == ft_arraylen((void **)file_content))
+	delim = 0;
+	while (file_content[delim] && is_map_line(file_content[delim]) == false)
+		delim++;
+	if (delim == ft_arraylen((void **)file_content))
 	{
 		ft_free_array(file_content);
 		ft_printf(STDERR_FILENO, NOMAPERR);
 		exit(EXIT_FAILURE);
 	}
-	config = dup_trim_config(file_content, i);
+	config = dup_trim_config(file_content, delim);
 	if (config != NULL && validate_config_identifier(config) == false)
 	{
 		ft_free_array(file_content);
@@ -48,7 +48,7 @@ char	**dup_trim_config(char **array, size_t delim)
 	if (config == NULL)
 	{
 		ft_free_array(array);
-		perror("Error: malloc()");
+		perror("Error: ft_calloc()");
 		exit(EXIT_FAILURE);
 	}
 	config = fill_config_array(array, config, delim);

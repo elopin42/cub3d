@@ -6,11 +6,18 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:25 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/18 18:51:29 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/19 00:08:20 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+void	read_error(int fd)
+{
+	perror("Error: read()");
+	close(fd);
+	exit(EXIT_FAILURE);
+}
 
 void	load_file_error(int fd, void *ptr)
 {

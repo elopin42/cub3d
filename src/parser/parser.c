@@ -6,13 +6,13 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:57 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/18 19:33:58 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/19 02:09:21 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	init_parsing(int argc, char **argv, t_global *glb)
+void	parsing(int argc, char **argv, t_global *glb)
 {
 	int			fd;
 	t_parsing	parsing;
@@ -21,19 +21,15 @@ void	init_parsing(int argc, char **argv, t_global *glb)
 	parsing.glb = glb;
 	fd = handle_arguments(argc, argv);
 	parsing.file_content = load_file(fd, argv[1]);
-	split_config_and_map(&parsing);
-}
+	parsing.config = get_config(parsing.file_content);
+	// parsing.map = get_map(&parsing, parsing.file_content);
 
-void	split_config_and_map(t_parsing *parsing)
-{
-	char	**config;
-	char	**map;
+	ft_print_strarray(parsing.config);
+	ft_print_strarray(parsing.map);
 
-	// map = get_map(parsing->file_content); // check les empty lines en premier avant copy
-	config = get_config(parsing->file_content);
-	ft_print_strarray(config);
-	ft_free_array(config);
-	parsing->file_content = ft_free_array(parsing->file_content);
+	ft_free_array(parsing.file_content);
+	ft_free_array(parsing.config);
+	ft_free_array(parsing.map);
 }
 
 int	handle_arguments(int argc, char **argv)
