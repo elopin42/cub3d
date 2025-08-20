@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:18:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/20 13:25:29 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:38:52 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 # define SPACES " \f\n\r\t\v"
 
-# define CONFIGFMTERR "\x1b[31mError\x1b[0m: Invalid config identifier: %s\n"
+# define CONFIGFMTERR "\x1b[31mError\x1b[0m: Invalid or missing value for identifier: %s\n"
 # define ARGERR "\x1b[31mError\x1b[0m: Invalid number of arguments\n"
 # define NOMAPERR "\x1b[31mError\x1b[0m: No map in config file\n"
 # define TOOSHORTERR "\x1b[31mError\x1b[0m: File name too short\n"
@@ -39,5 +39,6 @@
 # define NOPLAYER "\x1b[31mError\x1b[0m: No starting position found\n"
 # define CALLOCERR "\x1b[31mError\x1b[0m: ft_calloc()\n"
 # define MAPOPENERR "\x1b[31mError\x1b[0m: Player isn't in a closed section\n"
+# define CONFIGDUP "\x1b[31mError\x1b[0m: %s: Duplicate texture\n"
 
 #endif

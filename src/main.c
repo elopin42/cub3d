@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/19 00:24:21 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:40:17 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,16 +123,11 @@ void	load_texture(void *mlx, t_img *tex, char *path)
 int	main(int ac, char **av)
 {
 	t_global	glb;
+	t_parsing	parsing;
 
 	ft_bzero(&glb, sizeof (t_global));
-	parsing(ac, av, &glb);
-/* 	mlx_hook(glb.smlx.mlx_win, 2, 1L << 0, key_press, &glb);
-	mlx_hook(glb.smlx.mlx_win, 3, 1L << 1, key_release, &glb);
-	mlx_hook(glb.smlx.mlx_win, 6, 1L << 6, mouse_moved_advanced, &glb);
-	mlx_loop_hook(glb.smlx.mlx, update, &glb);
-	mlx_hook(glb.smlx.mlx_win, 17, 0, (void *)ft_clean_all, &glb);
-	mlx_mouse_move(glb.smlx.mlx, glb.smlx.mlx_win, WIN_WIDTH / 2, WIN_HEIGHT
-		/ 2);
-	return (mlx_loop(glb.smlx.mlx)); */
+	parsing = parser(ac, av, &glb.player);
+	// init_glb_values(&glb);
+	// init_mlx(&glb.smlx, &parsing);
 	return (0);
 }

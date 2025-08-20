@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:25 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/20 11:54:14 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:36:08 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ void	map_error(t_parsing *parsing, char *err_msg, int c)
 		ft_printf(STDERR_FILENO, err_msg);
 	else
 		ft_printf(STDERR_FILENO, err_msg, c);
+	ft_free_array(parsing->file_content);
+	ft_free_array(parsing->config);
+	exit(EXIT_FAILURE);
+}
+
+void	duplicate_found(t_parsing *parsing, char *key)
+{
+	ft_printf(STDERR_FILENO, CONFIGDUP, key);
 	ft_free_array(parsing->file_content);
 	ft_free_array(parsing->config);
 	exit(EXIT_FAILURE);

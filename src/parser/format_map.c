@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:12:40 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/20 03:08:03 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:07:13 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char	**create_formatted_map(t_parsing *parsing, char **map_file)
 		fill_line(map[info.i], map_file[info.i], info.width);
 		info.i++;
 	}
-	parsing->glb->map_clone = ft_dup_char_array(map);
-	if (parsing->glb->map_clone == NULL)
+	parsing->map_copy = ft_dup_char_array(map);
+	if (parsing->map_copy == NULL)
 		map_error(parsing, CALLOCERR, -1);
 	return (map);
 }

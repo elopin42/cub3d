@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:43 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/19 02:08:57 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:40:14 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ char	**get_config(char **file_content)
 		exit(EXIT_FAILURE);
 	}
 	config = dup_trim_config(file_content, delim);
-	if (config != NULL && validate_config_identifier(config) == false)
-	{
-		ft_free_array(file_content);
-		ft_free_array(config);
-		exit(EXIT_FAILURE);
-	}
 	return (config);
 }
 
@@ -83,13 +77,13 @@ bool	validate_config_identifier(char **config)
 	i = 0;
 	while (config[i])
 	{
-		if (ft_strncmp("NO", config[i], 2) && ft_isspace(config[i][2]))
+		if (!ft_strncmp("NO", config[i], 2) && ft_isspace(config[i][2]))
 			;
-		else if (ft_strncmp("SO", config[i], 2) && ft_isspace(config[i][2]))
+		else if (!ft_strncmp("SO", config[i], 2) && ft_isspace(config[i][2]))
 			;
-		else if (ft_strncmp("WE", config[i], 2) && ft_isspace(config[i][2]))
+		else if (!ft_strncmp("WE", config[i], 2) && ft_isspace(config[i][2]))
 			;
-		else if (ft_strncmp("EA", config[i], 2) && ft_isspace(config[i][2]))
+		else if (!ft_strncmp("EA", config[i], 2) && ft_isspace(config[i][2]))
 			;
 		else if (config[i][0] == 'F' && ft_isspace(config[i][1]))
 			;

@@ -1,6 +1,6 @@
 NAME = libft.a
 CC = cc
-CFLAGS = -std=gnu11 -Wall -Wextra -Werror -fsanitize=address -ggdb
+CFLAGS = -std=gnu11 -Wall -Wextra -Werror -ggdb # -fsanitize=address
 
 GREEN = \033[32m
 YELLOW = \e[0;33m

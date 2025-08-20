@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:55:35 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/20 13:24:34 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:01:14 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 
 void	is_map_closed(t_parsing *parsing, char **map, char **map_copy)
 {
-	t_player	*player;
 	t_ff		ff;
 	size_t		x;
 	size_t		y;
 
-	player = &parsing->glb->player;
 	ft_bzero(&ff, sizeof (t_ff));
 	ff.width = ft_strlen(map[0]) - 1;
 	ff.height = ft_arraylen((void **)map) - 1;
-	x = (int)player->x;
-	y = (int)player->y;
+	x = (int)parsing->player->x;
+	y = (int)parsing->player->y;
 	flood_fill(&ff, map_copy, x, y);
 	if (ff.map_is_open == true)
 	{

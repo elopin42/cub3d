@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/20 13:19:50 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:39:22 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,14 @@
 
 /* --------------- PARSER --------------- */
 
+// check_config.c
+void			parse_config_errors(t_parsing *parsing, char **config);
+void			check_duplicate(t_parsing *parsing, char **config, char *key, size_t len);
+
 // error_handlers.c
 void			handle_trim_fail(char **array, char **config, size_t fail_idx);
 void			map_error(t_parsing *parsing, char *err_msg, int c);
+void			duplicate_found(t_parsing *parsing, char *key);
 
 // flood_fill.c
 void			is_map_closed(t_parsing *parsing, char **map, char **map_copy);
@@ -64,9 +69,13 @@ void			load_file_error(int fd, void *ptr);
 void			read_error(int fd);
 
 // parser.c
-void			parsing(int argc, char **argv, t_global *glb);
+t_parsing		parser(int argc, char **argv, t_player *player);
 int				handle_arguments(int argc, char **argv);
 void			check_filename(char *filename);
+
+// rgb_check.c
+void			check_rgb_values(char **config, t_parsing *parsing);
+void			check_rgb_entry(char *entry, t_rgb *rgb, t_parsing *parsing);
 
 // utils.c
 size_t			count_skips(char **array, size_t delim);

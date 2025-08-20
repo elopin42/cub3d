@@ -6,13 +6,13 @@
 #    By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 22:27:47 by elopin            #+#    #+#              #
-#    Updated: 2025/08/20 11:56:20 by lle-cout         ###   ########.fr        #
+#    Updated: 2025/08/23 14:00:48 by lle-cout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = cc
-CFLAGS = -std=gnu11 -Wall -Wextra -fsanitize=address  -ggdb
+CFLAGS = -std=gnu11 -Wall -Wextra -ggdb # -fsanitize=address
 LINK = -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz
 
 MAKE = make --no-print-directory
@@ -21,8 +21,7 @@ MAKE_MLX = $(MAKE) -C mlx
 LIBFT = libft/libft.a
 MLX = mlx/libmlx.a
 
-
-SRCS = src/parser/error_handlers.c src/parser/flood_fill.c src/parser/format_map.c src/parser/get_config.c src/parser/get_map.c src/parser/load_file.c src/parser/parser.c src/parser/utils.c \
+SRCS = src/parser/check_config.c src/parser/error_handlers.c src/parser/flood_fill.c src/parser/format_map.c src/parser/get_config.c src/parser/get_map.c src/parser/load_file.c src/parser/parser.c src/parser/utils.c src/parser/rgb_check.c\
 	src/calcul_for_draw.c src/cam_moove.c src/door.c src/draw.c src/draw_wall_tex2.c src/draw_wall_tex.c src/frame.c \
 	src/ft_clean_up.c src/main.c src/put_texture.c src/small_function.c src/minimap.c
 
