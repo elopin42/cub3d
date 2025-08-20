@@ -6,9 +6,12 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/20 02:32:08 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/20 13:22:30 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 typedef struct s_parsing
 {
@@ -30,6 +33,13 @@ typedef struct s_rgb
 	int	g;
 	int	b;
 }	t_rgb;
+
+typedef struct s_ff
+{
+	ssize_t	width;
+	ssize_t	height;
+	bool	map_is_open;
+}	t_ff;
 
 typedef struct s_torch_data
 {
@@ -155,3 +165,5 @@ typedef struct s_global
 	int				el_muros_invisible; // je crois cette variables ne sert pu a rien car quand je regarde dans le code elle es dans aucune condition
 	long			door_timing;// pour gerer le temps ou on en es pour l'ouverture mais dailleur le temps de ouverture ou on peut traverser la porte es fixe.
 }	t_global;
+
+#endif

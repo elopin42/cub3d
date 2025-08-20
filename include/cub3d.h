@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/20 11:54:07 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/20 13:19:50 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@
 // error_handlers.c
 void			handle_trim_fail(char **array, char **config, size_t fail_idx);
 void			map_error(t_parsing *parsing, char *err_msg, int c);
+
+// flood_fill.c
+void			is_map_closed(t_parsing *parsing, char **map, char **map_copy);
+void			flood_fill(t_ff *ff, char **map, int x, int y);
+void			unfill_map(char **map, char **copy);
 
 // format_map.c
 char			**create_formatted_map(t_parsing *parsing, char **map_file);
