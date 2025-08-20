@@ -6,13 +6,13 @@
 #    By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 22:27:47 by elopin            #+#    #+#              #
-#    Updated: 2025/08/18 18:48:01 by lle-cout         ###   ########.fr        #
+#    Updated: 2025/08/20 03:24:16 by lle-cout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = cc
-CFLAGS = -std=gnu11 -Wall -Wextra -ggdb
+CFLAGS = -std=gnu11 -Wall -Wextra -fsanitize=address  -ggdb
 LINK = -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz
 
 MAKE = make --no-print-directory
@@ -22,9 +22,9 @@ LIBFT = libft/libft.a
 MLX = mlx/libmlx.a
 
 
-SRCS = src/parser/error_handlers.c src/parser/get_config.c src/parser/load_file.c src/parser/parser.c src/parser/utils.c \
+SRCS = src/parser/error_handlers.c src/parser/format_map.c src/parser/get_config.c src/parser/get_map.c src/parser/load_file.c src/parser/parser.c src/parser/utils.c \
 	src/calcul_for_draw.c src/cam_moove.c src/door.c src/draw.c src/draw_wall_tex2.c src/draw_wall_tex.c src/frame.c \
-	src/ft_clean_up.c src/main.c src/put_texture.c src/small_function.c src/small_map.c
+	src/ft_clean_up.c src/main.c src/put_texture.c src/small_function.c src/minimap.c
 
 OBJ_DIR = obj
 OBJ = $(SRCS:%.c=$(OBJ_DIR)/%.o)

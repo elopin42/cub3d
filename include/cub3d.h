@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/19 02:01:23 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/20 11:54:07 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,15 @@
 /* --------------- PARSER --------------- */
 
 // error_handlers.c
-void			read_error(int fd);
-void			load_file_error(int fd, void *ptr);
 void			handle_trim_fail(char **array, char **config, size_t fail_idx);
+void			map_error(t_parsing *parsing, char *err_msg, int c);
+
+// format_map.c
+char			**create_formatted_map(t_parsing *parsing, char **map_file);
+void			fill_line(char *line, char *ref, size_t len);
+char			**init_map_info(t_map_info *info, t_parsing *parsing, char **map_file);
+size_t			get_map_height(char **map);
+size_t			get_map_width(char **map);
 
 // get_config.c
 char			**get_config(char **file_content);
@@ -41,12 +47,16 @@ bool			validate_config_identifier(char **config);
 
 // get_map.c
 char			**get_map(t_parsing *parsing, char **file_content);
-void			check_empty_lines(t_parsing *parsing, char **map);
 void			check_invalid_chars(t_parsing *parsing, char **map);
+void			check_empty_lines(t_parsing *parsing, char **map);
+void			set_player_start(t_parsing *parsing, char **map, t_player *player);
+void			set_player_info(t_player *player, char dir, size_t y, size_t x);
 
 // load_file.c
 char			**load_file(int fd, char *filename);
 ssize_t			get_file_size(int fd);
+void			load_file_error(int fd, void *ptr);
+void			read_error(int fd);
 
 // parser.c
 void			parsing(int argc, char **argv, t_global *glb);
@@ -56,6 +66,8 @@ void			check_filename(char *filename);
 // utils.c
 size_t			count_skips(char **array, size_t delim);
 bool			is_map_line(char *line);
+bool			is_valid_map_char(char c);
+bool			is_player(char c);
 
 /* --------------- RAYCASTER --------------- */
 

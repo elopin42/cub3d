@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:18:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/18 19:33:57 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/20 02:31:46 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,8 @@
 #define NOMAPERR "\x1b[31mError\x1b[0m: No map in config file\n"
 #define TOOSHORTERR "\x1b[31mError\x1b[0m: File name too short\n"
 #define FTYPEERR "\x1b[31mError\x1b[0m: Wrong file type\n"
+#define INVCHARMAP "\x1b[31mError\x1b[0m: Invalid char '%c' in map\n"
+#define EMPTYLINEMAP "\x1b[31mError\x1b[0m: Empty line in map\n"
+#define STARTPOSERR "\x1b[31mError\x1b[0m: Multiple starting positions\n"
+#define NOPLAYER "\x1b[31mError\x1b[0m: No starting position found\n"
+#define CALLOCERR "\x1b[31mError\x1b[0m: ft_calloc()\n"

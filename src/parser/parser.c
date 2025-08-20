@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:57 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/19 02:09:21 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/20 03:07:24 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@ void	parsing(int argc, char **argv, t_global *glb)
 	fd = handle_arguments(argc, argv);
 	parsing.file_content = load_file(fd, argv[1]);
 	parsing.config = get_config(parsing.file_content);
-	// parsing.map = get_map(&parsing, parsing.file_content);
-
+	parsing.map = get_map(&parsing, parsing.file_content);
+	ft_free_array(parsing.file_content);
 	ft_print_strarray(parsing.config);
 	ft_print_strarray(parsing.map);
-
-	ft_free_array(parsing.file_content);
 	ft_free_array(parsing.config);
 	ft_free_array(parsing.map);
+	ft_free_array(parsing.glb->map_clone);
 }
 
 int	handle_arguments(int argc, char **argv)

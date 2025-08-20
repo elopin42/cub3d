@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:57:57 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/18 11:42:39 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/20 02:53:22 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int			ft_atoi(char *nptr);
 long long	ft_atoll(char *str);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t nmemb, size_t size);
+char		**ft_dup_char_array(char **array);
 void		*ft_free_array(char **array);
 int			ft_is_only_space(char *line);
 char		*ft_fstrjoin(char *s1, char *s2, short fs1, short fs2);

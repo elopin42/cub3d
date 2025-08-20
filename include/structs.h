@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/18 18:50:37 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/20 02:32:08 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_torch_data
 	int				scaled_height;
 	int				x_offset;
 	int				y_offset;
-}					t_torch_data;
+}	t_torch_data;
 
 typedef struct s_ray
 {
@@ -61,13 +61,13 @@ typedef struct s_ray
 	int				line_height;
 	int				draw_start;
 	int				draw_end;
-}					t_ray;
+}	t_ray;
 
 typedef struct s_mlx
 {
 	void			*mlx;
 	void			*mlx_win;
-}					t_mlx;
+}	t_mlx;
 
 typedef struct s_img
 {
@@ -80,7 +80,7 @@ typedef struct s_img
 	int				width;
 	int				height;
 	t_rgb			*rgb;
-}					t_img;
+}	t_img;
 
 typedef struct s_door_params
 {
@@ -91,7 +91,7 @@ typedef struct s_door_params
 	int				tmp_draw_start;
 	int				tmp_draw_end;
 	bool			ray_calculated;
-}					t_door_params;
+}	t_door_params;
 
 typedef struct s_player
 {
@@ -101,7 +101,7 @@ typedef struct s_player
 	double	dir_y;	// Direction du joueur sur l'axe Y
 	double	plane_x; // Plan de la caméra X (détermine le champ de vision horizontal)
 	double	plane_y; // Plan de la caméra Y (détermine le champ de vision horizontal)
-} t_player;
+}	t_player;
 
 typedef struct s_texture
 {
@@ -114,7 +114,14 @@ typedef struct s_texture
 	t_img			sky;
 	t_img			torche;
 	t_img			white;
-}					t_texture;
+}	t_texture;
+
+typedef struct s_map_info
+{
+	size_t	i;
+	size_t	width;
+	size_t	height;
+}	t_map_info;
 
 typedef struct s_global
 {
@@ -147,4 +154,4 @@ typedef struct s_global
 	int				door_height; // de memoir c'est ce qui permet de garder le rendu en gros si on seloigne ou autre mais j'ai un doute
 	int				el_muros_invisible; // je crois cette variables ne sert pu a rien car quand je regarde dans le code elle es dans aucune condition
 	long			door_timing;// pour gerer le temps ou on en es pour l'ouverture mais dailleur le temps de ouverture ou on peut traverser la porte es fixe.
-}					t_global;
+}	t_global;

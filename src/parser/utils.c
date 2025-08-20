@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:58:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/18 18:06:17 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/19 14:19:03 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,21 @@ bool	is_map_line(char *line)
 			return (false);
 	}
 	return (true);
+}
+
+bool	is_valid_map_char(char c)
+{
+	return (ft_isspace(c) == true
+		|| c == '0'
+		|| c == '1'
+		|| c == 'D'
+		|| c == 'N'
+		|| c == 'S'
+		|| c == 'W'
+		|| c == 'E');
+}
+
+bool	is_player(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
 }
