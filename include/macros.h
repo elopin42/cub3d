@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:18:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/23 14:38:52 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/25 01:32:56 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 
 # define SPACES " \f\n\r\t\v"
 
-# define CONFIGFMTERR "\x1b[31mError\x1b[0m: Invalid or missing value for identifier: %s\n"
+# define CONFIGIDERR "\x1b[31mError\x1b[0m: Invalid identifier: %s\n"
+# define EMPTYCONFIGERR "\x1b[31mError\x1b[0m: Missing value for identifier: %s\n"
 # define ARGERR "\x1b[31mError\x1b[0m: Invalid number of arguments\n"
 # define NOMAPERR "\x1b[31mError\x1b[0m: No map in config file\n"
 # define TOOSHORTERR "\x1b[31mError\x1b[0m: File name too short\n"

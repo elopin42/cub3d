@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/23 14:39:22 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/25 12:50:18 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@
 
 // check_config.c
 void			parse_config_errors(t_parsing *parsing, char **config);
-void			check_duplicate(t_parsing *parsing, char **config, char *key, size_t len);
+void			check_duplicate(t_parsing *p, char **config, char *key, size_t len);
+void			validate_config_identifier(t_parsing *parsing, char **config);
 
 // error_handlers.c
 void			handle_trim_fail(char **array, char **config, size_t fail_idx);
 void			map_error(t_parsing *parsing, char *err_msg, int c);
 void			duplicate_found(t_parsing *parsing, char *key);
+void			handle_misconfig(t_parsing *parsing, char **config, char *key);
 
 // flood_fill.c
 void			is_map_closed(t_parsing *parsing, char **map, char **map_copy);
@@ -53,7 +55,6 @@ size_t			get_map_width(char **map);
 char			**get_config(char **file_content);
 char			**dup_trim_config(char **array, size_t delim);
 char			**fill_config_array(char **array, char **config, size_t delim);
-bool			validate_config_identifier(char **config);
 
 // get_map.c
 char			**get_map(t_parsing *parsing, char **file_content);
@@ -82,6 +83,7 @@ size_t			count_skips(char **array, size_t delim);
 bool			is_map_line(char *line);
 bool			is_valid_map_char(char c);
 bool			is_player(char c);
+bool			is_invalid_identifier(char *key);
 
 /* --------------- RAYCASTER --------------- */
 

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:25 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/23 14:36:08 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/25 01:43:00 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,16 @@ void	duplicate_found(t_parsing *parsing, char *key)
 	ft_printf(STDERR_FILENO, CONFIGDUP, key);
 	ft_free_array(parsing->file_content);
 	ft_free_array(parsing->config);
+	exit(EXIT_FAILURE);
+}
+
+void	handle_misconfig(t_parsing *parsing, char **config, char *key)
+{
+	ft_free_array(parsing->file_content);
+	if (is_invalid_identifier(key) == true)
+		ft_printf(STDERR_FILENO, CONFIGIDERR, key);
+	else
+		ft_printf(STDERR_FILENO, EMPTYCONFIGERR, key);
+	ft_free_array(config);
 	exit(EXIT_FAILURE);
 }

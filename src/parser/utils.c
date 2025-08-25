@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:58:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/19 14:19:03 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/25 12:42:20 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,21 @@ bool	is_valid_map_char(char c)
 bool	is_player(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
+}
+
+bool	is_invalid_identifier(char *key)
+{
+	if (!ft_strncmp("NO", key, 2))
+		return (false);
+	if (!ft_strncmp("SO", key, 2))
+		return (false);
+	if (!ft_strncmp("WE", key, 2))
+		return (false);
+	if (!ft_strncmp("EA", key, 2))
+		return (false);
+	if (key[0] == 'F')
+		return (false);
+	if (key[0] == 'C')
+		return (false);
+	return (true);
 }
