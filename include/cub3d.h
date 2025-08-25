@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/25 12:50:18 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:34:14 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void			check_filename(char *filename);
 
 // rgb_check.c
 void			check_rgb_values(char **config, t_parsing *parsing);
-void			check_rgb_entry(char *entry, t_rgb *rgb, t_parsing *parsing);
+void			check_rgb_entry(char *entry, t_parsing *parsing);
+void			rgb_error(t_parsing *parsing, char *entry, char *err);
 
 // utils.c
 size_t			count_skips(char **array, size_t delim);

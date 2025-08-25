@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:57 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/23 14:40:19 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:37:31 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_parsing	parser(int argc, char **argv, t_player *player)
 
 
 	ft_print_strarray(parsing.config);
-	ft_print_strarray(parsing.map);
+	// ft_print_strarray(parsing.map);
 	ft_free_array(parsing.config);
 	ft_free_array(parsing.map);
 	ft_free_array(parsing.map_copy);

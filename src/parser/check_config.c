@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 10:43:39 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/25 12:55:21 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:23:38 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	parse_config_errors(t_parsing *parsing, char **config)
 	check_duplicate(parsing, config, "EA", 2);
 	check_duplicate(parsing, config, "F", 1);
 	check_duplicate(parsing, config, "C", 1);
+	check_rgb_values(config, parsing);
 }
 
 void	validate_config_identifier(t_parsing *parsing, char **config)

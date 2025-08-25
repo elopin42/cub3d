@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:58:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/25 12:42:20 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:15:27 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,17 @@ bool	is_player(char c)
 
 bool	is_invalid_identifier(char *key)
 {
-	if (!ft_strncmp("NO", key, 2))
+	if (!ft_strncmp("NO", key, 2) && (ft_isspace(key[2]) || key[2] == '\0'))
 		return (false);
-	if (!ft_strncmp("SO", key, 2))
+	if (!ft_strncmp("SO", key, 2) && (ft_isspace(key[2]) || key[2] == '\0'))
 		return (false);
-	if (!ft_strncmp("WE", key, 2))
+	if (!ft_strncmp("WE", key, 2) && (ft_isspace(key[2]) || key[2] == '\0'))
 		return (false);
-	if (!ft_strncmp("EA", key, 2))
+	if (!ft_strncmp("EA", key, 2) && (ft_isspace(key[2]) || key[2] == '\0'))
 		return (false);
-	if (key[0] == 'F')
+	if (key[0] == 'F' && (ft_isspace(key[1]) || key[1] == '\0'))
 		return (false);
-	if (key[0] == 'C')
+	if (key[0] == 'C' && (ft_isspace(key[1]) || key[1] == '\0'))
 		return (false);
 	return (true);
 }

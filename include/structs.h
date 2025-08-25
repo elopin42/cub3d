@@ -6,12 +6,19 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/23 14:39:13 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:36:10 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef struct s_rgb
+{
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+}	t_rgb;
 
 typedef struct s_parsing
 {
@@ -25,17 +32,10 @@ typedef struct s_parsing
 	char			*we_path;
 	char			*ea_path;
 	bool			floor_set;
-	struct s_rgb	*floor;
+	struct s_rgb	floor;
 	bool			ceiling_set;
-	struct s_rgb	*ceiling;
+	struct s_rgb	ceiling;
 }	t_parsing;
-
-typedef struct s_rgb
-{
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}	t_rgb;
 
 typedef struct s_map_info
 {
