@@ -6,18 +6,20 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/25 15:34:14 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/25 23:46:18 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <errno.h>
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
 # include <stdint.h>
 # include <stdio.h>
+# include <string.h>
 # include <sys/time.h>
 # include <time.h>
 # include <X11/Xlib.h>
@@ -30,6 +32,8 @@
 
 // check_config.c
 void			parse_config_errors(t_parsing *parsing, char **config);
+void			validate_xpm_files(t_parsing *parsing, char **config);
+void			test_xpm(t_parsing *parsing, char *texture);
 void			check_duplicate(t_parsing *p, char **config, char *key, size_t len);
 void			validate_config_identifier(t_parsing *parsing, char **config);
 
@@ -75,9 +79,11 @@ int				handle_arguments(int argc, char **argv);
 void			check_filename(char *filename);
 
 // rgb_check.c
-void			check_rgb_values(char **config, t_parsing *parsing);
-void			check_rgb_entry(char *entry, t_parsing *parsing);
+void			handle_rgb_values(char **config, t_parsing *parsing);
+void			check_rgb_format(char *entry, t_parsing *parsing);
+void			set_rgb_values(char *values, t_parsing *parsing, t_rgb *rgb);
 void			rgb_error(t_parsing *parsing, char *entry, char *err);
+void			rgb_too_big(t_parsing *parsing, char **array);
 
 // utils.c
 size_t			count_skips(char **array, size_t delim);

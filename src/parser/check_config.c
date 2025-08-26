@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 10:43:39 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/25 16:23:38 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/25 23:47:44 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,56 @@ void	parse_config_errors(t_parsing *parsing, char **config)
 	check_duplicate(parsing, config, "EA", 2);
 	check_duplicate(parsing, config, "F", 1);
 	check_duplicate(parsing, config, "C", 1);
-	check_rgb_values(config, parsing);
+	handle_rgb_values(config, parsing);
+	validate_xpm_files(parsing, config);
+}
+
+void	validate_xpm_files(t_parsing *parsing, char **config)
+{
+	size_t i;
+	size_t j;
+
+	i = 0;
+	while (config[i])
+	{
+		j = 2;
+		if (config[i][0] != 'F' && config[i][0] != 'C')
+		{
+			while (ft_isspace(config[i][j]) == true)
+				j++;
+			test_xpm(parsing, &config[i][j]);
+		}
+		i++;
+	}
+}
+
+void	test_xpm(t_parsing *parsing, char *texture)
+{
+	int		fd;
+	int		len;
+	bool	error;
+
+	error = false;
+	len = ft_strlen(texture);
+	if (len < 5 || ft_strncmp(texture + len - 4, ".xpm", 4))
+	{
+		error = true;
+		ft_printf(STDERR_FILENO, NOXPM, texture);
+	}
+	fd = open(texture, O_RDONLY);
+	if (fd == -1 && error == false)
+	{
+		error = true;
+		ft_printf(STDERR_FILENO, XPMERROR, texture, strerror(errno));
+	}
+	else
+		close(fd);
+	if (error == true)
+	{
+		ft_free_array(parsing->file_content);
+		ft_free_array(parsing->config);
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	validate_config_identifier(t_parsing *parsing, char **config)

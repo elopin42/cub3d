@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:57 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/25 15:37:31 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/25 23:03:55 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_parsing	parser(int argc, char **argv, t_player *player)
 
 	parsing.config = get_config(parsing.file_content);
 	parse_config_errors(&parsing, parsing.config);
-	check_rgb_values(parsing.config, &parsing);
 
 	parsing.map = get_map(&parsing, parsing.file_content);
 
