@@ -6,7 +6,7 @@
 #    By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 22:27:47 by elopin            #+#    #+#              #
-#    Updated: 2025/08/15 12:04:49 by lle-cout         ###   ########.fr        #
+#    Updated: 2025/08/26 23:40:18 by lle-cout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = cc
 CFLAGS = -std=gnu11 -Wall -Wextra -Werror -ggdb
 
 SRCDIR = src/
-SRCSF = main.c init.c ft_clean_up.c parsing.c draw.c cam_moove.c put_texture.c frame.c  small_map.c \
+SRCSF = main.c init.c ft_clean_up.c parsing.c draw.c cam_moove.c put_texture.c frame.c  minimap.c \
 	door.c small_function.c calcul_for_draw.c draw_wall_tex.c draw_wall_tex2.c
 SRCS = $(addprefix src/, $(SRCSF))
 
