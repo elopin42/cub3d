@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:55:35 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/20 18:01:14 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/26 03:17:27 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	is_map_closed(t_parsing *parsing, char **map, char **map_copy)
 		ft_printf(STDERR_FILENO, MAPOPENERR);
 		ft_free_array(map);
 		ft_free_array(map_copy);
+		ft_free_array(parsing->file_content);
 		ft_free_array(parsing->config);
 		exit(EXIT_FAILURE);
 	}

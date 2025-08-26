@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/25 23:46:18 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/26 23:23:01 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,16 @@ bool			is_map_line(char *line);
 bool			is_valid_map_char(char c);
 bool			is_player(char c);
 bool			is_invalid_identifier(char *key);
+
+/* --------------- INIT_GAME --------------- */
+
+// init_.c
+void			init_mlx(t_mlx *smlx, t_parsing *parser);
+void			init_glb_values(t_global *glb, t_parsing *parser);
+
+// error_handlers.c
+void			init_mlx_error(t_mlx *smlx, t_parsing *parser, char *error);
+
 
 /* --------------- RAYCASTER --------------- */
 

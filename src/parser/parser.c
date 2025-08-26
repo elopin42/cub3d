@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:57 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/25 23:03:55 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/26 03:25:13 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,11 @@ t_parsing	parser(int argc, char **argv, t_player *player)
 	ft_bzero(&parsing, sizeof (t_parsing));
 	parsing.player = player;
 	fd = handle_arguments(argc, argv);
-
 	parsing.file_content = load_file(fd, argv[1]);
-
 	parsing.config = get_config(parsing.file_content);
 	parse_config_errors(&parsing, parsing.config);
-
 	parsing.map = get_map(&parsing, parsing.file_content);
-
-
-	ft_print_strarray(parsing.config);
-	// ft_print_strarray(parsing.map);
-	ft_free_array(parsing.config);
-	ft_free_array(parsing.map);
-	ft_free_array(parsing.map_copy);
+	ft_free_array(parsing.file_content);
 	return (parsing);
 }
 

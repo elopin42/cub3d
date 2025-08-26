@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:18:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/25 23:05:09 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:08:41 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 # define SPACES " \f\n\r\t\v"
 
+# define ERR "\x1b[31mError\x1b[0m: "
 # define CONFIGIDERR "\x1b[31mError\x1b[0m: Invalid identifier: %s\n"
 # define EMPTYCONFIGERR "\x1b[31mError\x1b[0m: Missing value for identifier: %s\n"
 # define ARGERR "\x1b[31mError\x1b[0m: Invalid number of arguments\n"
@@ -41,10 +42,10 @@
 # define CALLOCERR "\x1b[31mError\x1b[0m: ft_calloc()\n"
 # define MAPOPENERR "\x1b[31mError\x1b[0m: Player isn't in a closed section\n"
 # define CONFIGDUP "\x1b[31mError\x1b[0m: %s: Duplicate config identifier\n"
-
 # define RGBFMT "\x1b[31mError\x1b[0m: Invalid RGB format: %s\n"
 # define RGBTOOBIG "\x1b[31mError\x1b[0m: RGB Values must be [0-255]\n"
 # define NOXPM "\x1b[31mError\x1b[0m: %s: File must have .xpm extension\n"
-# define XPMERROR "\x1b[31mError\x1b[0m: %s: %s\n" // file strerror
+# define XPMERROR "\x1b[31mError\x1b[0m: %s: %s\n"
+# define MLXINIT "mlx_init() failed\n"
 
 #endif

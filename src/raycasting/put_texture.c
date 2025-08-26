@@ -6,11 +6,11 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:41:37 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/14 15:28:40 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:19:23 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 void	put_pixel(t_img *img, int x, int y, int color)
 {

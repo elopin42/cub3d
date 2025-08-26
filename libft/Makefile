@@ -28,10 +28,10 @@ $(OBJDIR):
 
 $(NAME): $(OBJDIR) $(OBJ)
 	@ar -rcs $(NAME) $(OBJ)
-	@printf "$(GREEN)libft.a done ✅                      $(RESET)\n"
+	@printf "$(GREEN)libft.a done ✅                                 $(RESET)\n"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-	@printf "$(YELLOW)Compiling %-30s$(RESET)\r" "$<"
+	@printf "$(YELLOW)Compiling %-30s           $(RESET)\r" "$<"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

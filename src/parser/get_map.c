@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 00:12:13 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/20 18:03:16 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/26 03:17:08 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char	**get_map(t_parsing *parsing, char **file_content)
 	check_empty_lines(parsing, map);
 	set_player_start(parsing, map, parsing->player);
 	map = create_formatted_map(parsing, map);
-	parsing->file_content = ft_free_array(parsing->file_content);
 	is_map_closed(parsing, map, parsing->map_copy);
 	return (map);
 }

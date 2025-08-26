@@ -6,11 +6,11 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 20:57:48 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/20 02:37:29 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:19:23 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 // le d c'est pour la norme en gros je pouvais pas mettre 5 argument donc j'ai inproviser
 

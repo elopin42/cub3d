@@ -6,11 +6,11 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/17 16:53:10 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:19:23 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 void	draw_ceiling_and_sky(t_global *glb, int x)
 {

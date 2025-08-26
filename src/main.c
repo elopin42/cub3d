@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/23 14:40:17 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/26 23:26:36 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,12 @@ int	main(int ac, char **av)
 
 	ft_bzero(&glb, sizeof (t_global));
 	parsing = parser(ac, av, &glb.player);
-	// init_glb_values(&glb);
+	ft_print_strarray(parsing.config);
+	ft_print_strarray(parsing.map);
+	init_glb_values(&glb, &parsing);
 	// init_mlx(&glb.smlx, &parsing);
+	ft_free_array(parsing.config);
+	ft_free_array(parsing.map);
+	ft_free_array(parsing.map_copy);
 	return (0);
 }
