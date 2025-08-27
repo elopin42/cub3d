@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:18:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/26 15:08:41 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/27 02:11:17 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@
 # define SPACES " \f\n\r\t\v"
 
 # define ERR "\x1b[31mError\x1b[0m: "
+
 # define CONFIGIDERR "\x1b[31mError\x1b[0m: Invalid identifier: %s\n"
 # define EMPTYCONFIGERR "\x1b[31mError\x1b[0m: Missing value for identifier: %s\n"
 # define ARGERR "\x1b[31mError\x1b[0m: Invalid number of arguments\n"
 # define NOMAPERR "\x1b[31mError\x1b[0m: No map in config file\n"
 # define TOOSHORTERR "\x1b[31mError\x1b[0m: File name too short\n"
-# define FTYPEERR "\x1b[31mError\x1b[0m: Wrong file type\n"
+# define FTYPEERR "\x1b[31mError\x1b[0m: File type must be .cub\n"
 # define INVCHARMAP "\x1b[31mError\x1b[0m: Invalid char '%c' in map\n"
 # define EMPTYLINEMAP "\x1b[31mError\x1b[0m: Empty line in map\n"
 # define STARTPOSERR "\x1b[31mError\x1b[0m: Multiple starting positions\n"
@@ -46,6 +47,15 @@
 # define RGBTOOBIG "\x1b[31mError\x1b[0m: RGB Values must be [0-255]\n"
 # define NOXPM "\x1b[31mError\x1b[0m: %s: File must have .xpm extension\n"
 # define XPMERROR "\x1b[31mError\x1b[0m: %s: %s\n"
+
 # define MLXINIT "mlx_init() failed\n"
+# define MLXIMGERROR "mlx_new_image() failed\n"
+# define MLXIMGADDR "mlx_get_data_addr() failed\n"
+# define MLXXPM "mlx_xpm_file_to_image() failed\n"
+
+# define NORTH "textures/nord.xpm"
+# define SOUTH "textures/sud.xpm"
+# define EAST "textures/est.xpm"
+# define WEST "textures/ouest.xpm"
 
 #endif

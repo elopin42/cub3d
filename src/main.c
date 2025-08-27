@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/26 23:26:36 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/27 02:44:23 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ int	update(t_global *glb)
 	if (glb->key_d)
 		move_player(glb, 4);
 	if (glb->key_left)
-		rotate_camera(glb, -0.08);
-	if (glb->key_right)
 		rotate_camera(glb, 0.08);
+	if (glb->key_right)
+		rotate_camera(glb, -0.08);
 	draw_scene(glb);
 	if (glb->anim_door > 0)
 	{
@@ -127,12 +127,8 @@ int	main(int ac, char **av)
 
 	ft_bzero(&glb, sizeof (t_global));
 	parsing = parser(ac, av, &glb.player);
-	ft_print_strarray(parsing.config);
-	ft_print_strarray(parsing.map);
-	init_glb_values(&glb, &parsing);
-	// init_mlx(&glb.smlx, &parsing);
-	ft_free_array(parsing.config);
-	ft_free_array(parsing.map);
-	ft_free_array(parsing.map_copy);
+	init_game(&glb, &parsing);
+	init_hooks(&glb, &glb.smlx);
+	mlx_loop(glb.smlx.mlx);
 	return (0);
 }

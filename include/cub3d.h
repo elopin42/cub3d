@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/26 23:23:01 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/27 02:12:05 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,29 @@ bool			is_invalid_identifier(char *key);
 /* --------------- INIT_GAME --------------- */
 
 // init_.c
-void			init_mlx(t_mlx *smlx, t_parsing *parser);
+void			init_game(t_global *glb, t_parsing *parser);
 void			init_glb_values(t_global *glb, t_parsing *parser);
+void			init_mlx(t_global *glb, t_parsing *parsing);
+void			init_hooks(t_global *glb, t_mlx *smlx);
+void			load_game_textures(t_global *glb, t_parsing *parser);
 
 // error_handlers.c
-void			init_mlx_error(t_mlx *smlx, t_parsing *parser, char *error);
+void			init_mlx_error(t_global *glb, t_parsing *parser, char *error);
+void			destroy_all_textures(void *mlx, t_texture *text);
+void			destroy_texture(void *mlx, t_img *img);
 
+// textures.c
+void			load_parsed_textures(t_global *glb, t_parsing *parser);
+void			set_parsed_path(t_parsing *parser, char **config);
+void			load_xpm(t_global *glb, t_parsing *parser, t_img *img, char *xpm);
 
 /* --------------- RAYCASTER --------------- */
+
+// main.c
+int				mouse_moved_advanced(int x, int y, void *param);
+int				key_press(int keycode, t_global *glb);
+int				key_release(int keycode, t_global *glb);
+int				update(t_global *glb);
 
 // calcul_for_draw.c
 void			calculate_wall_distance(t_global *glb);
