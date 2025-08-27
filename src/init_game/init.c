@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/27 02:40:34 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:22:44 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	init_mlx(t_global *glb, t_parsing *parsing)
 	glb->img.img = mlx_new_image(glb->smlx.mlx, glb->w, glb->h);
 	if (!glb->img.img)
 		init_mlx_error(glb, parsing, MLXIMGERROR);
-	glb->img.addr = mlx_get_data_addr(glb->img.img, &glb->img.bpp, &glb->img.line_length, &glb->img.endian);
+	glb->img.addr = mlx_get_data_addr(glb->img.img, &glb->img.bpp,
+			&glb->img.line_length, &glb->img.endian);
 	if (!glb->img.addr)
 		init_mlx_error(glb, parsing, MLXIMGADDR);
 }

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 10:43:39 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/25 23:47:44 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:23:38 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	parse_config_errors(t_parsing *parsing, char **config)
 
 void	validate_xpm_files(t_parsing *parsing, char **config)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (config[i])
