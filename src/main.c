@@ -32,7 +32,7 @@ int	mouse_moved_advanced(int x, int y, void *param)
 	}
 	if (!mouse_locked)
 		return (0);
-	int (delta_x) = x - center_x;
+	int(delta_x) = x - center_x;
 	if (abs(delta_x) < 3)
 		return (0);
 	rotate_camera(glb, -delta_x * sensitivity);
@@ -125,7 +125,7 @@ int	main(int ac, char **av)
 	t_global	glb;
 	t_parsing	parsing;
 
-	ft_bzero(&glb, sizeof (t_global));
+	ft_bzero(&glb, sizeof(t_global));
 	parsing = parser(ac, av, &glb.player);
 	init_game(&glb, &parsing);
 	init_hooks(&glb, &glb.smlx);

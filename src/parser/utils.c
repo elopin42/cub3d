@@ -37,14 +37,9 @@ bool	is_map_line(char *line)
 		return (false);
 	while (line[i])
 	{
-		if (ft_isspace(line[i]) == true
-			|| line[i] == '0'
-			|| line[i] == '1'
-			|| line[i] == 'D'
-			|| line[i] == 'N'
-			|| line[i] == 'S'
-			|| line[i] == 'E'
-			|| line[i] == 'W')
+		if (ft_isspace(line[i]) == true || line[i] == '0' || line[i] == '1'
+			|| line[i] == 'D' || line[i] == 'N' || line[i] == 'S'
+			|| line[i] == 'E' || line[i] == 'W')
 			i++;
 		else
 			return (false);
@@ -54,14 +49,8 @@ bool	is_map_line(char *line)
 
 bool	is_valid_map_char(char c)
 {
-	return (ft_isspace(c) == true
-		|| c == '0'
-		|| c == '1'
-		|| c == 'D'
-		|| c == 'N'
-		|| c == 'S'
-		|| c == 'W'
-		|| c == 'E');
+	return (ft_isspace(c) == true || c == '0' || c == '1' || c == 'D'
+		|| c == 'N' || c == 'S' || c == 'W' || c == 'E');
 }
 
 bool	is_player(char c)

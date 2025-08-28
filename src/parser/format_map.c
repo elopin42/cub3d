@@ -20,7 +20,7 @@ char	**create_formatted_map(t_parsing *parsing, char **map_file)
 	map = init_map_info(&info, parsing, map_file);
 	while (info.i < info.height)
 	{
-		map[info.i] = ft_calloc(sizeof (char), info.width + 1);
+		map[info.i] = ft_calloc(sizeof(char), info.width + 1);
 		if (map[info.i] == NULL)
 		{
 			while (info.i > 0)
@@ -69,7 +69,7 @@ char	**init_map_info(t_map_info *info, t_parsing *parsing, char **map_file)
 	info->i = 0;
 	info->width = get_map_width(map_file);
 	info->height = get_map_height(map_file);
-	map = ft_calloc(sizeof (char *), info->height + 1);
+	map = ft_calloc(sizeof(char *), info->height + 1);
 	if (!map)
 	{
 		perror(CALLOCERR);

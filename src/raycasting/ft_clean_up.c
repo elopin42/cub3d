@@ -14,12 +14,12 @@
 
 void	ft_free_map(char **map)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (!map)
 		return ;
-	while(map[++i])
+	while (map[++i])
 		free(map[i]);
 	free(map);
 }
@@ -57,4 +57,3 @@ void	ft_clean_all(t_global *glb, int exit_code)
 		free(glb->door_params);
 	exit(exit_code);
 }
-

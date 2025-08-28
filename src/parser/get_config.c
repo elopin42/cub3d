@@ -38,7 +38,7 @@ char	**dup_trim_config(char **array, size_t delim)
 	array_size = delim - count_skips(array, delim);
 	if (array_size == 0)
 		return (NULL);
-	config = ft_calloc(sizeof (char *), array_size + 1);
+	config = ft_calloc(sizeof(char *), array_size + 1);
 	if (config == NULL)
 	{
 		ft_free_array(array);

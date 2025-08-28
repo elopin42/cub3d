@@ -28,8 +28,8 @@ unsigned int	apply_distance_effect(unsigned int color, double dist)
 	return (color);
 }
 
-unsigned int	get_normal_wall_color(t_global *glb, t_img *tex,
-		int tex_x, int tex_y)
+unsigned int	get_normal_wall_color(t_global *glb, t_img *tex, int tex_x,
+		int tex_y)
 {
 	char			*pixel;
 	unsigned int	color;
@@ -58,11 +58,9 @@ void	calculate_texture_params(t_global *glb, t_img *tex, int *tex_x,
 	double	wall_x;
 
 	if (glb->ray.side == 0)
-		wall_x = glb->player.y + glb->ray.perp_wall_dist
-			* glb->ray.ray_dir_y;
+		wall_x = glb->player.y + glb->ray.perp_wall_dist * glb->ray.ray_dir_y;
 	else
-		wall_x = glb->player.x + glb->ray.perp_wall_dist
-			* glb->ray.ray_dir_x;
+		wall_x = glb->player.x + glb->ray.perp_wall_dist * glb->ray.ray_dir_x;
 	wall_x -= floor(wall_x);
 	*tex_x = (int)(wall_x * tex->width);
 	if (glb->ray.side == 0 && glb->ray.ray_dir_x > 0)

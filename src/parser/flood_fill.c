@@ -14,11 +14,11 @@
 
 void	is_map_closed(t_parsing *parsing, char **map, char **map_copy)
 {
-	t_ff		ff;
-	size_t		x;
-	size_t		y;
+	t_ff	ff;
+	size_t	x;
+	size_t	y;
 
-	ft_bzero(&ff, sizeof (t_ff));
+	ft_bzero(&ff, sizeof(t_ff));
 	ff.width = ft_strlen(map[0]) - 1;
 	ff.height = ft_arraylen((void **)map) - 1;
 	x = (int)parsing->player->x;
@@ -44,8 +44,8 @@ void	flood_fill(t_ff *ff, char **map, int x, int y)
 		return ;
 	else if (map[y][x] == '1' || map[y][x] == 'V')
 		return ;
-	else if ((map[y][x] == '0' || map[y][x] == 'D') &&
-			(y == 0 || x == 0 || y == ff->height || x == ff->width))
+	else if ((map[y][x] == '0' || map[y][x] == 'D') && (y == 0 || x == 0
+			|| y == ff->height || x == ff->width))
 	{
 		ff->map_is_open = true;
 		return ;

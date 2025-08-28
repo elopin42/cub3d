@@ -12,10 +12,6 @@
 
 #include "../../include/cub3d.h"
 
-/*en gros stv rajouter des textures de flammes c'est dans frame_for_flame tu va comprendre
-et si tu veut rajouter de la rapiditer c'est dans lunch_frame
-tu modifie le 1 car la sa change toute les secondes*/
-
 void	frame_for_flame(t_global *glb)
 {
 	static int	i = -1;

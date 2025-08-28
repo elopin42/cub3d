@@ -31,7 +31,7 @@
 # define ERR "\x1b[31mError\x1b[0m: "
 
 # define CONFIGIDERR "\x1b[31mError\x1b[0m: Invalid identifier: %s\n"
-# define EMPTYCONFIGERR "\x1b[31mError\x1b[0m: Missing value for identifier: %s\n"
+# define EMPTYCONFIGERR "\x1b[31mError\x1b[0m: Missing value for identifier:%s\n"
 # define ARGERR "\x1b[31mError\x1b[0m: Invalid number of arguments\n"
 # define NOMAPERR "\x1b[31mError\x1b[0m: No map in config file\n"
 # define TOOSHORTERR "\x1b[31mError\x1b[0m: File name too short\n"

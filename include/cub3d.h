@@ -13,6 +13,11 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
+# include "macros.h"
+# include "structs.h"
+# include <X11/Xlib.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>
@@ -22,11 +27,6 @@
 # include <string.h>
 # include <sys/time.h>
 # include <time.h>
-# include <X11/Xlib.h>
-# include "structs.h"
-# include "macros.h"
-# include "../mlx/mlx.h"
-# include "../libft/libft.h"
 
 /* --------------- PARSER --------------- */
 
@@ -34,7 +34,8 @@
 void			parse_config_errors(t_parsing *parsing, char **config);
 void			validate_xpm_files(t_parsing *parsing, char **config);
 void			test_xpm(t_parsing *parsing, char *texture);
-void			check_duplicate(t_parsing *p, char **config, char *key, size_t len);
+void			check_duplicate(t_parsing *p, char **config, char *key,
+					size_t len);
 void			validate_config_identifier(t_parsing *parsing, char **config);
 
 // error_handlers.c
@@ -51,7 +52,8 @@ void			unfill_map(char **map, char **copy);
 // format_map.c
 char			**create_formatted_map(t_parsing *parsing, char **map_file);
 void			fill_line(char *line, char *ref, size_t len);
-char			**init_map_info(t_map_info *info, t_parsing *parsing, char **map_file);
+char			**init_map_info(t_map_info *info, t_parsing *parsing,
+					char **map_file);
 size_t			get_map_height(char **map);
 size_t			get_map_width(char **map);
 
@@ -64,7 +66,8 @@ char			**fill_config_array(char **array, char **config, size_t delim);
 char			**get_map(t_parsing *parsing, char **file_content);
 void			check_invalid_chars(t_parsing *parsing, char **map);
 void			check_empty_lines(t_parsing *parsing, char **map);
-void			set_player_start(t_parsing *parsing, char **map, t_player *player);
+void			set_player_start(t_parsing *parsing, char **map,
+					t_player *player);
 void			set_player_info(t_player *player, char dir, size_t y, size_t x);
 
 // load_file.c
@@ -109,7 +112,8 @@ void			destroy_texture(void *mlx, t_img *img);
 // textures.c
 void			load_parsed_textures(t_global *glb, t_parsing *parser);
 void			set_parsed_path(t_parsing *parser, char **config);
-void			load_xpm(t_global *glb, t_parsing *parser, t_img *img, char *xpm);
+void			load_xpm(t_global *glb, t_parsing *parser, t_img *img,
+					char *xpm);
 
 /* --------------- RAYCASTER --------------- */
 
@@ -128,10 +132,10 @@ void			calculate_wall_distance(t_global *glb);
 void			perform_dda_ignoring_doors(t_global *glb, t_ray *ray);
 
 // cam_moove.c
-void	rotate_camera(t_global *glb, double angle);
-bool	set_xy_for_move(t_global *glb, double *new_x, double *new_y,
-		int direction);
-void	move_player(t_global *glb, int direction);
+void			rotate_camera(t_global *glb, double angle);
+bool			set_xy_for_move(t_global *glb, double *new_x, double *new_y,
+					int direction);
+void			move_player(t_global *glb, int direction);
 
 // door.c
 bool			set_xy(t_global *glb, int y, int x);
@@ -146,11 +150,11 @@ void			draw_scene(t_global *glb);
 
 // draw_wall_tex2.c
 unsigned int	apply_distance_effect(unsigned int color, double dist);
-unsigned int	get_normal_wall_color(t_global *glb, t_img *tex,
-		int tex_x, int tex_y);
+unsigned int	get_normal_wall_color(t_global *glb, t_img *tex, int tex_x,
+					int tex_y);
 unsigned int	handle_door_opening(t_global *glb, int x, int y);
-void	calculate_texture_params(t_global *glb, t_img *tex, int *tex_x,
-		double *step);
+void			calculate_texture_params(t_global *glb, t_img *tex, int *tex_x,
+					double *step);
 
 // draw_wall_tex.c
 void			calculate_secondary_ray(t_global *glb);

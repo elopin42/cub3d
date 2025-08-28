@@ -17,7 +17,7 @@ t_parsing	parser(int argc, char **argv, t_player *player)
 	int			fd;
 	t_parsing	parsing;
 
-	ft_bzero(&parsing, sizeof (t_parsing));
+	ft_bzero(&parsing, sizeof(t_parsing));
 	parsing.player = player;
 	fd = handle_arguments(argc, argv);
 	parsing.file_content = load_file(fd, argv[1]);

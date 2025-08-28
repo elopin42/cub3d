@@ -123,7 +123,7 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 	calculate_texture_params(glb, tex, &tex_x, &step);
 	tex_pos = (glb->ray.draw_start - glb->h / 2 + glb->ray.line_height / 2)
 		* step;
-	bool(door_anim) = (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3');
+	bool (door_anim) = (glb->map_clone[glb->ray.map_y][glb->ray.map_x] == '3');
 	int (clip_height) = glb->anim_door;
 	if (clip_height > glb->door_height)
 		clip_height = glb->door_height;

@@ -38,8 +38,8 @@ void	draw_floor(t_global *glb, int x)
 	int				tex_x;
 	int				tex_y;
 	unsigned int	color;
-	double floor_x;
-	double floor_y;
+	double			floor_x;
+	double			floor_y;
 
 	int (y) = glb->ray.draw_end;
 	while (++y < glb->h)
@@ -58,7 +58,6 @@ void	draw_floor(t_global *glb, int x)
 		put_pixel(&glb->img, x, y, color);
 	}
 }
-
 
 /* Fait l'image entière, call par draw_scene */
 void	draw_vertical_line(t_global *glb, int x)

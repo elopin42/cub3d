@@ -12,8 +12,6 @@
 
 #include "../../include/cub3d.h"
 
-// le d c'est pour la norme en gros je pouvais pas mettre 5 argument donc j'ai inproviser
-
 void	draw_square(t_global *glb, int x, int y, int d)
 {
 	int	color;
@@ -49,7 +47,7 @@ void	draw_minimap(t_global *glb)
 {
 	int	screen_x;
 	int	screen_y;
-	int x;
+	int	x;
 
 	int (y) = -1;
 	while (++y < glb->m_h)
