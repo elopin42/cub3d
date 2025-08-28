@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:57:57 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/15 13:04:27 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/20 02:53:22 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int			ft_atoi(char *nptr);
 long long	ft_atoll(char *str);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t nmemb, size_t size);
+char		**ft_dup_char_array(char **array);
+void		*ft_free_array(char **array);
+int			ft_is_only_space(char *line);
 char		*ft_fstrjoin(char *s1, char *s2, short fs1, short fs2);
 int			ft_isalnum(int c);
 int			ft_isalpha(int c);
@@ -31,6 +34,7 @@ int			ft_isdigit(int c);
 int			ft_isprint(int c);
 int			ft_isspace(int c);
 char		*ft_itoa(int n);
+char		**ft_matrix(char *s);
 void		*ft_memchr(void *s, int c, size_t n);
 int			ft_memcmp(void *s1, void *s2, size_t n);
 void		*ft_memcpy(void *dest, void *src, size_t n);

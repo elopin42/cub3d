@@ -6,13 +6,13 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 00:34:36 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/15 12:15:35 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:15:11 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
-void ft_free_map(char **map)
+void	ft_free_map(char **map)
 {
 	int i;
 
@@ -24,7 +24,7 @@ void ft_free_map(char **map)
 	free(map);
 }
 
-void ft_clean_imagouille(void *mlx, t_img *tex)
+void	ft_clean_imagouille(void *mlx, t_img *tex)
 {
 	if (tex->img)
 		mlx_destroy_image(mlx, tex->img);
