@@ -47,8 +47,7 @@ static void	calculate_torch_dimensions(t_global *glb, t_torch_data *data)
 	data->y_offset = data->screen_h - data->scaled_height;
 }
 
-static void	draw_scaled_pixel(t_global *glb, t_torch_data *data, int x, int y,
-		unsigned int color)
+static void	draw_scaled_pixel(t_global *glb, t_torch_data *data, int x, int y)
 {
 	int	dx;
 	int	dy;
@@ -56,6 +55,7 @@ static void	draw_scaled_pixel(t_global *glb, t_torch_data *data, int x, int y,
 	int	screen_y;
 
 	dy = 0;
+  unsigned int (color) = data->color;
 	while (dy < data->scale)
 	{
 		dx = 0;
@@ -75,13 +75,12 @@ static void	draw_scaled_pixel(t_global *glb, t_torch_data *data, int x, int y,
 static void	process_torch_pixel(t_global *glb, t_torch_data *data, int x, int y)
 {
 	char			*pixel;
-	unsigned int	color;
 
 	pixel = glb->texture.torche.addr + y * glb->texture.torche.line_length + x
 		* (glb->texture.torche.bpp / 8);
-	color = *(unsigned int *)pixel;
-	if (color != 0xFF000000)
-		draw_scaled_pixel(glb, data, x, y, color);
+	data->color = *(unsigned int *)pixel;
+	if (data->color != 0xFF000000)
+		draw_scaled_pixel(glb, data, x, y);
 }
 
 void	draw_torch(t_global *glb)

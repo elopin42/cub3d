@@ -13,6 +13,8 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include <stdbool.h>
+
 typedef struct s_rgb
 {
 	unsigned char					r;
@@ -61,6 +63,7 @@ typedef struct s_torch_data
 	int								scaled_height;
 	int								x_offset;
 	int								y_offset;
+  unsigned int      color;
 }									t_torch_data;
 
 typedef struct s_ray
@@ -162,7 +165,7 @@ typedef struct s_global
 	int								d_y;
 	int								anim_door;
 	int								door_start_y;
-	ce qui permet le degrader int	door_height;
+  int	door_height;
 	int								el_muros_invisible;
 	long							door_timing;
 }									t_global;
