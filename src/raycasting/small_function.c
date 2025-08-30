@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:48:39 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/26 15:19:23 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/30 17:18:17 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ unsigned int ft_uni(t_rgb rgb)
 	r = rgb.r;
 	g = rgb.g;
 	b = rgb.b;
-  return ( r | g | b);
+  return ((r << 16) | (g << 8) | b);
 }
