@@ -167,6 +167,7 @@ typedef struct s_global
 	int								door_start_y;
   int	door_height;
 	int								el_muros_invisible;
+  int square_size;
 	long							door_timing;
 }									t_global;
 

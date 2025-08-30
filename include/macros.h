@@ -22,9 +22,10 @@
 # define KEY_E 101
 # define MINIMAP_START_X 10
 # define MINIMAP_START_Y 10
-# define SQUARE_SIZE 8
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1040
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 700
+#define MINIMAP_MAX_WIDTH  300
+#define MINIMAP_MAX_HEIGHT 300
 
 # define SPACES " \f\n\r\t\v"
 
