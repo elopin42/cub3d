@@ -2,8 +2,10 @@
 
 // done 2/ Creer minimap avec taille fixe, calculer dynamiquement a l'init la taille d'un pixel de la minimap
 
-3/ Modifier la size de la window...., se baser sur le dell
+// done 3/ Modifier la size de la window...., se baser sur le dell
 
 4/ Cercle noir
 
-4/ Effet cercle, etc.
+5/ Effet cercle, etc.
+
+6/ modifier les textures pour que elle soit bonne
