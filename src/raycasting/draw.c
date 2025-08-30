@@ -27,6 +27,8 @@ void	draw_ceiling_and_sky(t_global *glb, int x)
 		pixel = glb->texture.sky.addr + (tex_y * glb->texture.sky.line_length
 				+ tex_x * (glb->texture.sky.bpp / 8));
 		color = *(unsigned int *)pixel;
+    if (glb->img.is_rgb)
+      color = ft_uni(*glb->img.rgb);
 		put_pixel(&glb->img, x, y, color);
 	}
 }
@@ -55,6 +57,8 @@ void	draw_floor(t_global *glb, int x)
 			+ tex_x * (glb->texture.sol.bpp / 8);
 		color = *(unsigned int *)pix;
 		color = apply_distance_effect(color, dist);
+    if (glb->img.is_rgb)
+      color = ft_uni(*glb->img.rgb);
 		put_pixel(&glb->img, x, y, color);
 	}
 }

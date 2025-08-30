@@ -187,5 +187,6 @@ t_img			*select_wall_texture_from_ray(t_global *glb, t_ray *ray);
 unsigned int	effet_noir(unsigned int color, double factor);
 bool			is_valid_map_position(t_global *glb, int x, int y);
 long			get_current_time_ms(void);
+unsigned int ft_uni(t_rgb rgb);
 
 #endif

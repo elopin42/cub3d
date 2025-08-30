@@ -41,3 +41,15 @@ long	get_current_time_ms(void)
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
+
+unsigned int ft_uni(t_rgb rgb)
+{
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+
+	r = rgb.r;
+	g = rgb.g;
+	b = rgb.b;
+  return ( r | g | b);
+}
