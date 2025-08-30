@@ -99,16 +99,21 @@ unsigned int	handle_floor_part(t_global *glb, int y)
 	unsigned int	color;
 
 	dist = glb->h / (2.0 * y - glb->h);
-	floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
-	floor_y = glb->player.y + dist * glb->ray.ray_dir_y;
-	int (tex_x_floor) = (int)(floor_x * glb->texture.sol.width)
-		% glb->texture.sol.width;
-	int (tex_y_floor) = (int)(floor_y * glb->texture.sol.height)
-		% glb->texture.sol.height;
-	pixel_floor = glb->texture.sol.addr + tex_y_floor
-		* glb->texture.sol.line_length + tex_x_floor * (glb->texture.sol.bpp
-			/ 8);
-	color = *(unsigned int *)pixel_floor;
+  if (glb->texture.sol.is_rgb == false)
+  {
+	  floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
+	  floor_y = glb->player.y + dist * glb->ray.ray_dir_y;
+	  int (tex_x_floor) = (int)(floor_x * glb->texture.sol.width)
+		  % glb->texture.sol.width;
+	  int (tex_y_floor) = (int)(floor_y * glb->texture.sol.height)
+		  % glb->texture.sol.height;
+	  pixel_floor = glb->texture.sol.addr + tex_y_floor
+		  * glb->texture.sol.line_length + tex_x_floor * (glb->texture.sol.bpp
+			  / 8);
+	  color = *(unsigned int *)pixel_floor;
+  }
+  else
+    color = ft_uni(glb->texture.sol.rgb);
 	return (apply_distance_effect(color, dist));
 }
 
