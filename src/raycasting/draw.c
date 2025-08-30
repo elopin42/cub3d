@@ -50,7 +50,7 @@ void	draw_floor(t_global *glb, int x)
 	while (++y < glb->h)
 	{
 		dist = glb->h / (2.0 * y - glb->h);
-    if (glb->texture.sol.is_rgb == false)
+   if (glb->texture.sol.is_rgb == false)
 	{
 		  floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
 		  floor_y = glb->player.y + dist * glb->ray.ray_dir_y;

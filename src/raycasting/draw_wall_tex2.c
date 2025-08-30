@@ -47,7 +47,9 @@ unsigned int	handle_door_opening(t_global *glb, int x, int y)
 	if (y >= glb->door_params->tmp_draw_start
 		&& y <= glb->door_params->tmp_draw_end)
 		return (draw_wall_behind_door(glb, y));
-	else if (y < glb->door_params->tmp_draw_start)
+	else if (y < glb->door_params->tmp_draw_start && glb->texture.sky.is_rgb)
+    return (ft_uni(glb->texture.sky.rgb));
+  else if (y < glb->door_params->tmp_draw_start)
 		return (handle_sky_part(glb, x, y));
 	else
 		return (handle_floor_part(glb, y));
