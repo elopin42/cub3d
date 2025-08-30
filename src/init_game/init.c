@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/27 14:22:44 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/30 16:53:39 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ void	init_glb_values(t_global *glb, t_parsing *parser)
 	if (parser->ceiling_set == true)
 	{
 		glb->texture.sky.is_rgb = true;
-		glb->texture.sky.rgb->r = parser->ceiling.r;
-		glb->texture.sky.rgb->g = parser->ceiling.g;
-		glb->texture.sky.rgb->b = parser->ceiling.b;
+		glb->texture.sky.rgb.r = parser->ceiling.r;
+		glb->texture.sky.rgb.g = parser->ceiling.g;
+		glb->texture.sky.rgb.b = parser->ceiling.b;
 	}
 	if (parser->floor_set == true)
 	{
 		glb->texture.sol.is_rgb = true;
-		glb->texture.sol.rgb->r = parser->floor.r;
-		glb->texture.sol.rgb->g = parser->floor.g;
-		glb->texture.sol.rgb->b = parser->floor.b;
+		glb->texture.sol.rgb.r = parser->floor.r;
+		glb->texture.sol.rgb.g = parser->floor.g;
+		glb->texture.sol.rgb.b = parser->floor.b;
 	}
 	set_map_dimensions(glb);
 	glb->door_params = malloc(sizeof(t_door_params));

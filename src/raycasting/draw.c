@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/26 15:19:23 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/30 16:58:50 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_ceiling_and_sky(t_global *glb, int x)
 	int (y) = -1;
 	while (++y < glb->h / 2)
 	{
-    if (!glb->img.is_rgb)
+    if (glb->texture.sky.is_rgb == false)
     {
 		  tex_x = (x * glb->texture.sky.width) / glb->w;
 		  tex_y = (y * glb->texture.sky.height) / (glb->h / 2);
@@ -31,7 +31,7 @@ void	draw_ceiling_and_sky(t_global *glb, int x)
 		  color = *(unsigned int *)pixel;
     }
     else
-      color = ft_uni(*glb->img.rgb);
+      color = ft_uni(glb->texture.sky.rgb);
 		put_pixel(&glb->img, x, y, color);
 	}
 }
@@ -50,8 +50,8 @@ void	draw_floor(t_global *glb, int x)
 	while (++y < glb->h)
 	{
 		dist = glb->h / (2.0 * y - glb->h);
-    if (!glb->img.is_rgb)
-    {
+    if (glb->texture.sol.is_rgb == false)
+	{
 		  floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
 		  floor_y = glb->player.y + dist * glb->ray.ray_dir_y;
 		  tex_x = (int)(floor_x * glb->texture.sol.width)
@@ -63,7 +63,7 @@ void	draw_floor(t_global *glb, int x)
 		  color = *(unsigned int *)pix;
     }
     else
-      color = ft_uni(*glb->img.rgb);
+      color = ft_uni(glb->texture.sol.rgb);
 		color = apply_distance_effect(color, dist);
 		put_pixel(&glb->img, x, y, color);
 	}

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/25 15:36:10 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/30 17:07:10 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_img
 	int								endian;
 	int								width;
 	int								height;
-	struct s_rgb					*rgb;
+	struct s_rgb					rgb;
 }									t_img;
 
 typedef struct s_door_params
