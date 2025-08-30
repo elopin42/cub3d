@@ -97,7 +97,7 @@ int	update(t_global *glb)
 	if (glb->anim_door > 0)
 	{
 		glb->anim_door += 10;
-		if (get_current_time_ms() - glb->door_timing >= WIN_WIDTH * 1.37)
+		if (get_current_time_ms() - glb->door_timing >= WIN_WIDTH * 1.38)
 		{
 			glb->anim_door = 0;
 			glb->map[glb->d_y][glb->d_x] = '0';
