@@ -1,11 +1,16 @@
 /* XPM */
-static char *nord_xpm[] = {
-"4 4 2 1",
-"0 c #FF0000",
-"1 c #000000",
-"0110",
-"1001",
-"1001",
-"0110"
+static char *labyrinth_wall_xpm[] = {
+"8 8 3 1",
+"0 c #1A1A1A",  /* fond sombre */
+"1 c #444444",  /* pierre gris foncé */
+"2 c #888888",  /* pierre plus claire pour relief */
+"01122110",
+"01222210",
+"01211210",
+"01122110",
+"01222210",
+"01211210",
+"01122110",
+"00000000"
 };
 

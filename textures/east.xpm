@@ -1,11 +1,16 @@
 /* XPM */
-static char *ouest_xpm[] = {
-"4 4 2 1",
-"0 c #FFFF00",
-"1 c #000000",
-"0110",
-"1001",
-"1001",
-"0110"
+static char *labyrinth_wall_xpm[] = {
+"8 8 3 1",
+"0 c #000000",  /* Fond noir : murs solides */
+"1 c #FF0000",  /* Rouge : fissures / veines de lave */
+"2 c #333333",  /* Gris foncé : texture murale */
+"22222222",
+"20000002",
+"20111002",
+"20010002",
+"20010002",
+"20111002",
+"20000002",
+"22222222"
 };
 
