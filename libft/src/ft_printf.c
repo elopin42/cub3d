@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lle-cout <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:59:50 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/15 13:05:36 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/05/14 23:03:42 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	guess_flag(int fd, va_list ap, char c, int conv_len);
 
-int	ft_printf(int fd, char *format, ...)
+int	ft_printf(int fd, const char *format, ...)
 {
 	va_list	ap;
 	int		i;

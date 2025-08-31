@@ -6,13 +6,13 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:55:18 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/15 13:06:28 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/14 15:55:28 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-int	ft_strstr(char *b, char *li)
+int	ft_strstr(const char *b, const char *li)
 {
 	size_t	i;
 	size_t	j;

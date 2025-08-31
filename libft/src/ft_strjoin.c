@@ -3,43 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lle-cout <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:28:57 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/15 12:59:33 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:52:42 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char			*str;
-	unsigned long	i;
+	char	*new;
+	size_t	i;
 
 	i = 0;
-	if (!s1)
-		return (ft_substr(&s2, 0, ft_strlen(s2)));
-	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!str)
+	new = malloc((ft_strlen(s1) + ft_strlen(s2) + 1)
+			* sizeof (char));
+	if (!new)
 		return (NULL);
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (s2[i - ft_strlen(s1)])
-	{
-		str[i] = s2[i - ft_strlen(s1)];
-		i++;
-	}
-	str[i] = '\0';
-	if (s1)
-		free(s1);
-	return (str);
+	while (*s1)
+		new[i++] = *s1++;
+	while (*s2)
+		new[i++] = *s2++;
+	new[i] = '\0';
+	return (new);
 }
 
-char	*ft_strjoin_3(char *s1, char *s2, char *s3)
+char	*ft_strjoin_3(char const *s1, char const *s2, char const *s3)
 {
 	char	*new;
 	size_t	i;
@@ -60,7 +51,7 @@ char	*ft_strjoin_3(char *s1, char *s2, char *s3)
 }
 
 /* strjoin but free s1 and s2 */
-char	*ft_fstrjoin(char *s1, char *s2, short fs1, short fs2)
+char	*ft_fstrjoin(char const *s1, char const *s2, short fs1, short fs2)
 {
 	char		*new;
 	size_t		i;
