@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/27 16:23:15 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/31 21:43:31 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void			load_game_textures(t_global *glb, t_parsing *parser);
 
 // error_handlers.c
 void			init_mlx_error(t_global *glb, t_parsing *parser, char *error);
-void			destroy_all_textures(void *mlx, t_texture *text);
+void			destroy_all_textures(void *mlx, t_texture *text, t_img *img);
 void			destroy_texture(void *mlx, t_img *img);
 
 // textures.c

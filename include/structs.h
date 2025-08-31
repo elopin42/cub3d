@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/30 17:07:10 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/31 21:41:24 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,14 +139,30 @@ typedef struct s_texture
 	struct s_img					white;
 }									t_texture;
 
+typedef struct s_torch
+{
+	int				top;
+	int				bottom;
+	int				dy;
+	float			dx;
+	int				left;
+	int				right;
+	int				y;
+	int				x;
+	int				cy;
+	int				cx;
+	struct s_img	img;
+}	t_torch;
+
 typedef struct s_global
 {
 	struct s_mlx					smlx;
 	struct s_player					player;
 	struct s_img					img;
 	struct s_texture				texture;
-	struct s_door_params			*door_params;
+	struct s_door_params			door_params;
 	struct s_ray					ray;
+	struct s_torch					torch;
 	char							**map;
 	char							**map_clone;
 	bool							key_left;

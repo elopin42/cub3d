@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 01:42:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/27 14:22:29 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/31 21:40:38 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,6 @@ void	load_xpm(t_global *glb, t_parsing *parser, t_img *img, char *xpm)
 		init_mlx_error(glb, parser, MLXXPM);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_length,
 			&img->endian);
+	if (img->addr == NULL)
+		init_mlx_error(glb, parser, MLXXPM);
 }

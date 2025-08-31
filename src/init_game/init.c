@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/30 16:53:39 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/31 21:41:22 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	init_glb_values(t_global *glb, t_parsing *parser)
 		glb->texture.sol.rgb.b = parser->floor.b;
 	}
 	set_map_dimensions(glb);
-	glb->door_params = malloc(sizeof(t_door_params));
 }
 
 void	init_mlx(t_global *glb, t_parsing *parsing)
@@ -87,4 +86,12 @@ void	load_game_textures(t_global *glb, t_parsing *parser)
 	load_xpm(glb, parser, &glb->texture.sky, "textures/sky.xpm");
 	load_xpm(glb, parser, &glb->texture.torche, "textures/torche.xpm");
 	load_xpm(glb, parser, &glb->texture.door, "textures/door.xpm");
+	glb->torch.img.img = mlx_new_image(glb->smlx.mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (glb->torch.img.img == NULL)
+		init_mlx_error(glb, parser, MLXXPM);
+	glb->torch.img.addr = mlx_get_data_addr(glb->torch.img.img,
+			&glb->torch.img.bpp, &glb->torch.img.line_length,
+			&glb->torch.img.endian);
+	if (glb->torch.img.addr == NULL)
+		init_mlx_error(glb, parser, MLXXPM);
 }

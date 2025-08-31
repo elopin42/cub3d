@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 17:56:14 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/29 16:51:28 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/31 21:42:06 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ unsigned int	handle_door_opening(t_global *glb, int x, int y)
 {
 	glb->el_muros_invisible = 0;
 	calculate_secondary_ray(glb);
-	if (y >= glb->door_params->tmp_draw_start
-		&& y <= glb->door_params->tmp_draw_end)
+	if (y >= glb->door_params.tmp_draw_start
+		&& y <= glb->door_params.tmp_draw_end)
 		return (draw_wall_behind_door(glb, y));
-	else if (y < glb->door_params->tmp_draw_start && glb->texture.sky.is_rgb)
+	else if (y < glb->door_params.tmp_draw_start && glb->texture.sky.is_rgb)
     return (ft_uni(glb->texture.sky.rgb));
-  else if (y < glb->door_params->tmp_draw_start)
+  else if (y < glb->door_params.tmp_draw_start)
 		return (handle_sky_part(glb, x, y));
 	else
 		return (handle_floor_part(glb, y));

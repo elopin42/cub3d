@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:57:45 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/26 15:19:23 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/31 21:42:17 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,31 @@
 
 void	calculate_secondary_ray(t_global *glb)
 {
-	if (glb->door_params->ray_calculated)
+	if (glb->door_params.ray_calculated)
 		return ;
-	glb->door_params->tmp_ray = glb->ray;
-	perform_dda_ignoring_doors(glb, &glb->door_params->tmp_ray);
-	if (glb->door_params->tmp_ray.side == 0)
-		glb->door_params->tmp_dist = (glb->door_params->tmp_ray.map_x
-				- glb->player.x + (1 - glb->door_params->tmp_ray.step_x) / 2)
-			/ glb->door_params->tmp_ray.ray_dir_x;
+	glb->door_params.tmp_ray = glb->ray;
+	perform_dda_ignoring_doors(glb, &glb->door_params.tmp_ray);
+	if (glb->door_params.tmp_ray.side == 0)
+		glb->door_params.tmp_dist = (glb->door_params.tmp_ray.map_x
+				- glb->player.x + (1 - glb->door_params.tmp_ray.step_x) / 2)
+			/ glb->door_params.tmp_ray.ray_dir_x;
 	else
-		glb->door_params->tmp_dist = (glb->door_params->tmp_ray.map_y
-				- glb->player.y + (1 - glb->door_params->tmp_ray.step_y) / 2)
-			/ glb->door_params->tmp_ray.ray_dir_y;
-	glb->door_params->tmp_line_height = (int)(glb->h
-			/ glb->door_params->tmp_dist);
-	glb->door_params->tmp_draw_start = -glb->door_params->tmp_line_height / 2
+		glb->door_params.tmp_dist = (glb->door_params.tmp_ray.map_y
+				- glb->player.y + (1 - glb->door_params.tmp_ray.step_y) / 2)
+			/ glb->door_params.tmp_ray.ray_dir_y;
+	glb->door_params.tmp_line_height = (int)(glb->h
+			/ glb->door_params.tmp_dist);
+	glb->door_params.tmp_draw_start = -glb->door_params.tmp_line_height / 2
 		+ glb->h / 2;
-	glb->door_params->tmp_draw_end = glb->door_params->tmp_line_height / 2
+	glb->door_params.tmp_draw_end = glb->door_params.tmp_line_height / 2
 		+ glb->h / 2;
-	if (glb->door_params->tmp_draw_start < 0)
-		glb->door_params->tmp_draw_start = 0;
-	if (glb->door_params->tmp_draw_end >= glb->h)
-		glb->door_params->tmp_draw_end = glb->h - 1;
-	glb->door_params->tmp_tex = select_wall_texture_from_ray(glb,
-			&glb->door_params->tmp_ray);
-	glb->door_params->ray_calculated = true;
+	if (glb->door_params.tmp_draw_start < 0)
+		glb->door_params.tmp_draw_start = 0;
+	if (glb->door_params.tmp_draw_end >= glb->h)
+		glb->door_params.tmp_draw_end = glb->h - 1;
+	glb->door_params.tmp_tex = select_wall_texture_from_ray(glb,
+			&glb->door_params.tmp_ray);
+	glb->door_params.ray_calculated = true;
 }
 
 unsigned int	draw_wall_behind_door(t_global *glb, int y)
@@ -48,32 +48,32 @@ unsigned int	draw_wall_behind_door(t_global *glb, int y)
 	double	tmp_tex_pos;
 	char	*pixel_tmp;
 
-	if (glb->door_params->tmp_ray.side == 0)
-		tmp_wall_x = glb->player.y + glb->door_params->tmp_dist
-			* glb->door_params->tmp_ray.ray_dir_y;
+	if (glb->door_params.tmp_ray.side == 0)
+		tmp_wall_x = glb->player.y + glb->door_params.tmp_dist
+			* glb->door_params.tmp_ray.ray_dir_y;
 	else
-		tmp_wall_x = glb->player.x + glb->door_params->tmp_dist
-			* glb->door_params->tmp_ray.ray_dir_x;
+		tmp_wall_x = glb->player.x + glb->door_params.tmp_dist
+			* glb->door_params.tmp_ray.ray_dir_x;
 	tmp_wall_x -= floor(tmp_wall_x);
-	int (tmp_tex_x) = (int)(tmp_wall_x * glb->door_params->tmp_tex->width);
-	if (glb->door_params->tmp_ray.side == 0
-		&& glb->door_params->tmp_ray.ray_dir_x > 0)
-		tmp_tex_x = glb->door_params->tmp_tex->width - tmp_tex_x - 1;
-	if (glb->door_params->tmp_ray.side == 1
-		&& glb->door_params->tmp_ray.ray_dir_y < 0)
-		tmp_tex_x = glb->door_params->tmp_tex->width - tmp_tex_x - 1;
-	tmp_step = (double)glb->door_params->tmp_tex->height
-		/ glb->door_params->tmp_line_height;
-	tmp_tex_pos = (glb->door_params->tmp_draw_start - glb->h / 2
-			+ glb->door_params->tmp_line_height / 2) * tmp_step;
-	tmp_tex_pos += (y - glb->door_params->tmp_draw_start) * tmp_step;
-	int (tmp_tex_y) = ((int)tmp_tex_pos) & (glb->door_params->tmp_tex->height
+	int (tmp_tex_x) = (int)(tmp_wall_x * glb->door_params.tmp_tex->width);
+	if (glb->door_params.tmp_ray.side == 0
+		&& glb->door_params.tmp_ray.ray_dir_x > 0)
+		tmp_tex_x = glb->door_params.tmp_tex->width - tmp_tex_x - 1;
+	if (glb->door_params.tmp_ray.side == 1
+		&& glb->door_params.tmp_ray.ray_dir_y < 0)
+		tmp_tex_x = glb->door_params.tmp_tex->width - tmp_tex_x - 1;
+	tmp_step = (double)glb->door_params.tmp_tex->height
+		/ glb->door_params.tmp_line_height;
+	tmp_tex_pos = (glb->door_params.tmp_draw_start - glb->h / 2
+			+ glb->door_params.tmp_line_height / 2) * tmp_step;
+	tmp_tex_pos += (y - glb->door_params.tmp_draw_start) * tmp_step;
+	int (tmp_tex_y) = ((int)tmp_tex_pos) & (glb->door_params.tmp_tex->height
 			- 1);
-	pixel_tmp = glb->door_params->tmp_tex->addr + tmp_tex_y
-		* glb->door_params->tmp_tex->line_length + tmp_tex_x
-		* (glb->door_params->tmp_tex->bpp / 8);
+	pixel_tmp = glb->door_params.tmp_tex->addr + tmp_tex_y
+		* glb->door_params.tmp_tex->line_length + tmp_tex_x
+		* (glb->door_params.tmp_tex->bpp / 8);
 	unsigned int (color) = *(unsigned int *)pixel_tmp;
-	return (apply_distance_effect(color, glb->door_params->tmp_dist));
+	return (apply_distance_effect(color, glb->door_params.tmp_dist));
 }
 
 unsigned int	handle_sky_part(t_global *glb, int x, int y)
@@ -134,7 +134,7 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 		clip_height = glb->door_height;
 	int (white_start) = glb->door_start_y;
 	int (white_end) = white_start + clip_height;
-	glb->door_params->ray_calculated = false;
+	glb->door_params.ray_calculated = false;
 	int (y) = glb->ray.draw_start - 1;
 	while (++y < glb->ray.draw_end)
 	{
