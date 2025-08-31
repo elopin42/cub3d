@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/31 21:41:22 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/31 23:42:17 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	load_game_textures(t_global *glb, t_parsing *parser)
 {
 	load_xpm(glb, parser, &glb->texture.sol, "textures/sol.xpm");
 	load_xpm(glb, parser, &glb->texture.sky, "textures/sky.xpm");
-	load_xpm(glb, parser, &glb->texture.torche, "textures/torche.xpm");
+	load_xpm(glb, parser, &glb->texture.torche, "textures/light.xpm");
 	load_xpm(glb, parser, &glb->texture.door, "textures/door.xpm");
 	glb->torch.img.img = mlx_new_image(glb->smlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (glb->torch.img.img == NULL)

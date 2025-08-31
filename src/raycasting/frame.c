@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 20:25:22 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/26 15:19:23 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/08/31 23:43:03 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ void	frame_for_flame(t_global *glb)
 	i++;
 	if (i == 0)
 		load_texture(glb->smlx.mlx, &glb->texture.torche,
-			"textures/torche.xpm");
+			"textures/light.xpm");
 	if (i == 1)
 		load_texture(glb->smlx.mlx, &glb->texture.torche,
-			"textures/torche1.xpm");
+			"textures/light.xpm");
 	if (i == 2)
 		load_texture(glb->smlx.mlx, &glb->texture.torche,
-			"textures/torche2.xpm");
+			"textures/light.xpm");
 	if (i == 3)
 	{
 		load_texture(glb->smlx.mlx, &glb->texture.torche,
-			"textures/torche3.xpm");
+			"textures/light.xpm");
 		i = -1;
 	}
 }
