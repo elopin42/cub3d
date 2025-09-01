@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:48:39 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/30 17:18:17 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/01 17:00:40 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,7 @@ long	get_current_time_ms(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-unsigned int ft_uni(t_rgb rgb)
+unsigned int	ft_uni(t_rgb rgb)
 {
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-
-	r = rgb.r;
-	g = rgb.g;
-	b = rgb.b;
-  return ((r << 16) | (g << 8) | b);
+	return ((rgb.r << 16) | (rgb.g << 8) | rgb.b);
 }

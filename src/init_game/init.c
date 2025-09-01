@@ -6,20 +6,11 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/31 23:42:17 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/01 17:46:22 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-/*
-1/ mlx ptr					OK
-2/ mlx img (main frame)		OK
-3/ textures
-4/ window					OK
-5/ hooks					OK
-6/ start game!				OK
-*/
 
 void	init_game(t_global *glb, t_parsing *parser)
 {

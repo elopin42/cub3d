@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/29 17:12:07 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/01 16:59:48 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	mouse_moved_advanced(int x, int y, void *param)
 	}
 	if (!mouse_locked)
 		return (0);
-	int(delta_x) = x - center_x;
+	int (delta_x) = x - center_x;
 	if (abs(delta_x) < 3)
 		return (0);
 	rotate_camera(glb, delta_x * sensitivity);
