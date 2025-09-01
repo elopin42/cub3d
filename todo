@@ -1,11 +1,15 @@
-// done 1/ Si is_rgb dans t_img == true, dessiner le ciel et sol avec la couleur
+0.5/ Ajouter q parsing
 
-// done 2/ Creer minimap avec taille fixe, calculer dynamiquement a l'init la taille d'un pixel de la minimap
+1/ Cercle noir
+	1.5/ Effet cercle, etc.
 
-// done 3/ Modifier la size de la window...., se baser sur le dell
+3/ refacto
 
-4/ Cercle noir
+---------------------------
 
-5/ Effet cercle, etc.
+1/ modifier les textures pour qu'elle soit bonne (sur les murs)
 
-6/ modifier les textures pour que elle soit bonne
+2/ gerer le Q (sortie)
+
+3/ hook sourie (si clique tab, "décroche" la souris), si je rappuie "raccroche"
+	(systeme ou tu tant que t'appuie sur tab, la souris est libre)
