@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 00:34:36 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/31 21:53:32 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:44:44 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	ft_clean_all(t_global *glb, int exit_code)
 		ft_clean_imagouille(glb->smlx.mlx, &glb->texture.door);
 		if (glb->img.img != NULL)
 			mlx_destroy_image(glb->smlx.mlx, glb->img.img);
-		if (glb->torch.img.img != NULL)
-			mlx_destroy_image(glb->smlx.mlx, glb->torch.img.img);
 		mlx_destroy_display(glb->smlx.mlx);
 		free(glb->smlx.mlx);
 	}
