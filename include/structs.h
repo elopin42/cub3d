@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/01 16:36:54 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:59:30 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_torch_data
 	int								scaled_height;
 	int								x_offset;
 	int								y_offset;
-  unsigned int      color;
+	unsigned int					color;
 }									t_torch_data;
 
 typedef struct s_ray
@@ -165,9 +165,9 @@ typedef struct s_global
 	int								d_y;
 	int								anim_door;
 	int								door_start_y;
-  int	door_height;
+	int								door_height;
 	int								el_muros_invisible;
-  int square_size;
+	int								square_size;
 	long							door_timing;
 }									t_global;
 

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/27 16:23:15 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:56:50 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,6 @@ t_img			*select_wall_texture_from_ray(t_global *glb, t_ray *ray);
 unsigned int	effet_noir(unsigned int color, double factor);
 bool			is_valid_map_position(t_global *glb, int x, int y);
 long			get_current_time_ms(void);
-unsigned int ft_uni(t_rgb rgb);
+unsigned int	ft_uni(t_rgb rgb);
 
 #endif

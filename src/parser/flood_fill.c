@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:55:35 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/26 03:17:27 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:54:29 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	flood_fill(t_ff *ff, char **map, int x, int y)
 		return ;
 	else if (x < 0 || y < 0 || x > ff->width || y > ff->height)
 		return ;
-	else if (map[y][x] == '1' || map[y][x] == 'V')
+	else if (map[y][x] == '1' || map[y][x] == 'V' || map[y][x] == 'Q')
 		return ;
 	else if ((map[y][x] == '0' || map[y][x] == 'D') && (y == 0 || x == 0
 			|| y == ff->height || x == ff->width))

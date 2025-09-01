@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:18:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/27 14:07:43 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:59:09 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@
 # define MINIMAP_START_Y 10
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 700
-#define MINIMAP_MAX_WIDTH  300
-#define MINIMAP_MAX_HEIGHT 300
+# define MINIMAP_MAX_WIDTH  300
+# define MINIMAP_MAX_HEIGHT 300
 
 # define SPACES " \f\n\r\t\v"
 
 # define ERR "\x1b[31mError\x1b[0m: "
 
 # define CONFIGIDERR "\x1b[31mError\x1b[0m: Invalid identifier: %s\n"
-# define EMPTYCONFIGERR "\x1b[31mError\x1b[0m: Missing value for identifier:%s\n"
+# define EMPTYCONFIGERR "\x1b[31mError\x1b[0m: Missing value for:%s\n"
 # define ARGERR "\x1b[31mError\x1b[0m: Invalid number of arguments\n"
 # define NOMAPERR "\x1b[31mError\x1b[0m: No map in config file\n"
 # define TOOSHORTERR "\x1b[31mError\x1b[0m: File name too short\n"

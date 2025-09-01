@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:58:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/25 16:15:27 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:52:04 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	is_map_line(char *line)
 	{
 		if (ft_isspace(line[i]) == true || line[i] == '0' || line[i] == '1'
 			|| line[i] == 'D' || line[i] == 'N' || line[i] == 'S'
-			|| line[i] == 'E' || line[i] == 'W')
+			|| line[i] == 'E' || line[i] == 'W' || line[i] == 'Q')
 			i++;
 		else
 			return (false);
@@ -50,7 +50,7 @@ bool	is_map_line(char *line)
 bool	is_valid_map_char(char c)
 {
 	return (ft_isspace(c) == true || c == '0' || c == '1' || c == 'D'
-		|| c == 'N' || c == 'S' || c == 'W' || c == 'E');
+		|| c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == 'Q');
 }
 
 bool	is_player(char c)
