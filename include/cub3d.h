@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/03 15:40:27 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:36:55 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ void			load_game_textures(t_global *glb, t_parsing *parser);
 
 // error_handlers.c
 void			init_mlx_error(t_global *glb, t_parsing *parser, char *error);
-void			destroy_all_textures_imgs(void *mlx, t_global *glb);
-void			destroy_texture(void *mlx, t_img *img);
 
 // textures.c
 void			load_parsed_textures(t_global *glb, t_parsing *parser);
@@ -136,6 +134,10 @@ void			rotate_camera(t_global *glb, double angle);
 bool			set_xy_for_move(t_global *glb, double *new_x, double *new_y,
 					int direction);
 void			move_player(t_global *glb, int direction);
+
+// destroy.c
+void			ft_clean_all(t_global *glb, int exit_code);
+void			destroy_all_textures_imgs(void *mlx, t_global *glb);
 
 // door.c
 bool			set_xy(t_global *glb, int y, int x);
@@ -167,11 +169,6 @@ void			draw_wall_texture(t_global *glb, int x, t_img *tex);
 void			frame_for_flame(t_global *glb);
 void			draw_torch(t_global *glb);
 int				lunch_frame(t_global *glb);
-
-// ft_clean_up.c
-void			ft_free_map(char **map);
-void			ft_clean_imagouille(void *mlx, t_img *tex);
-void			ft_clean_all(t_global *glb, int exit_code);
 
 // minimap.c
 void			draw_square(t_global *glb, int x, int y, int d);

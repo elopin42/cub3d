@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clean_up.c                                      :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 00:34:36 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/03 16:05:32 by lle-cout         ###   ########.fr       */
+/*   Created: 2025/09/03 16:25:47 by lle-cout          #+#    #+#             */
+/*   Updated: 2025/09/03 16:40:17 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	ft_free_map(char **map)
-{
-	int	i;
-
-	i = -1;
-	if (!map)
-		return ;
-	while (map[++i])
-		free(map[i]);
-	free(map);
-}
-
-void	ft_clean_imagouille(void *mlx, t_img *tex)
-{
-	if (tex->img)
-		mlx_destroy_image(mlx, tex->img);
-}
+static void	destroy_texture(void *mlx, t_img *img);
 
 void	ft_clean_all(t_global *glb, int exit_code)
 {
@@ -42,7 +26,28 @@ void	ft_clean_all(t_global *glb, int exit_code)
 		mlx_destroy_display(glb->smlx.mlx);
 		free(glb->smlx.mlx);
 	}
-	ft_free_map(glb->map);
-	ft_free_map(glb->map_clone);
+	ft_free_array(glb->map);
+	ft_free_array(glb->map_clone);
 	exit(exit_code);
+}
+
+void	destroy_all_textures_imgs(void *mlx, t_global *glb)
+{
+	destroy_texture(mlx, &glb->texture.sud);
+	destroy_texture(mlx, &glb->texture.nord);
+	destroy_texture(mlx, &glb->texture.est);
+	destroy_texture(mlx, &glb->texture.ouest);
+	destroy_texture(mlx, &glb->texture.sol);
+	destroy_texture(mlx, &glb->texture.sky);
+	destroy_texture(mlx, &glb->texture.overlay);
+	destroy_texture(mlx, &glb->texture.door);
+	destroy_texture(mlx, &glb->texture.torche);
+	destroy_texture(mlx, &glb->overlay);
+	destroy_texture(mlx, &glb->img);
+}
+
+static void	destroy_texture(void *mlx, t_img *img)
+{
+	if (img->img != NULL)
+		mlx_destroy_image(mlx, img->img);
 }
