@@ -77,6 +77,10 @@ void	perform_dda(t_global *glb)
 				|| glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
 			&& glb->el_muros_invisible)
 			hit = 1;
+		if ((!is_valid_map_position(glb, glb->ray.map_x, glb->ray.map_y)
+				|| glb->map[glb->ray.map_y][glb->ray.map_x] == 'Q')
+			&& glb->el_muros_invisible)
+			hit = 1;
 	}
 }
 

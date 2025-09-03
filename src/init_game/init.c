@@ -86,4 +86,5 @@ void	load_game_textures(t_global *glb, t_parsing *parser)
 	load_xpm(glb, parser, &glb->texture.sky, "textures/sky.xpm");
 	load_xpm(glb, parser, &glb->texture.torche, "textures/torche.xpm");
 	load_xpm(glb, parser, &glb->texture.door, "textures/door.xpm");
+	load_xpm(glb, parser, &glb->texture.exit, "textures/exit.xpm");
 }

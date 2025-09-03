@@ -128,6 +128,7 @@ typedef struct s_player
 
 typedef struct s_texture
 {
+	struct s_img					exit;
 	struct s_img					nord;
 	struct s_img					sud;
 	struct s_img					est;

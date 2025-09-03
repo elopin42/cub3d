@@ -46,6 +46,7 @@ void	ft_clean_all(t_global *glb, int exit_code)
 		ft_clean_imagouille(glb->smlx.mlx, &glb->texture.sky);
 		ft_clean_imagouille(glb->smlx.mlx, &glb->texture.torche);
 		ft_clean_imagouille(glb->smlx.mlx, &glb->texture.door);
+		ft_clean_imagouille(glb->smlx.mlx, &glb->texture.exit);
 		if (glb->img.img != NULL)
 			mlx_destroy_image(glb->smlx.mlx, glb->img.img);
 		mlx_destroy_display(glb->smlx.mlx);

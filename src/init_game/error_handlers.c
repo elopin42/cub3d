@@ -35,6 +35,7 @@ void	init_mlx_error(t_global *glb, t_parsing *parser, char *error)
 void	destroy_all_textures(void *mlx, t_texture *text)
 {
 	destroy_texture(mlx, &text->sud);
+	destroy_texture(mlx, &text->exit);
 	destroy_texture(mlx, &text->nord);
 	destroy_texture(mlx, &text->est);
 	destroy_texture(mlx, &text->ouest);
