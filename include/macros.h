@@ -20,6 +20,7 @@
 # define KEY_A 97
 # define KEY_D 100
 # define KEY_E 101
+# define KEY_TABU 9
 # define MINIMAP_START_X 10
 # define MINIMAP_START_Y 10
 # define WIN_WIDTH 1280

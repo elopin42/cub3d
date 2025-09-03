@@ -30,14 +30,14 @@ int	mouse_moved_advanced(int x, int y, void *param)
 		mouse_locked = 0;
 		glb->key_tab = false;
 	}
-	if (!mouse_locked)
+	if (!mouse_locked || glb->key_tabu)
 		return (0);
 	int (delta_x) = x - center_x;
 	if (abs(delta_x) < 3)
 		return (0);
 	rotate_camera(glb, delta_x * sensitivity);
 	mlx_mouse_move(glb->smlx.mlx, glb->smlx.mlx_win, center_x, center_y);
-	return (0);
+  return (0);
 }
 
 int	key_press(int keycode, t_global *glb)
@@ -58,11 +58,15 @@ int	key_press(int keycode, t_global *glb)
 		glb->key_a = true;
 	if (keycode == KEY_D)
 		glb->key_d = true;
+	if (keycode == KEY_TABU)
+		glb->key_tabu = true;
 	return (0);
 }
 
 int	key_release(int keycode, t_global *glb)
 {
+	if (keycode == KEY_TABU)
+		glb->key_tabu = false;
 	if (keycode == KEY_LEFT)
 		glb->key_left = false;
 	if (keycode == KEY_RIGHT)

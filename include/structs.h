@@ -158,6 +158,7 @@ typedef struct s_global
 	bool							key_d;
 	bool							key_tab;
 	bool							mouse_locked;
+  bool              key_tabu;
 	int								w;
 	int								h;
 	int								m_w;
