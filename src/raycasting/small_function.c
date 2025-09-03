@@ -46,3 +46,15 @@ unsigned int	ft_uni(t_rgb rgb)
 {
 	return ((rgb.r << 16) | (rgb.g << 8) | rgb.b);
 }
+
+void    show_congratulations()
+{
+    void    *win;
+    void *mlx;
+
+    mlx = mlx_init();
+    win = mlx_new_window(mlx, 400, 200, "Congratulations");
+    mlx_string_put(mlx, win, 100, 80, 0x00FF00, "CONGRATULATIONS !");
+    sleep(5);
+    mlx_destroy_window(mlx, win);
+}
