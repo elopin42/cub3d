@@ -47,14 +47,23 @@ unsigned int	ft_uni(t_rgb rgb)
 	return ((rgb.r << 16) | (rgb.g << 8) | rgb.b);
 }
 
-void    show_congratulations()
+void show_congratulations()
 {
+    void    *mlx;
     void    *win;
-    void *mlx;
+    void    *img;
+    int     img_width;
+    int     img_height;
 
     mlx = mlx_init();
-    win = mlx_new_window(mlx, 400, 200, "Congratulations");
+    win = mlx_new_window(mlx, 1280, 700, "Congratulations");
+    img = mlx_xpm_file_to_image(mlx, "textures/congratulation.xpm", &img_width, &img_height);
+    if (img)
+        mlx_put_image_to_window(mlx, win, img, 0, 0);
     mlx_string_put(mlx, win, 100, 80, 0x00FF00, "CONGRATULATIONS !");
     sleep(5);
+    if (img)
+        mlx_destroy_image(mlx, img);
     mlx_destroy_window(mlx, win);
 }
+

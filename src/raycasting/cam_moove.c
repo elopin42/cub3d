@@ -78,7 +78,7 @@ void	move_player(t_global *glb, int direction)
 		map_w = ft_strlen(glb->map[0]);
 	if (glb->map[py][mx] == 'Q')
   {
-    printf("you have finish!!!");
+    printf("you have finish!!!\n");
     show_congratulations();
     ft_clean_all(glb, 0);
   }
