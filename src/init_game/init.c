@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/03 16:35:40 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:42:08 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ void	init_mlx(t_global *glb, t_parsing *parsing)
 			&glb->overlay.endian);
 	if (glb->overlay.addr == NULL)
 		init_mlx_error(glb, parsing, MLXIMGADDR);
+	glb->img.width = WIN_WIDTH;
+	glb->overlay.width = WIN_WIDTH;
+	glb->img.height = WIN_HEIGHT;
+	glb->overlay.height = WIN_HEIGHT;
 }
 
 void	init_hooks(t_global *glb, t_mlx *smlx)

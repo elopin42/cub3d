@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/01 17:44:51 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:46:11 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,20 @@ void	draw_vertical_line(t_global *glb, int x)
 
 void	draw_scene(t_global *glb)
 {
-	int (x) = -1;
+	int	x;
+
+	x = -1;
 	while (++x < glb->w)
 		draw_vertical_line(glb, x);
+	make_overlay(&glb->overlay);
+	draw_xpm_to_img(&glb->img, &glb->overlay, 0, 0);
 	draw_torch(glb);
 	draw_minimap(glb);
-	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0,
-		0);
-	// mlx_put_image_to_w
+	// put_fps_counter();
+	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0, 0);
 }
+
+/* void	put_fps_counter(t_global *glb, )
+{
+
+} */

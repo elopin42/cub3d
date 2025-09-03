@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/03 16:01:19 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:40:48 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,20 +140,19 @@ typedef struct s_texture
 	struct s_img					hand[10];
 }									t_texture;
 
-typedef struct s_torch
+typedef struct s_circle
 {
-	int				top;
-	int				bottom;
-	int				dy;
-	float			dx;
-	int				left;
-	int				right;
-	int				y;
-	int				x;
-	int				cy;
-	int				cx;
-	struct s_img	img;
-}	t_torch;
+	int		top;
+	int		bottom;
+	int		dy;
+	float	dx;
+	int		left;
+	int		right;
+	int		y;
+	int		x;
+	int		cy;
+	int		cx;
+}	t_circle;
 
 typedef struct s_global
 {
