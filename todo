@@ -9,5 +9,5 @@
 
 // done 2/ gerer le Q (sortie) -> le parsing les accepte déjà, il suffis juste d'afficher la texture du Q maintenant dans le raycaster
 
-3/ hook sourie (si clique tab, "décroche" la souris), si je rappuie "raccroche"
+// done 3/ hook sourie (si clique tab, "décroche" la souris), si je rappuie "raccroche"
 	(systeme ou tu tant que t'appuie sur tab, la souris est libre)
