@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/04 17:28:10 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 21:22:56 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,16 +149,21 @@ typedef struct s_texture
 
 typedef struct s_circle
 {
-	int		top;
-	int		bottom;
-	int		dy;
-	float	dx;
-	int		left;
-	int		right;
-	int		y;
-	int		x;
-	int		cy;
-	int		cx;
+	int				top;
+	int				bottom;
+	int				dy;
+	float			dx;
+	int				left;
+	int				right;
+	int				y;
+	int				x;
+	int				cy;
+	int				cx;
+	double			distance;
+	double			factor;
+	double			inner_radius;
+	unsigned int	color;
+	int				radius;
 }	t_circle;
 
 typedef struct s_global
