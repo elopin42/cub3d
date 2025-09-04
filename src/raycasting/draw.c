@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/04 15:46:11 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:08:27 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,22 @@ void	draw_floor(t_global *glb, int x)
 	while (++y < glb->h)
 	{
 		dist = glb->h / (2.0 * y - glb->h);
-  if (glb->texture.sol.is_rgb == false)
-	{
-		  floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
-		  floor_y = glb->player.y + dist * glb->ray.ray_dir_y;
-		  tex_x = (int)(floor_x * glb->texture.sol.width)
-			  % glb->texture.sol.width;
-		  tex_y = (int)(floor_y * glb->texture.sol.height)
-			  % glb->texture.sol.height;
-		  pix = glb->texture.sol.addr + tex_y * glb->texture.sol.line_length
-			  + tex_x * (glb->texture.sol.bpp / 8);
-		  color = *(unsigned int *)pix;
-    }
-    else
-      color = ft_uni(glb->texture.sol.rgb);
-		color = apply_distance_effect(color, dist);
-		put_pixel(&glb->img, x, y, color);
+		if (glb->texture.sol.is_rgb == false)
+		{
+			floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
+			floor_y = glb->player.y + dist * glb->ray.ray_dir_y;
+			tex_x = (int)(floor_x * glb->texture.sol.width)
+				% glb->texture.sol.width;
+			tex_y = (int)(floor_y * glb->texture.sol.height)
+				% glb->texture.sol.height;
+			pix = glb->texture.sol.addr + tex_y * glb->texture.sol.line_length
+				+ tex_x * (glb->texture.sol.bpp / 8);
+			color = *(unsigned int *)pix;
+		}
+	else
+		color = ft_uni(glb->texture.sol.rgb);
+	color = apply_distance_effect(color, dist);
+	put_pixel(&glb->img, x, y, color);
 	}
 }
 
@@ -91,15 +91,11 @@ void	draw_scene(t_global *glb)
 	x = -1;
 	while (++x < glb->w)
 		draw_vertical_line(glb, x);
-	make_overlay(&glb->overlay);
+	make_overlay(&glb->img, &glb->overlay);
 	draw_xpm_to_img(&glb->img, &glb->overlay, 0, 0);
 	draw_torch(glb);
 	draw_minimap(glb);
-	// put_fps_counter();
-	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0, 0);
+	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win,
+		glb->img.img, 0, 0);
+	put_fps_counter(glb);
 }
-
-/* void	put_fps_counter(t_global *glb, )
-{
-
-} */

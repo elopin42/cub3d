@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/04 15:42:07 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:09:23 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,8 +176,8 @@ void			draw_minimap(t_global *glb);
 void			set_map_dimensions(t_global *glb);
 
 // overlay.c
-void			make_overlay(t_img *overlay);
-void			draw_transparent_zone(t_circle *circle, t_img *overlay, int radius);
+void			make_overlay(t_img *img, t_img *overlay);
+void			draw_transparent_zone(t_circle *circle, t_img *overlay, t_img *img, int radius);
 
 // pixel_draw_utils.c
 void			put_transparency(t_img *img, int y, int x);
@@ -195,5 +195,6 @@ unsigned int	effet_noir(unsigned int color, double factor);
 bool			is_valid_map_position(t_global *glb, int x, int y);
 long			get_current_time_ms(void);
 unsigned int	ft_uni(t_rgb rgb);
+void			put_fps_counter(t_global *glb);
 
 #endif

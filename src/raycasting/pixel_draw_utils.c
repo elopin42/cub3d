@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 18:03:08 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/04 15:09:59 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:33:41 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	draw_xpm_to_img(t_img *dst, t_img *img, int y, int x)
 	int				i;
 	int				j;
 	unsigned int	current_color;
-	// printf("height: %d\nwidth: %d\n", img->height, img->width);
 
 	i = 0;
 	while (i < img->height)
@@ -39,7 +38,6 @@ void	draw_xpm_to_img(t_img *dst, t_img *img, int y, int x)
 		}
 		i++;
 	}
-	// printf("i: %d\nj: %d\n", i, j)
 }
 
 void	put_pixel_to_img(t_img *img, int color, int y, int x)
@@ -57,5 +55,6 @@ void	put_pixel_to_img(t_img *img, int color, int y, int x)
 
 unsigned int	get_pixel_color(t_img *img, int y, int x)
 {
-	return (*(unsigned int *)(img->addr + (y * img->line_length) + (x * img->bpp / 8)));
+	return (*(unsigned int *)(img->addr + (y * img->line_length)
+		+ (x * img->bpp / 8)));
 }

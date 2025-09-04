@@ -6,13 +6,15 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:44:41 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/04 15:48:35 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:23:43 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	make_overlay(t_img *overlay)
+static inline void	update_line_info(t_circle *circle, int radius);
+
+void	make_overlay(t_img *img, t_img *overlay)
 {
 	int			radius;
 	t_circle	circle;
@@ -29,18 +31,14 @@ void	make_overlay(t_img *overlay)
 	circle.x = circle.left;
 	circle.right = floor(circle.cx + circle.dx);
 	ft_bzero(overlay->addr, overlay->line_length * overlay->height);
-	draw_transparent_zone(&circle, overlay, radius);
+	draw_transparent_zone(&circle, overlay, img, radius);
 }
 
-void	draw_transparent_zone(t_circle *circle, t_img *overlay, int radius)
+void	draw_transparent_zone(t_circle *circle, t_img *overlay, t_img *img, int radius)
 {
 	while (circle->y <= circle->bottom)
 	{
-		circle->dy = circle->y - circle->cy;
-		circle->dx = sqrt(radius * radius - circle->dy * circle->dy);
-		circle->left = ceil(circle->cx - circle->dx);
-		circle->right = floor(circle->cx + circle->dx);
-		circle->x = circle->left;
+		update_line_info(circle, radius);
 		while (circle->x <= circle->right)
 		{
 			if (circle->y >= 0 && circle->x >= 0
@@ -53,3 +51,11 @@ void	draw_transparent_zone(t_circle *circle, t_img *overlay, int radius)
 	}
 }
 
+static inline void	update_line_info(t_circle *circle, int radius)
+{
+	circle->dy = circle->y - circle->cy;
+	circle->dx = sqrt(radius * radius - circle->dy * circle->dy);
+	circle->left = ceil(circle->cx - circle->dx);
+	circle->right = floor(circle->cx + circle->dx);
+	circle->x = circle->left;
+}

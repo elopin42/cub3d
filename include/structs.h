@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/03 17:40:48 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:28:10 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,13 @@ typedef struct s_player
 	double							plane_x;
 	double							plane_y;
 }									t_player;
+
+typedef struct s_fps
+{
+	struct timeval	last_time;
+	int				frame_count;
+	int				fps;
+}									t_fps;
 
 typedef struct s_texture
 {
