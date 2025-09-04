@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   flashlight.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 12:10:12 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/04 15:15:48 by lle-cout         ###   ########.fr       */
+/*   Created: 2025/07/01 20:25:22 by elopin            #+#    #+#             */
+/*   Updated: 2025/09/04 21:46:40 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../../include/cub3d.h"
 
-void	ft_bzero(void *s, size_t n)
+void	draw_flashlight(t_global *glb)
 {
-	unsigned char	*tmp;
-
-	tmp = s;
-	while (n--)
-		*tmp++ = (unsigned char) '\0';
+	return ;
 }

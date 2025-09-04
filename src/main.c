@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/01 16:59:48 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:02:03 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	mouse_moved_advanced(int x, int y, void *param)
 		return (0);
 	rotate_camera(glb, delta_x * sensitivity);
 	mlx_mouse_move(glb->smlx.mlx, glb->smlx.mlx_win, center_x, center_y);
-  return (0);
+	return (0);
 }
 
 int	key_press(int keycode, t_global *glb)
@@ -84,7 +84,6 @@ int	key_release(int keycode, t_global *glb)
 
 int	update(t_global *glb)
 {
-	lunch_frame(glb);
 	if (glb->key_w)
 		move_player(glb, 1);
 	if (glb->key_s)
@@ -108,20 +107,6 @@ int	update(t_global *glb)
 		}
 	}
 	return (0);
-}
-
-void	load_texture(void *mlx, t_img *tex, char *path)
-{
-	if (tex->img)
-		mlx_destroy_image(mlx, tex->img);
-	tex->img = mlx_xpm_file_to_image(mlx, path, &tex->width, &tex->height);
-	if (!tex->img)
-	{
-		printf("Erreur chargement texture : %s\n", path);
-		exit(1);
-	}
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_length,
-			&tex->endian);
 }
 
 int	main(int ac, char **av)

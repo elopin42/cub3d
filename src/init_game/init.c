@@ -6,20 +6,11 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/01 16:37:12 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 22:57:09 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-/*
-1/ mlx ptr					OK
-2/ mlx img (main frame)		OK
-3/ textures
-4/ window					OK
-5/ hooks					OK
-6/ start game!				OK
-*/
 
 void	init_game(t_global *glb, t_parsing *parser)
 {
@@ -68,6 +59,18 @@ void	init_mlx(t_global *glb, t_parsing *parsing)
 			&glb->img.line_length, &glb->img.endian);
 	if (!glb->img.addr)
 		init_mlx_error(glb, parsing, MLXIMGADDR);
+	glb->overlay.img = mlx_new_image(glb->smlx.mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (glb->overlay.img == NULL)
+		init_mlx_error(glb, parsing, MLXXPM);
+	glb->overlay.addr = mlx_get_data_addr(glb->overlay.img,
+			&glb->overlay.bpp, &glb->overlay.line_length,
+			&glb->overlay.endian);
+	if (glb->overlay.addr == NULL)
+		init_mlx_error(glb, parsing, MLXIMGADDR);
+	glb->img.width = WIN_WIDTH;
+	glb->overlay.width = WIN_WIDTH;
+	glb->img.height = WIN_HEIGHT;
+	glb->overlay.height = WIN_HEIGHT;
 }
 
 void	init_hooks(t_global *glb, t_mlx *smlx)
@@ -84,7 +87,7 @@ void	load_game_textures(t_global *glb, t_parsing *parser)
 {
 	load_xpm(glb, parser, &glb->texture.sol, "textures/sol.xpm");
 	load_xpm(glb, parser, &glb->texture.sky, "textures/sky.xpm");
-	load_xpm(glb, parser, &glb->texture.torche, "textures/torche.xpm");
+	load_xpm(glb, parser, &glb->texture.torche, "textures/light.xpm");
 	load_xpm(glb, parser, &glb->texture.door, "textures/door.xpm");
 	load_xpm(glb, parser, &glb->texture.exit, "textures/exit.xpm");
 }

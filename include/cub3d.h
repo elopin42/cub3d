@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/01 16:56:50 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 22:53:04 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ void			load_game_textures(t_global *glb, t_parsing *parser);
 
 // error_handlers.c
 void			init_mlx_error(t_global *glb, t_parsing *parser, char *error);
-void			destroy_all_textures(void *mlx, t_texture *text);
-void			destroy_texture(void *mlx, t_img *img);
 
 // textures.c
 void			load_parsed_textures(t_global *glb, t_parsing *parser);
@@ -122,7 +120,6 @@ int				mouse_moved_advanced(int x, int y, void *param);
 int				key_press(int keycode, t_global *glb);
 int				key_release(int keycode, t_global *glb);
 int				update(t_global *glb);
-void			load_texture(void *mlx, t_img *tex, char *path);
 
 // calcul_for_draw.c
 void			init_ray(t_global *glb, int x);
@@ -136,6 +133,10 @@ void			rotate_camera(t_global *glb, double angle);
 bool			set_xy_for_move(t_global *glb, double *new_x, double *new_y,
 					int direction);
 void			move_player(t_global *glb, int direction);
+
+// destroy.c
+void			ft_clean_all(t_global *glb, int exit_code);
+void			destroy_all_textures_imgs(void *mlx, t_global *glb);
 
 // door.c
 bool			set_xy(t_global *glb, int y, int x);
@@ -163,20 +164,23 @@ unsigned int	handle_sky_part(t_global *glb, int x, int y);
 unsigned int	handle_floor_part(t_global *glb, int y);
 void			draw_wall_texture(t_global *glb, int x, t_img *tex);
 
-// frame.c
-void			frame_for_flame(t_global *glb);
-void			draw_torch(t_global *glb);
-int				lunch_frame(t_global *glb);
-
-// ft_clean_up.c
-void			ft_free_map(char **map);
-void			ft_clean_imagouille(void *mlx, t_img *tex);
-void			ft_clean_all(t_global *glb, int exit_code);
+// flashlight.c
+void			draw_flashlight(t_global *glb);
 
 // minimap.c
 void			draw_square(t_global *glb, int x, int y, int d);
 void			draw_minimap(t_global *glb);
 void			set_map_dimensions(t_global *glb);
+
+// overlay.c
+void			make_overlay(t_img *img, t_img *overlay);
+void			draw_faded_circle(t_circle *circle, t_img *overlay, t_img *img);
+
+// pixel_draw_utils.c
+void			put_transparency(t_img *img, int y, int x);
+void			draw_xpm_to_img(t_img *dst, t_img *img, int y, int x);
+void			put_pixel_to_img(t_img *img, int color, int y, int x);
+unsigned int	get_pixel_color(t_img *img, int y, int x);
 
 // put_texture.c
 void			put_pixel(t_img *img, int x, int y, int color);
@@ -188,6 +192,7 @@ unsigned int	effet_noir(unsigned int color, double factor);
 bool			is_valid_map_position(t_global *glb, int x, int y);
 long			get_current_time_ms(void);
 unsigned int	ft_uni(t_rgb rgb);
-void    show_congratulations();
+void			show_congratulations(void);
+void			put_fps_counter(t_global *glb);
 
 #endif

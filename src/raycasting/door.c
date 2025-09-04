@@ -6,12 +6,11 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:18:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/08/26 15:19:23 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 22:58:03 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-#include <unistd.h>
 
 bool	set_xy(t_global *glb, int y, int x)
 {

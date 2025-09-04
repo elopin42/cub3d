@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:57:45 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/01 16:45:09 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 22:58:37 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,9 @@ unsigned int	draw_wall_behind_door(t_global *glb, int y)
 	tmp_tex_pos = (glb->door_params.tmp_draw_start - glb->h / 2
 			+ glb->door_params.tmp_line_height / 2) * tmp_step;
 	tmp_tex_pos += (y - glb->door_params.tmp_draw_start) * tmp_step;
-  int (tmp_tex_y) = (int)tmp_tex_pos % glb->door_params.tmp_tex->height;
-  if (tmp_tex_y < 0)
-    tmp_tex_y += glb->door_params.tmp_tex->height;
-
+	int (tmp_tex_y) = (int)tmp_tex_pos % glb->door_params.tmp_tex->height;
+	if (tmp_tex_y < 0)
+		tmp_tex_y += glb->door_params.tmp_tex->height;
 	pixel_tmp = glb->door_params.tmp_tex->addr + tmp_tex_y
 		* glb->door_params.tmp_tex->line_length + tmp_tex_x
 		* (glb->door_params.tmp_tex->bpp / 8);
@@ -101,21 +100,21 @@ unsigned int	handle_floor_part(t_global *glb, int y)
 	unsigned int	color;
 
 	dist = glb->h / (2.0 * y - glb->h);
-  if (glb->texture.sol.is_rgb == false)
-  {
-	  floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
-	  floor_y = glb->player.y + dist * glb->ray.ray_dir_y;
-	  int (tex_x_floor) = (int)(floor_x * glb->texture.sol.width)
-		  % glb->texture.sol.width;
-	  int (tex_y_floor) = (int)(floor_y * glb->texture.sol.height)
-		  % glb->texture.sol.height;
-	  pixel_floor = glb->texture.sol.addr + tex_y_floor
-		  * glb->texture.sol.line_length + tex_x_floor * (glb->texture.sol.bpp
-			  / 8);
-	  color = *(unsigned int *)pixel_floor;
-  }
-  else
-    color = ft_uni(glb->texture.sol.rgb);
+	if (glb->texture.sol.is_rgb == false)
+	{
+		floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
+		floor_y = glb->player.y + dist * glb->ray.ray_dir_y;
+		int (tex_x_floor) = (int)(floor_x * glb->texture.sol.width)
+			% glb->texture.sol.width;
+		int (tex_y_floor) = (int)(floor_y * glb->texture.sol.height)
+			% glb->texture.sol.height;
+		pixel_floor = glb->texture.sol.addr + tex_y_floor
+			* glb->texture.sol.line_length + tex_x_floor * (glb->texture.sol.bpp
+			/ 8);
+		color = *(unsigned int *)pixel_floor;
+	}
+	else
+		color = ft_uni(glb->texture.sol.rgb);
 	return (apply_distance_effect(color, dist));
 }
 
@@ -140,10 +139,9 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 	int (y) = glb->ray.draw_start - 1;
 	while (++y < glb->ray.draw_end)
 	{
-    tex_y = (int)tex_pos % tex->height;
-    if (tex_y < 0)
-      tex_y += tex->height;
-
+		tex_y = (int)tex_pos % tex->height;
+		if (tex_y < 0)
+			tex_y += tex->height;
 		tex_pos += step;
 		if (door_anim && y >= white_start && y < white_end)
 			color = handle_door_opening(glb, x, y);

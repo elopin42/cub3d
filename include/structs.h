@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/01 16:59:30 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 22:59:01 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,6 @@ typedef struct s_ff
 	ssize_t							height;
 	bool							map_is_open;
 }									t_ff;
-
-typedef struct s_torch_data
-{
-	int								screen_w;
-	int								screen_h;
-	int								target_height;
-	double							scale;
-	int								scaled_width;
-	int								scaled_height;
-	int								x_offset;
-	int								y_offset;
-	unsigned int					color;
-}									t_torch_data;
 
 typedef struct s_ray
 {
@@ -126,6 +113,13 @@ typedef struct s_player
 	double							plane_y;
 }									t_player;
 
+typedef struct s_fps
+{
+	struct timeval	last_time;
+	int				frame_count;
+	int				fps;
+}									t_fps;
+
 typedef struct s_texture
 {
 	struct s_img					exit;
@@ -137,14 +131,35 @@ typedef struct s_texture
 	struct s_img					sol;
 	struct s_img					sky;
 	struct s_img					torche;
-	struct s_img					white;
+	struct s_img					overlay; // fond noir cercle transparent
+	struct s_img					hand[10];
 }									t_texture;
+
+typedef struct s_circle
+{
+	int				top;
+	int				bottom;
+	int				dy;
+	float			dx;
+	int				left;
+	int				right;
+	int				y;
+	int				x;
+	int				cy;
+	int				cx;
+	double			distance;
+	double			factor;
+	double			inner_radius;
+	unsigned int	color;
+	int				radius;
+}	t_circle;
 
 typedef struct s_global
 {
 	struct s_mlx					smlx;
 	struct s_player					player;
 	struct s_img					img;
+	struct s_img					overlay;
 	struct s_texture				texture;
 	struct s_door_params			door_params;
 	struct s_ray					ray;
@@ -158,7 +173,7 @@ typedef struct s_global
 	bool							key_d;
 	bool							key_tab;
 	bool							mouse_locked;
-  bool              key_tabu;
+	bool							key_tabu;
 	int								w;
 	int								h;
 	int								m_w;

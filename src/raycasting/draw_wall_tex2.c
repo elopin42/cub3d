@@ -6,12 +6,11 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 17:56:14 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/01 16:45:29 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 21:50:29 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
 
 // Effet torche ici (jouer avec le facteur)
 unsigned int	apply_distance_effect(unsigned int color, double dist)
@@ -49,8 +48,8 @@ unsigned int	handle_door_opening(t_global *glb, int x, int y)
 		&& y <= glb->door_params.tmp_draw_end)
 		return (draw_wall_behind_door(glb, y));
 	else if (y < glb->door_params.tmp_draw_start && glb->texture.sky.is_rgb)
-    return (ft_uni(glb->texture.sky.rgb));
-  else if (y < glb->door_params.tmp_draw_start)
+		return (ft_uni(glb->texture.sky.rgb));
+	else if (y < glb->door_params.tmp_draw_start)
 		return (handle_sky_part(glb, x, y));
 	else
 		return (handle_floor_part(glb, y));

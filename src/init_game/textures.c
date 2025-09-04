@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 01:42:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/01 16:37:25 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:11:04 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	load_parsed_textures(t_global *glb, t_parsing *parser)
 	else
 		load_xpm(glb, parser, &glb->texture.nord, parser->no_path);
 	if (parser->so_path == NULL)
-		load_xpm(glb, parser, &glb->texture.sud, SOUTH);
+		load_xpm(glb, parser, &glb->texture.sud, NORTH);
 	else
 		load_xpm(glb, parser, &glb->texture.sud, parser->so_path);
 	if (parser->ea_path == NULL)
-		load_xpm(glb, parser, &glb->texture.est, EAST);
+		load_xpm(glb, parser, &glb->texture.est, NORTH);
 	else
 		load_xpm(glb, parser, &glb->texture.est, parser->ea_path);
 	if (parser->we_path == NULL)
-		load_xpm(glb, parser, &glb->texture.ouest, WEST);
+		load_xpm(glb, parser, &glb->texture.ouest, NORTH);
 	else
 		load_xpm(glb, parser, &glb->texture.ouest, parser->we_path);
 }
