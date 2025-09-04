@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/04 21:20:01 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 21:45:03 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ int				mouse_moved_advanced(int x, int y, void *param);
 int				key_press(int keycode, t_global *glb);
 int				key_release(int keycode, t_global *glb);
 int				update(t_global *glb);
-void			load_texture(void *mlx, t_img *tex, char *path);
 
 // calcul_for_draw.c
 void			init_ray(t_global *glb, int x);
@@ -165,10 +164,8 @@ unsigned int	handle_sky_part(t_global *glb, int x, int y);
 unsigned int	handle_floor_part(t_global *glb, int y);
 void			draw_wall_texture(t_global *glb, int x, t_img *tex);
 
-// frame.c
-void			frame_for_flame(t_global *glb);
-void			draw_torch(t_global *glb);
-int				lunch_frame(t_global *glb);
+// flashlight.c
+void			draw_flashlight(t_global *glb);
 
 // minimap.c
 void			draw_square(t_global *glb, int x, int y, int d);

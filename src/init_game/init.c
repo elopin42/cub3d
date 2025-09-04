@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/04 15:42:08 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 21:46:57 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	init_hooks(t_global *glb, t_mlx *smlx)
 	mlx_hook(smlx->mlx_win, 17, 0, (void *)ft_clean_all, glb);
 	mlx_mouse_move(smlx->mlx, smlx->mlx_win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 }
-
 
 // Créer load_image();
 void	load_game_textures(t_global *glb, t_parsing *parser)

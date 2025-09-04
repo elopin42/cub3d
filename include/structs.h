@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/04 21:22:56 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 21:44:27 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,6 @@ typedef struct s_ff
 	ssize_t							height;
 	bool							map_is_open;
 }									t_ff;
-
-typedef struct s_torch_data
-{
-	int								screen_w;
-	int								screen_h;
-	int								target_height;
-	double							scale;
-	int								scaled_width;
-	int								scaled_height;
-	int								x_offset;
-	int								y_offset;
-	unsigned int					color;
-}									t_torch_data;
 
 typedef struct s_ray
 {

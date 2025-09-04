@@ -6,14 +6,15 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:44:41 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/04 21:32:27 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/04 22:04:38 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
 static inline void	update_line_info(t_circle *circle, int radius);
-static inline void	put_circle_pixel(t_circle *circle, t_img *overlay, t_img *img);
+static inline void	put_circle_pixel(
+						t_circle *circle, t_img *overlay, t_img *img);
 
 void	make_overlay(t_img *img, t_img *overlay)
 {
@@ -62,7 +63,8 @@ static inline void	update_line_info(t_circle *circle, int radius)
 	circle->x = circle->left;
 }
 
-static inline void	put_circle_pixel(t_circle *circle, t_img *overlay, t_img *img)
+static inline void	put_circle_pixel(
+								t_circle *circle, t_img *overlay, t_img *img)
 {
 	circle->color = get_pixel_color(img, circle->y, circle->x);
 	circle->distance = sqrt((circle->x - circle->cx) * (circle->x - circle->cx)
