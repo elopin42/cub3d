@@ -67,8 +67,10 @@ unsigned int	draw_wall_behind_door(t_global *glb, int y)
 	tmp_tex_pos = (glb->door_params.tmp_draw_start - glb->h / 2
 			+ glb->door_params.tmp_line_height / 2) * tmp_step;
 	tmp_tex_pos += (y - glb->door_params.tmp_draw_start) * tmp_step;
-	int (tmp_tex_y) = ((int)tmp_tex_pos) & (glb->door_params.tmp_tex->height
-			- 1);
+  int (tmp_tex_y) = (int)tmp_tex_pos % glb->door_params.tmp_tex->height;
+  if (tmp_tex_y < 0)
+    tmp_tex_y += glb->door_params.tmp_tex->height;
+
 	pixel_tmp = glb->door_params.tmp_tex->addr + tmp_tex_y
 		* glb->door_params.tmp_tex->line_length + tmp_tex_x
 		* (glb->door_params.tmp_tex->bpp / 8);
@@ -138,7 +140,10 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 	int (y) = glb->ray.draw_start - 1;
 	while (++y < glb->ray.draw_end)
 	{
-		tex_y = ((int)tex_pos) & (tex->height - 1);
+    tex_y = (int)tex_pos % tex->height;
+    if (tex_y < 0)
+      tex_y += tex->height;
+
 		tex_pos += step;
 		if (door_anim && y >= white_start && y < white_end)
 			color = handle_door_opening(glb, x, y);
