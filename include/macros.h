@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:18:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/03 16:40:43 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/05 13:41:20 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@
 # define WIN_HEIGHT 700
 # define MINIMAP_MAX_WIDTH  300
 # define MINIMAP_MAX_HEIGHT 300
-
+# define CENTER_X 640
+# define CENTER_Y 350
 # define SPACES " \f\n\r\t\v"
 
 # define ERR "\x1b[31mError\x1b[0m: "

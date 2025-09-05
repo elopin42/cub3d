@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:44:41 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/05 11:42:27 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/05 14:03:02 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ static inline void	update_line_info(t_circle *circle, int radius);
 static inline void	put_circle_pixel(
 						t_circle *circle, t_img *overlay, t_img *img);
 
-void	make_overlay(t_img *img, t_img *overlay)
+void	make_overlay(
+				t_img *img, t_img *overlay, double offset_y, double offset_x)
 {
 	t_circle	circle;
 
 	circle.radius = 240;
 	circle.inner_radius = circle.radius * 0.70;
-	circle.cy = overlay->height / 2;
-	circle.cx = overlay->width / 2;
+	circle.cy = overlay->height / 2 + offset_y;
+	circle.cx = overlay->width / 2 + offset_x;
 	circle.top = ceil(circle.cy - circle.radius);
 	circle.bottom = floor(circle.cy + circle.radius);
 	circle.y = circle.top;

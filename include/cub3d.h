@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/05 12:37:36 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/05 14:35:31 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,9 @@ void			draw_minimap(t_global *glb);
 void			set_map_dimensions(t_global *glb);
 
 // overlay.c
-void			make_overlay(t_img *img, t_img *overlay);
+void			make_overlay(
+					t_img *img, t_img *overlay,
+					double offset_y, double offset_x);
 void			draw_faded_circle(t_circle *circle, t_img *overlay, t_img *img);
 
 // pixel_draw_utils.c
@@ -195,7 +197,12 @@ void			show_congratulations(void);
 void			put_fps_counter(t_global *glb);
 
 // wrappers_craw.c
-void			draw_overlay(t_global *glb);
-void			draw_flashlight(t_global *glb);
+bool			is_player_moving(t_global *glb);
+void			update_offset(
+					t_global *glb, double *offset_x, double *offset_y);
+void			draw_overlay(
+					t_global *glb, double offset_y, double offset_x);
+void			draw_flashlight(
+					t_global *glb, double offset_y, double offset_x);
 
 #endif
