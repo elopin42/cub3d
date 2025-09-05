@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/04 22:03:15 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/05 12:38:10 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,15 @@ void	draw_vertical_line(t_global *glb, int x)
 
 void	draw_scene(t_global *glb)
 {
-	int	x;
+	int				x;
+	// static double	offset_x = 0;
+	// static double	offset_y = 0;
 
-	x = -1;
-	while (++x < glb->w)
+	x = 350;
+	// update_offset(&offset_x, &offset_y);
+	while (++x < 930)
 		draw_vertical_line(glb, x);
-	make_overlay(&glb->img, &glb->overlay);
-	draw_xpm_to_img(&glb->img, &glb->overlay, 0, 0);
+	draw_overlay(glb);
 	draw_flashlight(glb);
 	draw_minimap(glb);
 	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win,

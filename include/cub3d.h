@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/04 22:53:04 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/05 12:37:36 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,6 @@ unsigned int	handle_floor_part(t_global *glb, int y);
 void			draw_wall_texture(t_global *glb, int x, t_img *tex);
 
 // flashlight.c
-void			draw_flashlight(t_global *glb);
 
 // minimap.c
 void			draw_square(t_global *glb, int x, int y, int d);
@@ -194,5 +193,9 @@ long			get_current_time_ms(void);
 unsigned int	ft_uni(t_rgb rgb);
 void			show_congratulations(void);
 void			put_fps_counter(t_global *glb);
+
+// wrappers_craw.c
+void			draw_overlay(t_global *glb);
+void			draw_flashlight(t_global *glb);
 
 #endif
