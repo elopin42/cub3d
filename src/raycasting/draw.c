@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/05 14:01:47 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:45:20 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	draw_scene(t_global *glb)
 	update_offset(glb, &offset_x, &offset_y);
 	x = 350 + offset_x;
 	// ft_bzero(glb->img.addr, glb->img.line_length * glb->img.height);
-	while (++x < 930)
+	while (++x < 930 + offset_x)
 		draw_vertical_line(glb, x);
 	draw_overlay(glb, offset_y, offset_x);
 	draw_flashlight(glb, offset_y, offset_x);

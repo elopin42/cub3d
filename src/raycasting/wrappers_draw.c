@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 12:32:06 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/05 14:35:59 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:38:15 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	update_offset(t_global *glb, double *offset_x, double *offset_y)
 
 	if (is_player_moving(glb) == true)
 	{
-		freq = 8.0;
+		freq = 5.0;
 		amp = 8.0;
 	}
 	else
