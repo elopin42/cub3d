@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/06 15:10:49 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/06 15:46:07 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	draw_floor(t_global *glb, int x)
 		}
 		else
 			color = ft_uni(glb->texture.sol.rgb);
-		color = apply_distance_effect(color, dist);
+		color = apply_distance_effect(color, dist, glb->light_pwr);
 		put_pixel(&glb->img, x, y, color);
 	}
 }
@@ -87,7 +87,7 @@ void	update_light_state(t_global *glb)
 	long			now;
 
 	now = get_current_time_ms();
-	if (now - last_update >= 400)
+	if (now - last_update >= 200)
 	{
 		glb->texture.cur_hand = &glb->texture.hand[i];
 		glb->light_pwr = glb->texture.hand[i].light_pwr;
