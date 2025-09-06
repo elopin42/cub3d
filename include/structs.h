@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/05 16:37:38 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/06 14:52:40 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_img
 	int								endian;
 	int								width;
 	int								height;
+	double							light_pwr;
 	struct s_rgb					rgb;
 }									t_img;
 
@@ -130,8 +131,8 @@ typedef struct s_texture
 	struct s_img					ouest;
 	struct s_img					sol;
 	struct s_img					sky;
-	struct s_img					torche;
-	struct s_img					overlay; // fond noir cercle transparent
+	struct s_img					overlay;
+	struct s_img					*cur_hand;
 	struct s_img					hand[10];
 }									t_texture;
 
@@ -156,36 +157,37 @@ typedef struct s_circle
 
 typedef struct s_global
 {
-	struct s_mlx					smlx;
-	struct s_player					player;
-	struct s_img					img;
-	struct s_img					overlay;
-	struct s_texture				texture;
-	struct s_door_params			door_params;
-	struct s_ray					ray;
-	char							**map;
-	char							**map_clone;
-	bool							key_left;
-	bool							key_right;
-	bool							key_w;
-	bool							key_s;
-	bool							key_a;
-	bool							key_d;
-	bool							key_tab;
-	bool							mouse_locked;
-	bool							key_tabu;
-	int								w;
-	int								h;
-	int								m_w;
-	int								m_h;
-	int								d_x;
-	int								d_y;
-	int								anim_door;
-	int								door_start_y;
-	int								door_height;
-	int								el_muros_invisible;
-	int								square_size;
-	long							door_timing;
-}									t_global;
+	struct s_mlx			smlx;
+	struct s_player			player;
+	struct s_img			img;
+	struct s_img			overlay;
+	struct s_texture		texture;
+	struct s_door_params	door_params;
+	struct s_ray			ray;
+	char					**map;
+	char					**map_clone;
+	bool					key_left;
+	bool					key_right;
+	bool					key_w;
+	bool					key_s;
+	bool					key_a;
+	bool					key_d;
+	bool					key_tab;
+	bool					mouse_locked;
+	bool					key_tabu;
+	int						w;
+	int						h;
+	int						m_w;
+	int						m_h;
+	int						d_x;
+	int						d_y;
+	int						anim_door;
+	int						door_start_y;
+	int						door_height;
+	int						el_muros_invisible;
+	int						square_size;
+	long					door_timing;
+	double					light_pwr;
+}							t_global;
 
 #endif

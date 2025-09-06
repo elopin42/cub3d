@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/05 14:35:31 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/06 14:45:32 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,9 @@ void			init_glb_values(t_global *glb, t_parsing *parser);
 void			init_mlx(t_global *glb, t_parsing *parsing);
 void			init_hooks(t_global *glb, t_mlx *smlx);
 void			load_game_textures(t_global *glb, t_parsing *parser);
+
+// light.c
+void			init_light(t_global *glb, t_parsing *parser);
 
 // error_handlers.c
 void			init_mlx_error(t_global *glb, t_parsing *parser, char *error);

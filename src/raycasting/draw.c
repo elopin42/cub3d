@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/05 18:45:20 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/06 15:10:49 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,41 @@ void	draw_vertical_line(t_global *glb, int x)
 	draw_floor(glb, x);
 }
 
+void	update_light_state(t_global *glb)
+{
+	static int		i = 0;
+	static int		dir = 1;
+	static long		last_update = 0;
+	long			now;
+
+	now = get_current_time_ms();
+	if (now - last_update >= 400)
+	{
+		glb->texture.cur_hand = &glb->texture.hand[i];
+		glb->light_pwr = glb->texture.hand[i].light_pwr;
+		i += dir;
+		if (i >= 9)
+		{
+			i = 9;
+			dir = -1;
+		}
+		else if (i <= 0)
+		{
+			i = 0;
+			dir = 1;
+		}
+		last_update = now;
+	}
+}
+
+
 void	draw_scene(t_global *glb)
 {
 	int				x;
 	static double	offset_x = 0;
 	static double	offset_y = 0;
 
+	update_light_state(glb);
 	update_offset(glb, &offset_x, &offset_y);
 	x = 350 + offset_x;
 	// ft_bzero(glb->img.addr, glb->img.line_length * glb->img.height);

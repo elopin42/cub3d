@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 12:32:06 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/05 18:38:15 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/06 14:54:18 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	draw_flashlight(t_global *glb, double offset_y, double offset_x)
 	k = 0.08;
 	hand_x += (offset_x - hand_x) * k;
 	hand_y += (offset_y - hand_y) * k;
-	draw_xpm_to_img(&glb->img, &glb->texture.torche,
+	draw_xpm_to_img(&glb->img, glb->texture.cur_hand,
 		350 + hand_y, 720 + hand_x);
 }
 
