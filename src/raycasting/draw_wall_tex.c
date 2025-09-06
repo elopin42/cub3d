@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:57:45 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/05 17:26:00 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/06 15:20:00 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ unsigned int	draw_wall_behind_door(t_global *glb, int y)
 		* glb->door_params.tmp_tex->line_length + tmp_tex_x
 		* (glb->door_params.tmp_tex->bpp / 8);
 	unsigned int (color) = *(unsigned int *)pixel_tmp;
-	return (apply_distance_effect(color, glb->door_params.tmp_dist));
+	return (apply_distance_effect(color, glb->door_params.tmp_dist, glb->light_pwr));
 }
 
 unsigned int	handle_sky_part(t_global *glb, int x, int y)
@@ -115,7 +115,7 @@ unsigned int	handle_floor_part(t_global *glb, int y)
 	}
 	else
 		color = ft_uni(glb->texture.sol.rgb);
-	return (apply_distance_effect(color, dist));
+	return (apply_distance_effect(color, dist, glb->light_pwr));
 }
 
 void	draw_wall_texture(t_global *glb, int x, t_img *tex)

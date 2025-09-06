@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:44:41 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/05 14:03:02 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/08 16:11:03 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	draw_faded_circle(t_circle *circle, t_img *overlay, t_img *img)
 		update_line_info(circle, circle->radius);
 		while (circle->x <= circle->right)
 		{
-			if (circle->y >= 0 && circle->x >= 0
-				&& circle->y < overlay->height
+			if (circle->y >= 0 && circle->x >= 0 && circle->y < overlay->height
 				&& circle->x < overlay->width)
 				put_circle_pixel(circle, overlay, img);
 			circle->x++;

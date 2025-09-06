@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/06 14:45:32 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/06 15:21:11 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void			draw_vertical_line(t_global *glb, int x);
 void			draw_scene(t_global *glb);
 
 // draw_wall_tex2.c
-unsigned int	apply_distance_effect(unsigned int color, double dist);
+unsigned int	apply_distance_effect(unsigned int color, double dist, double light_pwr);
 unsigned int	get_normal_wall_color(t_global *glb, t_img *tex, int tex_x,
 					int tex_y);
 unsigned int	handle_door_opening(t_global *glb, int x, int y);
