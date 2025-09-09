@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/06 15:46:07 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 19:06:34 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,28 +80,15 @@ void	draw_vertical_line(t_global *glb, int x)
 
 void	update_light_state(t_global *glb)
 {
-	static int		i = 0;
-	static int		dir = 1;
-	static long		last_update = 0;
-	long			now;
-
-	now = get_current_time_ms();
-	if (now - last_update >= 200)
+	if (glb->lightoff == true)
 	{
-		glb->texture.cur_hand = &glb->texture.hand[i];
-		glb->light_pwr = glb->texture.hand[i].light_pwr;
-		i += dir;
-		if (i >= 9)
-		{
-			i = 9;
-			dir = -1;
-		}
-		else if (i <= 0)
-		{
-			i = 0;
-			dir = 1;
-		}
-		last_update = now;
+		glb->texture.cur_hand = &glb->texture.hand[0];
+		glb->light_pwr = glb->texture.hand[0].light_pwr;
+	}
+	else
+	{
+		glb->texture.cur_hand = &glb->texture.hand[9];
+		glb->light_pwr = glb->texture.hand[9].light_pwr;
 	}
 }
 

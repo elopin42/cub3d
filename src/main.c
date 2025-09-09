@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/09 18:18:44 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 19:02:44 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	key_release(int keycode, t_global *glb)
 		glb->key_a = false;
 	if (keycode == KEY_D)
 		glb->key_d = false;
+	if (keycode == XK_f)
+		flashlight_switch(&glb->lightoff);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/09 18:31:59 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:55:04 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,14 +153,15 @@ typedef struct s_circle
 	int				radius;
 }	t_circle;
 
-typedef struct s_dec{
+typedef struct s_dec
+{
 	double			floor_x;
 	double			floor_y;
-} t_dec;
+}	t_dec;
 
 typedef struct s_global
 {
-  struct s_dec      dec;
+	struct s_dec			dec;
 	struct s_mlx			smlx;
 	struct s_player			player;
 	struct s_img			img;
@@ -179,6 +180,7 @@ typedef struct s_global
 	bool					key_tab;
 	bool					mouse_locked;
 	bool					key_tabu;
+	bool					lightoff;
 	int						w;
 	int						h;
 	int						m_w;

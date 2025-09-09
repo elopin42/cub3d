@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/09 18:31:53 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 19:06:55 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <string.h>
 # include <sys/time.h>
 # include <time.h>
+# include <X11/keysym.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include "macros.h"
@@ -169,6 +170,7 @@ unsigned int	handle_floor_part(t_global *glb, int y);
 void			draw_wall_texture(t_global *glb, int x, t_img *tex);
 
 // flashlight.c
+void			flashlight_switch(bool *state);
 
 // minimap.c
 void			draw_square(t_global *glb, int x, int y, int d);
