@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 23:24:52 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/04 22:37:50 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:28:19 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,11 @@ void	init_mlx_error(t_global *glb, t_parsing *parser, char *error)
 	ft_free_array(parser->map);
 	ft_free_array(parser->map_copy);
 	exit(EXIT_FAILURE);
+}
+
+int	handle_destroy_window(t_global *glb, int keycode)
+{
+	(void)keycode;
+	ft_clean_all(glb, 0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/04 23:02:03 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:18:44 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	mouse_moved_advanced(int x, int y, void *param)
 int	key_press(int keycode, t_global *glb)
 {
 	if (keycode == 65307)
-		return (printf("echape!\n"), ft_clean_all(glb, 0), 0);
+		return (ft_clean_all(glb, 0), 0);
 	if (keycode == KEY_E)
 		return (ft_door(glb), 0);
 	if (keycode == KEY_LEFT)

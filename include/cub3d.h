@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/06 15:21:11 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:27:18 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void			init_light(t_global *glb, t_parsing *parser);
 
 // error_handlers.c
 void			init_mlx_error(t_global *glb, t_parsing *parser, char *error);
+int				handle_destroy_window(t_global *glb, int keycode);
 
 // textures.c
 void			load_parsed_textures(t_global *glb, t_parsing *parser);

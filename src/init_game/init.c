@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/06 14:44:32 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:23:37 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	init_hooks(t_global *glb, t_mlx *smlx)
 	mlx_hook(smlx->mlx_win, 3, 1L << 1, key_release, glb);
 	mlx_hook(smlx->mlx_win, 6, 1L << 6, mouse_moved_advanced, glb);
 	mlx_loop_hook(smlx->mlx, update, glb);
-	mlx_hook(smlx->mlx_win, 17, 0, (void *)ft_clean_all, glb);
+	mlx_hook(smlx->mlx_win, 17, 0, handle_destroy_window, glb);
 	mlx_mouse_move(smlx->mlx, smlx->mlx_win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 }
 
