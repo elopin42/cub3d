@@ -6,17 +6,13 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/09 18:27:18 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:31:53 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../libft/libft.h"
-# include "../mlx/mlx.h"
-# include "macros.h"
-# include "structs.h"
 # include <X11/Xlib.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -27,6 +23,10 @@
 # include <string.h>
 # include <sys/time.h>
 # include <time.h>
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
+# include "macros.h"
+# include "structs.h"
 
 /* --------------- PARSER --------------- */
 

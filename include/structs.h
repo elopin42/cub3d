@@ -6,14 +6,12 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/06 14:52:40 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:31:59 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
-# include <stdbool.h>
 
 typedef struct s_rgb
 {
