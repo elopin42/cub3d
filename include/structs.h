@@ -155,8 +155,14 @@ typedef struct s_circle
 	int				radius;
 }	t_circle;
 
+typedef struct s_dec{
+	double			floor_x;
+	double			floor_y;
+} t_dec;
+
 typedef struct s_global
 {
+  struct s_dec      dec;
 	struct s_mlx			smlx;
 	struct s_player			player;
 	struct s_img			img;

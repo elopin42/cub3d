@@ -47,7 +47,7 @@ unsigned int	ft_uni(t_rgb rgb)
 	return ((rgb.r << 16) | (rgb.g << 8) | rgb.b);
 }
 
-void	show_congratulations(void)
+void	show_congratulations(t_global *glb)
 {
 	void	*mlx;
 	void	*win;
@@ -55,6 +55,7 @@ void	show_congratulations(void)
 	int		img_width;
 	int		img_height;
 
+  printf("you won!!\n");
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 1280, 700, "Congratulations");
 	img = mlx_xpm_file_to_image(mlx, "textures/congratulation.xpm",
@@ -67,6 +68,7 @@ void	show_congratulations(void)
 		mlx_destroy_image(mlx, img);
 	mlx_destroy_window(mlx, win);
 	free(mlx);
+  ft_clean_all(glb, 0);
 }
 
 void	put_fps_counter(t_global *glb)

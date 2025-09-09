@@ -196,8 +196,12 @@ unsigned int	effet_noir(unsigned int color, double factor);
 bool			is_valid_map_position(t_global *glb, int x, int y);
 long			get_current_time_ms(void);
 unsigned int	ft_uni(t_rgb rgb);
-void			show_congratulations(void);
+void			show_congratulations(t_global *glb);
 void			put_fps_counter(t_global *glb);
+
+//get_data.c
+int	get_tex_y(t_global *glb, int y, double step);
+int	get_tex_x(t_global *glb, double wall_x);
 
 // wrappers_craw.c
 bool			is_player_moving(t_global *glb);

@@ -77,11 +77,7 @@ void	move_player(t_global *glb, int direction)
 	if (map_h > 0)
 		map_w = ft_strlen(glb->map[0]);
 	if (glb->map[py][mx] == 'Q')
-	{
-		printf("You won!\n");
-		show_congratulations();
-		ft_clean_all(glb, 0);
-	}
+		show_congratulations(glb);
 	if (py >= 0 && py < map_h && mx >= 0 && mx < map_w)
 		if (glb->map[py][mx] != '1' && glb->map[py][mx] != 'D')
 			glb->player.x = new_x;
