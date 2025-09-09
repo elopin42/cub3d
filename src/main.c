@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/09 19:02:44 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 01:26:54 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ int	key_release(int keycode, t_global *glb)
 		flashlight_switch(&glb->lightoff);
 	return (0);
 }
+
+/* bool	lock_update()
+{
+	return (true);
+} */
 
 int	update(t_global *glb)
 {

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 17:56:14 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/06 16:46:09 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 00:07:48 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ unsigned int	apply_distance_effect(unsigned int color, double dist, double light
 	double	factor;
 	double	range;
 
+	if (light_pwr == 1)
+		return (color);
 	if (dist > 1.0)
 	{
 		range = 1.0 + light_pwr * 5.0;

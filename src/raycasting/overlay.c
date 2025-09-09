@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:44:41 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/08 16:11:03 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 00:13:16 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,18 @@ static inline void	put_circle_pixel(
 						t_circle *circle, t_img *overlay, t_img *img);
 
 void	make_overlay(
-				t_img *img, t_img *overlay, double offset_y, double offset_x)
+				t_global *glb, double offset_y, double offset_x, double pwr)
 {
 	t_circle	circle;
+	t_img		*overlay;
+	t_img		*img;
 
-	circle.radius = 240;
-	circle.inner_radius = circle.radius * 0.70;
+	overlay = &glb->overlay;
+	img = &glb->img;
+	if (pwr == 255.0)
+		pwr = 1.0;
+	circle.radius = 260;
+	circle.inner_radius = circle.radius * 0.8 * pwr;
 	circle.cy = overlay->height / 2 + offset_y;
 	circle.cx = overlay->width / 2 + offset_x;
 	circle.top = ceil(circle.cy - circle.radius);
@@ -39,7 +45,6 @@ void	make_overlay(
 
 void	draw_faded_circle(t_circle *circle, t_img *overlay, t_img *img)
 {
-	circle->inner_radius = circle->radius * 0.70;
 	while (circle->y <= circle->bottom)
 	{
 		update_line_info(circle, circle->radius);

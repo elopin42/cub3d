@@ -6,13 +6,13 @@
 #    By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 22:27:47 by elopin            #+#    #+#              #
-#    Updated: 2025/09/06 14:46:38 by lle-cout         ###   ########.fr        #
+#    Updated: 2025/09/10 00:35:16 by lle-cout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = cc
-CFLAGS = -std=gnu11 -Wall -Wextra -ggdb # -O3 -flto -ffast-math -march=native -pipe
+CFLAGS = -std=gnu11 -Wall -Wextra -ggdb -O3 -flto -ffast-math -march=native -pipe
 LINK = -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz
 
 MAKE = make --no-print-directory

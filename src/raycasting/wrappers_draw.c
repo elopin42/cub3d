@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 12:32:06 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/06 14:54:18 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 23:41:16 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	update_offset(t_global *glb, double *offset_x, double *offset_y)
 	if (is_player_moving(glb) == true)
 	{
 		freq = 5.0;
-		amp = 8.0;
+		amp = 10.0;
 	}
 	else
 	{
@@ -54,6 +54,6 @@ void	draw_flashlight(t_global *glb, double offset_y, double offset_x)
 
 void	draw_overlay(t_global *glb, double offset_y, double offset_x)
 {
-	make_overlay(&glb->img, &glb->overlay, offset_y, offset_x);
+	make_overlay(glb, offset_y, offset_x, glb->light_pwr);
 	draw_xpm_to_img(&glb->img, &glb->overlay, 0, 0);
 }

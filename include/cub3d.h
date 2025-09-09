@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/09 19:06:55 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 23:43:43 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,9 @@ void			draw_wall_texture(t_global *glb, int x, t_img *tex);
 
 // flashlight.c
 void			flashlight_switch(bool *state);
+void			update_light_state(t_global *glb);
+void			handle_torch_on(t_global *glb);
+void			handle_glitch_effect(t_global *glb, long now);
 
 // minimap.c
 void			draw_square(t_global *glb, int x, int y, int d);
@@ -179,8 +182,7 @@ void			set_map_dimensions(t_global *glb);
 
 // overlay.c
 void			make_overlay(
-					t_img *img, t_img *overlay,
-					double offset_y, double offset_x);
+					t_global *glb, double offset_y, double offset_x, double pwr);
 void			draw_faded_circle(t_circle *circle, t_img *overlay, t_img *img);
 
 // pixel_draw_utils.c
@@ -203,8 +205,8 @@ void			show_congratulations(t_global *glb);
 void			put_fps_counter(t_global *glb);
 
 //get_data.c
-int	get_tex_y(t_global *glb, int y, double step);
-int	get_tex_x(t_global *glb, double wall_x);
+int				get_tex_y(t_global *glb, int y, double step);
+int				get_tex_x(t_global *glb, double wall_x);
 
 // wrappers_craw.c
 bool			is_player_moving(t_global *glb);

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/09 19:06:34 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/09 23:43:20 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,32 +78,19 @@ void	draw_vertical_line(t_global *glb, int x)
 	draw_floor(glb, x);
 }
 
-void	update_light_state(t_global *glb)
-{
-	if (glb->lightoff == true)
-	{
-		glb->texture.cur_hand = &glb->texture.hand[0];
-		glb->light_pwr = glb->texture.hand[0].light_pwr;
-	}
-	else
-	{
-		glb->texture.cur_hand = &glb->texture.hand[9];
-		glb->light_pwr = glb->texture.hand[9].light_pwr;
-	}
-}
-
-
 void	draw_scene(t_global *glb)
 {
 	int				x;
+	int				width;
 	static double	offset_x = 0;
 	static double	offset_y = 0;
 
 	update_light_state(glb);
 	update_offset(glb, &offset_x, &offset_y);
 	x = 350 + offset_x;
+	width = 930 + offset_x;
 	// ft_bzero(glb->img.addr, glb->img.line_length * glb->img.height);
-	while (++x < 930 + offset_x)
+	while (++x < width)
 		draw_vertical_line(glb, x);
 	draw_overlay(glb, offset_y, offset_x);
 	draw_flashlight(glb, offset_y, offset_x);
