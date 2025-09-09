@@ -122,7 +122,7 @@ void	perform_dda_ignoring_doors(t_global *glb, t_ray *ray)
 			ray->side = 1;
 		}
 		tile = glb->map[ray->map_y][ray->map_x];
-		if (tile == '1' || tile == 'D')
+		if (tile == '1' || tile == 'D' || tile == 'Q')
 			hit = 1;
 		else if (!is_valid_map_position(glb, ray->map_x, ray->map_y))
 			hit = 1;

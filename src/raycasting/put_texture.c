@@ -22,10 +22,10 @@ void	put_pixel(t_img *img, int x, int y, int color)
 
 t_img	*select_wall_texture(t_global *glb)
 {
-	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
-		return (&glb->texture.door);
 	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'Q')
 		return (&glb->texture.exit);
+	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
+		return (&glb->texture.door);
 	if (glb->ray.side == 0 && glb->ray.ray_dir_x > 0)
 		return (&glb->texture.ouest);
 	if (glb->ray.side == 0 && glb->ray.ray_dir_x < 0)
