@@ -187,6 +187,7 @@ typedef struct s_global
 	char					**map_clone;
 	bool					key_left;
 	bool					key_right;
+  bool          key_q;
 	bool					key_w;
 	bool					key_s;
 	bool					key_a;

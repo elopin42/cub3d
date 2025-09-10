@@ -20,6 +20,7 @@
 # define KEY_A 97
 # define KEY_D 100
 # define KEY_E 101
+# define KEY_Q 113
 # define KEY_TABU 65289
 # define MINIMAP_START_X 10
 # define MINIMAP_START_Y 10

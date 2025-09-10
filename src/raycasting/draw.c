@@ -93,7 +93,8 @@ void	draw_scene(t_global *glb)
 		draw_vertical_line(glb, x);
 	draw_overlay(glb, offset_y, offset_x);
 	draw_flashlight(glb, offset_y, offset_x);
-	draw_minimap(glb);
+  if (!glb->key_q)
+	  draw_minimap(glb);
 	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0,
 		0);
 	put_fps_counter(glb);

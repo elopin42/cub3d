@@ -60,6 +60,13 @@ int	key_press(int keycode, t_global *glb)
 		glb->key_d = true;
 	if (keycode == KEY_TABU)
 		glb->key_tabu = true;
+	if (keycode == KEY_Q)
+  {
+    if (glb->key_q)
+		  glb->key_q = false;
+    else
+      glb->key_q = true;
+  }
 	return (0);
 }
 
