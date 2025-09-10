@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:44:41 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 00:13:16 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 12:18:02 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	make_overlay(
 	img = &glb->img;
 	if (pwr == 255.0)
 		pwr = 1.0;
-	circle.radius = 260;
+	if (pwr == 0)
+		circle.radius = 0;
+	else
+		circle.radius = 260;
 	circle.inner_radius = circle.radius * 0.8 * pwr;
 	circle.cy = overlay->height / 2 + offset_y;
 	circle.cx = overlay->width / 2 + offset_x;
