@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcul_for_draw.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:52:07 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/04 23:14:02 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:47:46 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,27 @@ void	calculate_step_and_side_dist(t_global *glb)
 	}
 }
 
+static int	is_dda_hit(t_global *glb)
+{
+	if (!is_valid_map_position(glb, glb->ray.map_x, glb->ray.map_y)
+		|| glb->map[glb->ray.map_y][glb->ray.map_x] == '1')
+		return (1);
+	if ((!is_valid_map_position(glb, glb->ray.map_x, glb->ray.map_y)
+			|| glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
+		&& glb->el_muros_invisible)
+		return (1);
+	if ((!is_valid_map_position(glb, glb->ray.map_x, glb->ray.map_y)
+			|| glb->map[glb->ray.map_y][glb->ray.map_x] == 'Q')
+		&& glb->el_muros_invisible)
+		return (1);
+	return (0);
+}
+
 void	perform_dda(t_global *glb)
 {
-	int (hit) = 0;
+	int	hit;
+
+	hit = 0;
 	while (hit == 0)
 	{
 		if (glb->ray.side_dist_x < glb->ray.side_dist_y)
@@ -70,17 +88,7 @@ void	perform_dda(t_global *glb)
 			glb->ray.map_y += glb->ray.step_y;
 			glb->ray.side = 1;
 		}
-		if (!is_valid_map_position(glb, glb->ray.map_x, glb->ray.map_y)
-			|| glb->map[glb->ray.map_y][glb->ray.map_x] == '1')
-			hit = 1;
-		if ((!is_valid_map_position(glb, glb->ray.map_x, glb->ray.map_y)
-				|| glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
-			&& glb->el_muros_invisible)
-			hit = 1;
-		if ((!is_valid_map_position(glb, glb->ray.map_x, glb->ray.map_y)
-				|| glb->map[glb->ray.map_y][glb->ray.map_x] == 'Q')
-			&& glb->el_muros_invisible)
-			hit = 1;
+		hit = is_dda_hit(glb);
 	}
 }
 
@@ -99,32 +107,4 @@ void	calculate_wall_distance(t_global *glb)
 		glb->ray.draw_start = 0;
 	if (glb->ray.draw_end >= glb->h)
 		glb->ray.draw_end = glb->h - 1;
-}
-
-void	perform_dda_ignoring_doors(t_global *glb, t_ray *ray)
-{
-	int		hit;
-	char	tile;
-
-	hit = 0;
-	while (!hit)
-	{
-		if (ray->side_dist_x < ray->side_dist_y)
-		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->map_x += ray->step_x;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->map_y += ray->step_y;
-			ray->side = 1;
-		}
-		tile = glb->map[ray->map_y][ray->map_x];
-		if (tile == '1' || tile == 'D' || tile == 'Q')
-			hit = 1;
-		else if (!is_valid_map_position(glb, ray->map_x, ray->map_y))
-			hit = 1;
-	}
 }

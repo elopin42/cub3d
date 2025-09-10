@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/09 23:43:20 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:45:46 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_floor(t_global *glb, int x)
 	int				tex_x;
 	int				tex_y;
 	unsigned int	color;
-  int y;
+	int				y;
 
 	y = glb->ray.draw_end;
 	while (++y < glb->h)
@@ -89,13 +89,12 @@ void	draw_scene(t_global *glb)
 	update_offset(glb, &offset_x, &offset_y);
 	x = 350 + offset_x;
 	width = 930 + offset_x;
-	// ft_bzero(glb->img.addr, glb->img.line_length * glb->img.height);
 	while (++x < width)
 		draw_vertical_line(glb, x);
 	draw_overlay(glb, offset_y, offset_x);
 	draw_flashlight(glb, offset_y, offset_x);
 	draw_minimap(glb);
-	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win,
-		glb->img.img, 0, 0);
+	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0,
+		0);
 	put_fps_counter(glb);
 }

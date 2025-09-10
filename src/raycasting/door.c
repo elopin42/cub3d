@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:18:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/04 22:58:03 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:47:56 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,33 @@ void	ft_door(t_global *glb)
 	{
 		glb->map[glb->d_y][glb->d_x] = 'D';
 		glb->map_clone[glb->d_y][glb->d_x] = 'D';
+	}
+}
+
+void	perform_dda_ignoring_doors(t_global *glb, t_ray *ray)
+{
+	int		hit;
+	char	tile;
+
+	hit = 0;
+	while (!hit)
+	{
+		if (ray->side_dist_x < ray->side_dist_y)
+		{
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
+		}
+		else
+		{
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
+		}
+		tile = glb->map[ray->map_y][ray->map_x];
+		if (tile == '1' || tile == 'D' || tile == 'Q')
+			hit = 1;
+		else if (!is_valid_map_position(glb, ray->map_x, ray->map_y))
+			hit = 1;
 	}
 }

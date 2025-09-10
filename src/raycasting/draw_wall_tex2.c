@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall_tex2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 17:56:14 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 00:07:48 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:10:39 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
 // Effet torche ici (jouer avec le facteur)
-unsigned int	apply_distance_effect(unsigned int color, double dist, double light_pwr)
+unsigned int	apply_distance_effect(unsigned int color, double dist,
+		double light_pwr)
 {
 	double	d;
 	double	factor;
@@ -28,7 +29,6 @@ unsigned int	apply_distance_effect(unsigned int color, double dist, double light
 		factor = 1.0 / (d * d * d + 1.0);
 		if (factor < 0.02)
 			factor = 0.02;
-
 		color = effet_noir(color, factor);
 	}
 	return (color);
@@ -42,7 +42,8 @@ unsigned int	get_normal_wall_color(t_global *glb, t_img *tex, int tex_x,
 
 	pixel = tex->addr + tex_y * tex->line_length + tex_x * (tex->bpp / 8);
 	color = *(unsigned int *)pixel;
-	return (apply_distance_effect(color, glb->ray.perp_wall_dist, glb->light_pwr));
+	return (apply_distance_effect(color, glb->ray.perp_wall_dist,
+			glb->light_pwr));
 }
 
 unsigned int	handle_door_opening(t_global *glb, int x, int y)

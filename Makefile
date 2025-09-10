@@ -6,7 +6,7 @@
 #    By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 22:27:47 by elopin            #+#    #+#              #
-#    Updated: 2025/09/10 11:54:50 by lle-cout         ###   ########.fr        #
+#    Updated: 2025/09/10 17:04:09 by elopin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ MLX = mlx/libmlx.a
 SRCS = src/parser/check_config.c src/parser/error_handlers.c src/parser/flood_fill.c src/parser/format_map.c src/parser/get_config.c src/parser/get_map.c src/parser/load_file.c src/parser/parser.c src/parser/utils.c src/parser/rgb_check.c \
 	src/init_game/error_handlers.c src/init_game/init.c src/init_game/light.c src/init_game/textures.c \
 	src/raycasting/calcul_for_draw.c src/raycasting/cam_moove.c src/raycasting/destroy.c src/raycasting/door.c src/raycasting/draw.c src/raycasting/draw_wall_tex2.c src/raycasting/draw_wall_tex.c src/raycasting/flashlight.c \
-	src/main.c src/raycasting/put_texture.c src/raycasting/small_function.c src/raycasting/minimap.c src/raycasting/pixel_draw_utils.c src/raycasting/overlay.c src/raycasting/wrappers_draw.c src/raycasting/get_data.c
+	src/main.c src/raycasting/put_texture.c src/raycasting/small_function.c src/raycasting/minimap.c src/raycasting/pixel_draw_utils.c src/raycasting/overlay.c src/raycasting/wrappers_draw.c src/raycasting/get_data.c src/raycasting/draw_wall_tex_main.c
 
 OBJ_DIR = obj
 OBJ = $(SRCS:%.c=$(OBJ_DIR)/%.o)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   small_function.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 22:39:29 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/04 22:55:48 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:45:32 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void	show_congratulations(t_global *glb)
 	int		img_width;
 	int		img_height;
 
-  printf("you won!!\n");
+	printf("you won!!\n");
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 1280, 700, "Congratulations");
-	img = mlx_xpm_file_to_image(mlx, "textures/congratulation.xpm",
-			&img_width, &img_height);
+	img = mlx_xpm_file_to_image(mlx, "textures/congratulation.xpm", &img_width,
+			&img_height);
 	if (img)
 		mlx_put_image_to_window(mlx, win, img, 0, 0);
 	mlx_string_put(mlx, win, 100, 80, 0x00FF00, "CONGRATULATIONS !");
@@ -68,34 +68,5 @@ void	show_congratulations(t_global *glb)
 		mlx_destroy_image(mlx, img);
 	mlx_destroy_window(mlx, win);
 	free(mlx);
-  ft_clean_all(glb, 0);
-}
-
-void	put_fps_counter(t_global *glb)
-{
-	static t_fps			fps;
-	struct timeval			cur_time;
-	long					elapsed;
-	char					*fps_str;
-
-	gettimeofday(&cur_time, NULL);
-	fps.frame_count++;
-	if (fps.last_time.tv_sec == 0 && fps.last_time.tv_usec == 0)
-		fps.last_time = cur_time;
-	elapsed = (cur_time.tv_sec - fps.last_time.tv_sec)
-		* 1000000 + (cur_time.tv_usec - fps.last_time.tv_usec);
-	if (elapsed >= 1000000)
-	{
-		fps.fps = fps.frame_count;
-		fps.frame_count = 0;
-		fps.last_time = cur_time;
-	}
-	if (fps.fps == 0)
-		return ;
-	fps_str = ft_itoa(fps.fps);
-	if (fps_str == NULL)
-		return ;
-	mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win,
-		1255, 10, 0xFFFFFFFF, fps_str);
-	free(fps_str);
+	ft_clean_all(glb, 0);
 }

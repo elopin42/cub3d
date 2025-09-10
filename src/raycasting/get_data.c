@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_data.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/10 16:22:17 by elopin            #+#    #+#             */
+/*   Updated: 2025/09/10 16:22:18 by elopin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 int	get_tex_x(t_global *glb, double wall_x)
@@ -27,4 +39,3 @@ int	get_tex_y(t_global *glb, int y, double step)
 		tex_y += glb->door_params.tmp_tex->height;
 	return (tex_y);
 }
-

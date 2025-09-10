@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flashlight.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 20:25:22 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/09 22:14:43 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:10:47 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	handle_torch_on(t_global *glb)
 	long		now;
 
 	now = get_current_time_ms();
-
 	if (in_glitch == true)
 	{
 		if (now >= glitch_end)
@@ -62,7 +61,7 @@ void	handle_torch_on(t_global *glb)
 
 void	handle_glitch_effect(t_global *glb, long now)
 {
-	int		i;
+	int			i;
 	static long	last_change = 0;
 
 	if (now - last_change > (100 + rand() % 1000))

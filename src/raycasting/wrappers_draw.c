@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wrappers_draw.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 12:32:06 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/09 23:41:16 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:11:13 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 bool	is_player_moving(t_global *glb)
 {
-	return (glb->key_a == true || glb->key_d == true
-		|| glb->key_s == true || glb->key_w == true);
+	return (glb->key_a == true || glb->key_d == true || glb->key_s == true
+		|| glb->key_w == true);
 }
 
 void	update_offset(t_global *glb, double *offset_x, double *offset_y)
@@ -48,8 +48,8 @@ void	draw_flashlight(t_global *glb, double offset_y, double offset_x)
 	k = 0.08;
 	hand_x += (offset_x - hand_x) * k;
 	hand_y += (offset_y - hand_y) * k;
-	draw_xpm_to_img(&glb->img, glb->texture.cur_hand,
-		350 + hand_y, 720 + hand_x);
+	draw_xpm_to_img(&glb->img, glb->texture.cur_hand, 350 + hand_y, 720
+		+ hand_x);
 }
 
 void	draw_overlay(t_global *glb, double offset_y, double offset_x)

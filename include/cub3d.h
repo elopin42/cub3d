@@ -3,17 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/09 23:43:43 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:11:22 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
+# include "macros.h"
+# include "structs.h"
 # include <X11/Xlib.h>
+# include <X11/keysym.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>
@@ -23,11 +28,6 @@
 # include <string.h>
 # include <sys/time.h>
 # include <time.h>
-# include <X11/keysym.h>
-# include "../libft/libft.h"
-# include "../mlx/mlx.h"
-# include "macros.h"
-# include "structs.h"
 
 /* --------------- PARSER --------------- */
 
@@ -155,7 +155,8 @@ void			draw_vertical_line(t_global *glb, int x);
 void			draw_scene(t_global *glb);
 
 // draw_wall_tex2.c
-unsigned int	apply_distance_effect(unsigned int color, double dist, double light_pwr);
+unsigned int	apply_distance_effect(unsigned int color, double dist,
+					double light_pwr);
 unsigned int	get_normal_wall_color(t_global *glb, t_img *tex, int tex_x,
 					int tex_y);
 unsigned int	handle_door_opening(t_global *glb, int x, int y);
@@ -181,8 +182,8 @@ void			draw_minimap(t_global *glb);
 void			set_map_dimensions(t_global *glb);
 
 // overlay.c
-void			make_overlay(
-					t_global *glb, double offset_y, double offset_x, double pwr);
+void			make_overlay(t_global *glb, double offset_y, double offset_x,
+					double pwr);
 void			draw_faded_circle(t_circle *circle, t_img *overlay, t_img *img);
 
 // pixel_draw_utils.c
@@ -204,17 +205,16 @@ unsigned int	ft_uni(t_rgb rgb);
 void			show_congratulations(t_global *glb);
 void			put_fps_counter(t_global *glb);
 
-//get_data.c
+// get_data.c
 int				get_tex_y(t_global *glb, int y, double step);
 int				get_tex_x(t_global *glb, double wall_x);
 
 // wrappers_craw.c
 bool			is_player_moving(t_global *glb);
-void			update_offset(
-					t_global *glb, double *offset_x, double *offset_y);
-void			draw_overlay(
-					t_global *glb, double offset_y, double offset_x);
-void			draw_flashlight(
-					t_global *glb, double offset_y, double offset_x);
+void			update_offset(t_global *glb, double *offset_x,
+					double *offset_y);
+void			draw_overlay(t_global *glb, double offset_y, double offset_x);
+void			draw_flashlight(t_global *glb, double offset_y,
+					double offset_x);
 
 #endif

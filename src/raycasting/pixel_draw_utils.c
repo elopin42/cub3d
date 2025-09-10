@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_draw_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 18:03:08 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/05 12:11:52 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:44:02 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ void	put_pixel_to_img(t_img *img, int color, int y, int x)
 
 unsigned int	get_pixel_color(t_img *img, int y, int x)
 {
-	return (*(unsigned int *)(img->addr + (y * img->line_length)
-		+ (x * img->bpp / 8)));
+	return (*(unsigned int *)(img->addr + (y * img->line_length) + (x * img->bpp
+			/ 8)));
 }

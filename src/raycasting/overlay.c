@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   overlay.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:44:41 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 12:18:02 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:10:57 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
 static inline void	update_line_info(t_circle *circle, int radius);
-static inline void	put_circle_pixel(
-						t_circle *circle, t_img *overlay, t_img *img);
+static inline void	put_circle_pixel(t_circle *circle, t_img *overlay,
+						t_img *img);
 
-void	make_overlay(
-				t_global *glb, double offset_y, double offset_x, double pwr)
+void	make_overlay(t_global *glb, double offset_y, double offset_x,
+		double pwr)
 {
 	t_circle	circle;
 	t_img		*overlay;
@@ -71,8 +71,8 @@ static inline void	update_line_info(t_circle *circle, int radius)
 	circle->x = circle->left;
 }
 
-static inline void	put_circle_pixel(
-								t_circle *circle, t_img *overlay, t_img *img)
+static inline void	put_circle_pixel(t_circle *circle, t_img *overlay,
+		t_img *img)
 {
 	circle->color = get_pixel_color(img, circle->y, circle->x);
 	circle->distance = sqrt((circle->x - circle->cx) * (circle->x - circle->cx)
