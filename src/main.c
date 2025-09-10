@@ -91,8 +91,16 @@ int	key_release(int keycode, t_global *glb)
 	return (true);
 } */
 
+//120000
+
 int	update(t_global *glb)
 {
+  if (get_current_time_ms() - glb->start >= 12000)
+  {
+    game_over(glb);
+    sleep(5);
+    ft_clean_all(glb, 0);
+  }
 	if (glb->key_w)
 		move_player(glb, 1);
 	if (glb->key_s)

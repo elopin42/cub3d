@@ -209,6 +209,7 @@ typedef struct s_global
 	int						square_size;
 	long					door_timing;
 	double					light_pwr;
+  long            start;
 }							t_global;
 
 #endif

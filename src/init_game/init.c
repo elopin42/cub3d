@@ -22,6 +22,7 @@ void	init_game(t_global *glb, t_parsing *parser)
 	if (!glb->smlx.mlx_win)
 		init_mlx_error(glb, parser, MLXIMGADDR);
 	parser->config = ft_free_array(parser->config);
+  glb->start = get_current_time_ms();
 }
 
 void	init_glb_values(t_global *glb, t_parsing *parser)

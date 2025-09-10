@@ -217,4 +217,7 @@ void			draw_overlay(t_global *glb, double offset_y, double offset_x);
 void			draw_flashlight(t_global *glb, double offset_y,
 					double offset_x);
 
+// game_over.c
+void      game_over(t_global *glb);
+
 #endif
