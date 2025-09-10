@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:18:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/09 19:41:42 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 19:55:21 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@
 # define MLXIMGADDR "mlx_get_data_addr() failed\n"
 # define MLXXPM "mlx_xpm_file_to_image() failed\n"
 
-# define NORTH "textures/north.xpm"
-# define SOUTH "textures/south.xpm"
-# define EAST "textures/east.xpm"
-# define WEST "textures/west.xpm"
+# define DEFAULT "textures/wall.xpm"
 
 #endif
