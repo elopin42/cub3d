@@ -6,9 +6,11 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 16:42:41 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/10 17:35:35 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdbool.h>
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
