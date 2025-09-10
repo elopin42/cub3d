@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 20:17:13 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 23:30:29 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_glb_values(t_global *glb, t_parsing *parser)
 	glb->h = WIN_HEIGHT;
 	glb->map = parser->map;
 	glb->map_clone = parser->map_copy;
-	glb->lightoff = false;
+	glb->lightoff = true;
 	if (parser->ceiling_set == true)
 	{
 		glb->texture.sky.is_rgb = true;

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 01:26:54 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 23:28:48 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,6 @@ int	key_press(int keycode, t_global *glb)
 		glb->key_d = true;
 	if (keycode == KEY_TABU)
 		glb->key_tabu = true;
-	if (keycode == KEY_Q)
-  {
-    if (glb->key_q)
-		  glb->key_q = false;
-    else
-      glb->key_q = true;
-  }
 	return (0);
 }
 
@@ -87,7 +80,9 @@ int	key_release(int keycode, t_global *glb)
 	if (keycode == KEY_D)
 		glb->key_d = false;
 	if (keycode == XK_f)
-		flashlight_switch(&glb->lightoff);
+		switch_bool(&glb->lightoff);
+	if (keycode == XK_q)
+		switch_bool(&glb->key_q);
 	return (0);
 }
 
