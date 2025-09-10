@@ -4,21 +4,28 @@
 
 void	game_over(t_global *glb)
 {
-    int x, y;
-    int step_x = 200;  // espacement horizontal entre les textes
-    int step_y = 50;   // hauteur d'une ligne de texte
-    int color = 0xFF0000; // rouge
+    int x;
+    int y;
+    int step_x;
+    int step_y;
 
-    // Parcours de l'écran verticalement
-    for (y = 0; y < WIN_HEIGHT; y += step_y)
+    step_x = 200;
+    step_y = 50;
+    y = 0;
+    ft_bzero(glb->img.addr, glb->img.line_length * glb->img.height);
+    mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0, 0);
+    while(y < WIN_HEIGHT)
     {
-        // On écrit "GAME OVER" plusieurs fois sur la ligne
-        for (x = 0; x < WIN_WIDTH; x += step_x)
+        while(x < WIN_WIDTH)
         {
-            mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win, x, y, color, "GAME OVER");
+            mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win, x, y, 0xFF0000, "GAME OVER");
+            x += step_x;
         }
         mlx_do_sync(glb->smlx.mlx);
-        // Mettre à jour la fenêtre progressivement
-        usleep(300000); // 0.1 seconde par ligne pour effet progressif
+        usleep(300000);
+        y += step_y;
+        x = 0;
     }
+    sleep(5);
+    ft_clean_all(glb, 0);
 }
