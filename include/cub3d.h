@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 17:11:22 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/10 19:10:48 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../libft/libft.h"
-# include "../mlx/mlx.h"
-# include "macros.h"
-# include "structs.h"
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
 # include <errno.h>
@@ -28,6 +24,10 @@
 # include <string.h>
 # include <sys/time.h>
 # include <time.h>
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
+# include "macros.h"
+# include "structs.h"
 
 /* --------------- PARSER --------------- */
 

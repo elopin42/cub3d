@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   small_function.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 22:39:29 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 16:45:32 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/10 19:14:23 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	show_congratulations(t_global *glb)
 	if (img)
 		mlx_destroy_image(mlx, img);
 	mlx_destroy_window(mlx, win);
+	mlx_destroy_display(mlx);
 	free(mlx);
 	ft_clean_all(glb, 0);
 }

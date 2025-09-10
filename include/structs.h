@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 17:35:35 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/10 19:09:55 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdbool.h>
 
 #ifndef STRUCTS_H
 # define STRUCTS_H

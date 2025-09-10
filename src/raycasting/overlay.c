@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   overlay.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:44:41 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 16:10:57 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/10 19:08:32 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	make_overlay(t_global *glb, double offset_y, double offset_x,
 	if (pwr == 0)
 		circle.radius = 0;
 	else
-		circle.radius = 260;
+		circle.radius = 300;
 	circle.inner_radius = circle.radius * 0.8 * pwr;
 	circle.cy = overlay->height / 2 + offset_y;
 	circle.cx = overlay->width / 2 + offset_x;
