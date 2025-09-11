@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 19:09:55 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/10 23:57:45 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ typedef struct s_global
 	char					**map_clone;
 	bool					key_left;
 	bool					key_right;
-  bool          key_q;
+	bool					key_q;
 	bool					key_w;
 	bool					key_s;
 	bool					key_a;
@@ -209,7 +209,9 @@ typedef struct s_global
 	int						square_size;
 	long					door_timing;
 	double					light_pwr;
-  long            start;
+	long					start;
+	long					now;
+	int						fps;
 }							t_global;
 
 #endif
