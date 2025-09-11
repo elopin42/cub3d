@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 23:27:27 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 01:18:15 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,6 @@ void			draw_flashlight(t_global *glb, double offset_y,
 					double offset_x);
 
 // game_over.c
-void      game_over(t_global *glb);
+void			game_over(t_global *glb);
 
 #endif
