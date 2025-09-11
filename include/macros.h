@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:18:24 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/11 13:31:06 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:38:02 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@
 # define SPACES " \f\n\r\t\v"
 
 # define TOTAL_TIME 120000
+
+# define HELPSH "Press h to hide help"
+# define HELPDR "Press e to open doors"
+# define HELPM "Press q to toggle minimap"
+# define HELPL "Press f to toggle flashlight"
 
 # define ERR "\x1b[31mError\x1b[0m: "
 

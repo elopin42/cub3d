@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 14:13:14 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:28:00 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ void			handle_glitch_effect(t_global *glb, long now);
 
 // hud_info.c
 void			put_timer(t_global *glb);
+void			show_help(t_global *glb);
 
 // minimap.c
 void			draw_square(t_global *glb, int x, int y, int d);
