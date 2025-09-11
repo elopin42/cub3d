@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 15:29:25 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/11 16:32:48 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	draw_floor(t_global *glb, int x)
 	}
 }
 
-/* Fait l'image entière, call par draw_scene */
 bool	draw_vertical_line(t_global *glb, int x)
 {
 	t_img	*tex;
@@ -93,8 +92,7 @@ void	draw_scene(t_global *glb)
 	x = 350 + offset_x;
 	width = 930 + offset_x;
 	while (++x < width)
-		if (!draw_vertical_line(glb, x))
-			return ;
+		draw_vertical_line(glb, x);
 	draw_overlay(glb, offset_y, offset_x);
 	draw_flashlight(glb, offset_y, offset_x);
 	if (glb->key_q)
