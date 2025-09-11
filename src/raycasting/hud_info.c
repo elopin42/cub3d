@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:06:55 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/11 16:08:41 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:23:49 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,18 @@ static inline void	put_timer_hud(t_global *glb, long minutes, long secondes);
 void	put_fps_counter(t_global *glb)
 {
 	static t_fps	fps;
-	struct timeval	cur_time;
 	long			elapsed;
 	char			*fps_str;
 
-	gettimeofday(&cur_time, NULL);
 	fps.frame_count++;
-	if (fps.last_time.tv_sec == 0 && fps.last_time.tv_usec == 0)
-		fps.last_time = cur_time;
-	elapsed = (cur_time.tv_sec - fps.last_time.tv_sec) * 1000000
-		+ (cur_time.tv_usec - fps.last_time.tv_usec);
-	if (elapsed >= 1000000)
+	if (fps.last_time== 0)
+		fps.last_time = glb->now;
+	elapsed = glb->now - fps.last_time;
+	if (elapsed >= 1000)
 	{
 		fps.fps = fps.frame_count;
 		fps.frame_count = 0;
-		fps.last_time = cur_time;
+		fps.last_time = glb->now;
 	}
 	if (fps.fps == 0)
 		return ;
