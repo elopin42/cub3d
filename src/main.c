@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 00:22:08 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 13:27:11 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ int	key_release(int keycode, t_global *glb)
 bool	fps_lock(t_global *glb)
 {
 	static long	last_frame;
-	long		frame_time;
+	double		frame_time;
 
 	frame_time = 1000 / 60;
 	glb->now = get_current_time_ms();
 	if (glb->now - glb->start >= 10000000)
-		game_over(glb); // game over ici
+		game_over(glb);
 	if (glb->now - last_frame < frame_time)
 		return (true);
 	last_frame = glb->now;

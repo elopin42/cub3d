@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 11:44:45 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 14:19:26 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,6 @@ void	draw_vertical_line(t_global *glb, int x)
 	draw_floor(glb, x);
 }
 
-void	put_timer(t_global *glb)
-{
-	const long total = 120000;
-	long elapsed = glb->now - glb->start;
-	long remaining = total - elapsed;
-	long minutes = (remaining / 1000) / 60;
-	long sec = (remaining / 1000) % 60;
-	mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win, 400, 400, 0x11111111, ft_itoa(minutes));
-	mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win, 450, 400, 0x11111111, ft_itoa(sec));
-}
-
 void	draw_scene(t_global *glb)
 {
 	int				x;
@@ -110,4 +99,10 @@ void	draw_scene(t_global *glb)
 		0);
 	put_fps_counter(glb);
 	put_timer(glb);
+		printhelp(glb)
+}
+
+{
+	if (glb->phelp ==falsse)
+		return
 }
