@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:44:41 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 19:08:32 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/12 14:43:58 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ static inline void	put_circle_pixel(t_circle *circle, t_img *overlay,
 				/ (circle->radius - circle->inner_radius));
 	else
 		circle->factor = 0.0;
-	circle->color = effet_noir(circle->color, circle->factor);
+	circle->color = darken_pxl(circle->color, circle->factor);
 	put_pixel_to_img(overlay, circle->color, circle->y, circle->x);
 }

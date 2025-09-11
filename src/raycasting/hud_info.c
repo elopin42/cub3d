@@ -6,12 +6,13 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:06:55 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/11 17:07:41 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/12 14:43:58 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+static void		put_help_line(t_global *glb, int *y, int cl, char *str);
 static inline void	put_timer_hud(t_global *glb, long minutes, long secondes);
 
 void	put_fps_counter(t_global *glb)
@@ -21,7 +22,7 @@ void	put_fps_counter(t_global *glb)
 	char			*fps_str;
 
 	fps.frame_count++;
-	if (fps.last_time== 0)
+	if (fps.last_time == 0)
 		fps.last_time = glb->now;
 	elapsed = glb->now - fps.last_time;
 	if (elapsed >= 1000)
@@ -59,47 +60,57 @@ void	show_help(t_global *glb)
 	void	*mlx_ptr;
 	void	*mlx_win;
 	int		cl;
+	int		y;
 
 	mlx_ptr = glb->smlx.mlx;
 	mlx_win = glb->smlx.mlx_win;
-	cl = 0xFFFFFFFF;
+	if (glb->texture.cur_hand->light_pwr == 0)
+		cl = 0xFFFFFFFF;
+	else
+		cl = darken_pxl(0xFFFFFFFF, glb->texture.cur_hand->light_pwr);
 	if (glb->showhelp == false)
 		return ;
-	mlx_string_put(mlx_ptr, mlx_win, 10, WIN_HEIGHT - 10, cl, HELPSH);
-	mlx_string_put(mlx_ptr, mlx_win, 10, WIN_HEIGHT - 25, cl, HELPDR);
+	y = WIN_HEIGHT - 10;
+	put_help_line(glb, &y, cl, HELPSH);
+	put_help_line(glb, &y, cl, HELPDR);
 	if (glb->showmap == false)
-	{
-		if (glb->lightoff == true)
-		{
-			mlx_string_put(mlx_ptr, mlx_win, 10, WIN_HEIGHT - 40, cl, HELPM);
-			mlx_string_put(mlx_ptr, mlx_win, 10, WIN_HEIGHT - 55, cl, HELPL);
-		}
-		else
-			mlx_string_put(mlx_ptr, mlx_win, 10, WIN_HEIGHT - 40, cl, HELPM);
-	}
-	else if (glb->lightoff == true)
-		mlx_string_put(mlx_ptr, mlx_win, 10, WIN_HEIGHT - 40, cl, HELPL);
+		put_help_line(glb, &y, cl, HELPM);
+	if (glb->lightoff == true)
+		put_help_line(glb, &y, cl, HELPL);
+	if (glb->key_tabu == false)
+		put_help_line(glb, &y, cl, HELPT);
+}
+
+static void	put_help_line(t_global *glb, int *y, int cl, char *str)
+{
+	mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win, 10, *y, cl, str);
+	*y -= 15;
 }
 
 static inline void	put_timer_hud(t_global *glb, long minutes, long secondes)
 {
-	char	*min;
-	char	*sec;
+	char				*min;
+	char				*sec;
+	unsigned int		color;
 
 	min = ft_itoa(minutes);
 	sec = ft_itoa(secondes);
+	if (glb->texture.cur_hand->light_pwr == 0)
+		color = 0xFFFFFFFF;
+	else
+		color = darken_pxl(0xFFFFFFFF, glb->texture.cur_hand->light_pwr);
 	if (min)
 	{
 		mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win,
-			CENTER_X + 10, 10, 0xFFFFFFFF, min);
+			CENTER_X + 10, 10, color, min);
 		free(min);
 	}
 	mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win,
-		CENTER_X, 9, 0xFFFFFFFF, ":");
+		CENTER_X, 9, color, ":");
 	if (sec)
 	{
 		mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win,
-			CENTER_X - 10, 10, 0xFFFFFFFF, sec);
+			CENTER_X - 10, 10, color, sec);
 		free(sec);
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 22:39:29 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/11 16:12:54 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/12 14:43:58 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-unsigned int	effet_noir(unsigned int color, double factor)
+unsigned int	darken_pxl(unsigned int color, double factor)
 {
 	unsigned char	r;
 	unsigned char	g;
@@ -62,7 +62,8 @@ void	show_congratulations(t_global *glb)
 			&img_height);
 	if (img)
 		mlx_put_image_to_window(mlx, win, img, 0, 0);
-	mlx_string_put(mlx, win, CENTER_X - 40, CENTER_Y, 0x00FF00, "CONGRATULATIONS !");
+	mlx_string_put(mlx, win,
+		CENTER_X - 40, CENTER_Y, 0x00FF00, "CONGRATULATIONS !");
 	sleep(5);
 	if (img)
 		mlx_destroy_image(mlx, img);

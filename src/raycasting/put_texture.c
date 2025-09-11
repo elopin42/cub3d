@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:41:37 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 16:37:06 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/12 15:10:46 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	put_pixel(t_img *img, int x, int y, int color)
 
 t_img	*select_wall_texture(t_global *glb)
 {
-	if (glb->ray.map_y == glb->m_h || glb->ray.map_x == glb->m_w)
-		return (NULL);
+	if (glb->ray.map_y < 0)
+		glb->ray.map_y = 0;
+	if (glb->ray.map_x < 0)
+		glb->ray.map_x = 0;
 	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'Q')
 		return (&glb->texture.exit);
 	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')

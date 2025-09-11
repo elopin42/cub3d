@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall_tex2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 17:56:14 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 16:49:07 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/12 14:43:58 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ unsigned int	apply_distance_effect(unsigned int color, double dist,
 		factor = 1.0 / (d * d * d + 1.0);
 		if (factor < 0.02)
 			factor = 0.02;
-		color = effet_noir(color, factor);
+		color = darken_pxl(color, factor);
 	}
 	return (color);
 }

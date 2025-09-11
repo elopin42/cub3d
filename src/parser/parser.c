@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:57:57 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/08/26 03:25:13 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/12 12:06:18 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	handle_arguments(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error: open()");
+		ft_printf(STDERR_FILENO, XPMERROR, argv[1], strerror(errno));
 		exit(EXIT_FAILURE);
 	}
 	return (fd);

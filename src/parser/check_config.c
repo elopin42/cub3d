@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 10:43:39 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/04 22:21:26 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:49:21 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	test_xpm(t_parsing *parsing, char *texture)
 		error = true;
 		ft_printf(STDERR_FILENO, XPMERROR, texture, strerror(errno));
 	}
-	else
+	if (fd != -1)
 		close(fd);
 	if (error == true)
 	{
