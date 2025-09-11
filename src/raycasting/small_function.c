@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 22:39:29 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 19:14:23 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:12:54 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ void	show_congratulations(t_global *glb)
 	int		img_width;
 	int		img_height;
 
-	printf("you won!!\n");
+	printf("Congratulations!\n");
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 1280, 700, "Congratulations");
 	img = mlx_xpm_file_to_image(mlx, "textures/congratulation.xpm", &img_width,
 			&img_height);
 	if (img)
 		mlx_put_image_to_window(mlx, win, img, 0, 0);
-	mlx_string_put(mlx, win, 100, 80, 0x00FF00, "CONGRATULATIONS !");
+	mlx_string_put(mlx, win, CENTER_X - 40, CENTER_Y, 0x00FF00, "CONGRATULATIONS !");
 	sleep(5);
 	if (img)
 		mlx_destroy_image(mlx, img);

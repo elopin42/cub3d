@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 15:28:00 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:11:16 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ void			handle_torch_on(t_global *glb);
 void			handle_glitch_effect(t_global *glb, long now);
 
 // hud_info.c
+void			put_fps_counter(t_global *glb);
 void			put_timer(t_global *glb);
 void			show_help(t_global *glb);
 
@@ -207,7 +208,6 @@ bool			is_valid_map_position(t_global *glb, int x, int y);
 long			get_current_time_ms(void);
 unsigned int	ft_uni(t_rgb rgb);
 void			show_congratulations(t_global *glb);
-void			put_fps_counter(t_global *glb);
 
 // get_data.c
 int				get_tex_y(t_global *glb, int y, double step);
