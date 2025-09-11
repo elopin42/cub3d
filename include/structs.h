@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:17:19 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 23:57:45 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:22:10 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ typedef struct s_player
 
 typedef struct s_fps
 {
-	struct timeval			last_time;
+	long					last_time;
 	int						frame_count;
 	int						fps;
 }							t_fps;
@@ -187,7 +187,7 @@ typedef struct s_global
 	char					**map_clone;
 	bool					key_left;
 	bool					key_right;
-	bool					key_q;
+	bool					showmap;
 	bool					key_w;
 	bool					key_s;
 	bool					key_a;
@@ -196,6 +196,7 @@ typedef struct s_global
 	bool					mouse_locked;
 	bool					key_tabu;
 	bool					lightoff;
+	bool					showhelp;
 	int						w;
 	int						h;
 	int						m_w;
@@ -211,7 +212,6 @@ typedef struct s_global
 	double					light_pwr;
 	long					start;
 	long					now;
-	int						fps;
 }							t_global;
 
 #endif

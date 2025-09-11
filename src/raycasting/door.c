@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:18:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 16:47:56 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/11 16:15:52 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_door(t_global *glb)
 	if (!glb->anim_door && check_door_acces(glb, glb->player.y, glb->player.x,
 			'D'))
 	{
-		glb->door_timing = get_current_time_ms();
+		glb->door_timing = glb->now;
 		init_ray(glb, mid);
 		calculate_step_and_side_dist(glb);
 		perform_dda(glb);

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 16:39:26 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/11 17:07:01 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ int	key_release(int keycode, t_global *glb)
 	if (keycode == XK_f)
 		switch_bool(&glb->lightoff);
 	if (keycode == XK_q)
-		switch_bool(&glb->key_q);
+		switch_bool(&glb->showmap);
+	if (keycode == XK_h)
+		switch_bool(&glb->showhelp);
 	return (0);
 }
 

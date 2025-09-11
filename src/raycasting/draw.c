@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 16:48:38 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/11 17:07:11 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,11 @@ void	draw_scene(t_global *glb)
 		draw_vertical_line(glb, x);
 	draw_overlay(glb, offset_y, offset_x);
 	draw_flashlight(glb, offset_y, offset_x);
-	if (glb->key_q)
+	if (glb->showmap)
 		draw_minimap(glb);
 	mlx_put_image_to_window(glb->smlx.mlx, glb->smlx.mlx_win, glb->img.img, 0,
 		0);
 	put_fps_counter(glb);
 	put_timer(glb);
+	show_help(glb);
 }

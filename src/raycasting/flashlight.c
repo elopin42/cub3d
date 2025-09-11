@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 20:25:22 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 23:27:27 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:17:18 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	handle_torch_on(t_global *glb)
 	static long	glitch_end = 0;
 	long		now;
 
-	now = get_current_time_ms();
+	now = glb->now;
 	if (in_glitch == true)
 	{
 		if (now >= glitch_end)

@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/11 01:20:14 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:01:35 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_glb_values(t_global *glb, t_parsing *parser)
 	glb->map = parser->map;
 	glb->map_clone = parser->map_copy;
 	glb->lightoff = true;
+	glb->showhelp = true;
 	if (parser->ceiling_set == true)
 	{
 		glb->texture.sky.is_rgb = true;
@@ -87,8 +88,10 @@ void	init_hooks(t_global *glb, t_mlx *smlx)
 
 void	load_game_textures(t_global *glb, t_parsing *parser)
 {
-	load_xpm(glb, parser, &glb->texture.sol, "textures/floor.xpm");
-	load_xpm(glb, parser, &glb->texture.sky, "textures/sky.xpm");
+	if (glb->texture.sol.is_rgb == false)
+		load_xpm(glb, parser, &glb->texture.sol, "textures/floor.xpm");
+	if (glb->texture.sky.is_rgb == false)
+		load_xpm(glb, parser, &glb->texture.sky, "textures/sky.xpm");
 	load_xpm(glb, parser, &glb->texture.door, "textures/door.xpm");
 	load_xpm(glb, parser, &glb->texture.exit, "textures/exit.xpm");
 	init_light(glb, parser);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cam_moove.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:29:20 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 16:46:28 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/11 16:08:31 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,33 +91,4 @@ void	move_player(t_global *glb, int direction)
 	if (!set_xy_for_move(glb, &new_x, &new_y, direction))
 		return ;
 	update_player_position(glb, new_x, new_y);
-}
-
-void	put_fps_counter(t_global *glb)
-{
-	static t_fps	fps;
-	struct timeval	cur_time;
-	long			elapsed;
-	char			*fps_str;
-
-	gettimeofday(&cur_time, NULL);
-	fps.frame_count++;
-	if (fps.last_time.tv_sec == 0 && fps.last_time.tv_usec == 0)
-		fps.last_time = cur_time;
-	elapsed = (cur_time.tv_sec - fps.last_time.tv_sec) * 1000000
-		+ (cur_time.tv_usec - fps.last_time.tv_usec);
-	if (elapsed >= 1000000)
-	{
-		fps.fps = fps.frame_count;
-		fps.frame_count = 0;
-		fps.last_time = cur_time;
-	}
-	if (fps.fps == 0)
-		return ;
-	fps_str = ft_itoa(fps.fps);
-	if (fps_str == NULL)
-		return ;
-	mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win, 1255, 10, 0xFFFFFFFF,
-		fps_str);
-	free(fps_str);
 }
