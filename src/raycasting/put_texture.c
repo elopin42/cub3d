@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:41:37 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 16:15:30 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/11 15:24:32 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	put_pixel(t_img *img, int x, int y, int color)
 
 t_img	*select_wall_texture(t_global *glb)
 {
+	if (glb->ray.map_y == glb->m_h || glb->ray.map_x == glb->m_w)
+		return (NULL);
 	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'Q')
 		return (&glb->texture.exit);
 	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')

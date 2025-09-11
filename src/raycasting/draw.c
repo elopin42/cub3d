@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 14:26:43 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:29:25 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	draw_floor(t_global *glb, int x)
 }
 
 /* Fait l'image entière, call par draw_scene */
-void	draw_vertical_line(t_global *glb, int x)
+bool	draw_vertical_line(t_global *glb, int x)
 {
 	t_img	*tex;
 
@@ -74,8 +74,11 @@ void	draw_vertical_line(t_global *glb, int x)
 	calculate_wall_distance(glb);
 	draw_ceiling_and_sky(glb, x);
 	tex = select_wall_texture(glb);
+	if (!tex)	
+		return (false);
 	draw_wall_texture(glb, x, tex);
 	draw_floor(glb, x);
+	return (true);
 }
 
 void	draw_scene(t_global *glb)
@@ -90,7 +93,8 @@ void	draw_scene(t_global *glb)
 	x = 350 + offset_x;
 	width = 930 + offset_x;
 	while (++x < width)
-		draw_vertical_line(glb, x);
+		if (!draw_vertical_line(glb, x))
+			return ;
 	draw_overlay(glb, offset_y, offset_x);
 	draw_flashlight(glb, offset_y, offset_x);
 	if (glb->key_q)

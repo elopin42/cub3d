@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 14:13:14 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:25:45 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void			ft_door(t_global *glb);
 // draw.c
 void			draw_ceiling_and_sky(t_global *glb, int x);
 void			draw_floor(t_global *glb, int x);
-void			draw_vertical_line(t_global *glb, int x);
+bool			draw_vertical_line(t_global *glb, int x);
 void			draw_scene(t_global *glb);
 
 // draw_wall_tex2.c
