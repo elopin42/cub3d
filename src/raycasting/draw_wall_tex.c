@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:57:45 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 16:41:42 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/11 14:10:40 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,36 @@ void	calculate_secondary_ray(t_global *glb)
 
 unsigned int	draw_wall_behind_door(t_global *glb, int y)
 {
-	double	tmp_wall_x;
-	double	tmp_step;
-	int		tmp_tex_x;
-	int		tmp_tex_y;
-	char	*pixel_tmp;
+	double			tmp_wall_x;
+	double			tmp_step;
+	int				tmp_tex_x;
+	int				tmp_tex_y;
+	unsigned int	color;
+	t_ray			*r = &glb->door_params.tmp_ray;
+	t_img			*tex = glb->door_params.tmp_tex;
 
-	if (glb->door_params.tmp_ray.side == 0)
-		tmp_wall_x = glb->player.y + glb->door_params.tmp_dist
-			* glb->door_params.tmp_ray.ray_dir_y;
+	if (r->side == 0)
+		tmp_wall_x = glb->player.y + glb->door_params.tmp_dist * r->ray_dir_y;
 	else
-		tmp_wall_x = glb->player.x + glb->door_params.tmp_dist
-			* glb->door_params.tmp_ray.ray_dir_x;
+		tmp_wall_x = glb->player.x + glb->door_params.tmp_dist * r->ray_dir_x;
 	tmp_wall_x -= floor(tmp_wall_x);
-	tmp_tex_x = get_tex_x(glb, tmp_wall_x);
-	tmp_step = (double)glb->door_params.tmp_tex->height
-		/ glb->door_params.tmp_line_height;
-	tmp_tex_y = get_tex_y(glb, y, tmp_step);
-	pixel_tmp = glb->door_params.tmp_tex->addr + tmp_tex_y
-		* glb->door_params.tmp_tex->line_length + tmp_tex_x
-		* (glb->door_params.tmp_tex->bpp / 8);
-	unsigned int (color) = *(unsigned int *)pixel_tmp;
-	return (apply_distance_effect(color, glb->door_params.tmp_dist,
-			glb->light_pwr));
+	tmp_tex_x = (int)(tmp_wall_x * tex->width);
+	if (r->side == 0 && r->ray_dir_x > 0)
+		tmp_tex_x = tex->width - tmp_tex_x - 1;
+	if (r->side == 1 && r->ray_dir_y < 0)
+		tmp_tex_x = tex->width - tmp_tex_x - 1;
+	if (tmp_tex_x < 0) tmp_tex_x = 0;
+	if (tmp_tex_x >= tex->width) tmp_tex_x = tex->width - 1;
+	tmp_step = (double)tex->height / (double)glb->door_params.tmp_line_height;
+	tmp_tex_y = (int)((y - glb->door_params.tmp_draw_start) * tmp_step);
+	if (tmp_tex_y < 0) tmp_tex_y = 0;
+	if (tmp_tex_y >= tex->height) tmp_tex_y = tex->height - 1;
+
+	color = *(unsigned int *)(tex->addr
+		+ tmp_tex_y * tex->line_length
+		+ tmp_tex_x * (tex->bpp / 8));
+
+	return apply_distance_effect(color, glb->door_params.tmp_dist, glb->light_pwr);
 }
 
 unsigned int	handle_sky_part(t_global *glb, int x, int y)
@@ -90,7 +97,9 @@ unsigned int	handle_floor_part(t_global *glb, int y)
 	int				tex_x_floor;
 	int				tex_y_floor;
 
-	int (dist) = glb->h / (2.0 * y - glb->h);
+	double dist = (double)glb->h / (2.0 * (double)y - (double)glb->h);
+	if (dist < 0.0)
+		dist = 0.0;
 	if (glb->texture.sol.is_rgb == false)
 	{
 		floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
