@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 17:06:43 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:11:24 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,7 @@ void			load_xpm(t_global *glb, t_parsing *parser, t_img *img,
 
 // main.c
 int				mouse_moved_advanced(int x, int y, void *param);
-int				key_press(int keycode, t_global *glb);
-int				key_release(int keycode, t_global *glb);
+bool			fps_lock(t_global *glb);
 int				update(t_global *glb);
 
 // calcul_for_draw.c
@@ -180,6 +179,10 @@ void			handle_glitch_effect(t_global *glb, long now);
 void			put_fps_counter(t_global *glb);
 void			put_timer(t_global *glb);
 void			show_help(t_global *glb);
+
+// key_hooks.c
+int				key_press(int keycode, t_global *glb);
+int				key_release(int keycode, t_global *glb);
 
 // minimap.c
 void			draw_square(t_global *glb, int x, int y, int d);

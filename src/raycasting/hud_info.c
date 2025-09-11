@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:06:55 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/11 17:07:41 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:08:20 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	put_fps_counter(t_global *glb)
 	char			*fps_str;
 
 	fps.frame_count++;
-	if (fps.last_time== 0)
+	if (fps.last_time == 0)
 		fps.last_time = glb->now;
 	elapsed = glb->now - fps.last_time;
 	if (elapsed >= 1000)
