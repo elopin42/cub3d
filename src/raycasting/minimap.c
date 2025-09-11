@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 20:57:48 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 17:03:37 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/11 14:15:01 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	draw_square_choose(int d)
 		color = 0x222222;
 	else if (d == 4)
 		color = 0x800080;
-	else if (d == 5)
-		color = 0x80FF80;
 	else
 		color = 0x888888;
 	return (color);
@@ -35,7 +33,7 @@ void	draw_square(t_global *glb, int x, int y, int d)
 	int	dx;
 	int	dy;
 
-	if (d == 1 || d == 2 || d == 4 || d == 5)
+	if (d == 1 || d == 2 || d == 4)
 	{
 		size = glb->square_size;
 		color = draw_square_choose(d);
@@ -70,12 +68,10 @@ void	draw_minimap(t_global *glb)
 		{
 			screen_x = MINIMAP_START_X + x * glb->square_size;
 			screen_y = MINIMAP_START_Y + y * glb->square_size;
-			if (glb->map_clone[y][x] == '1')
+			if (glb->map_clone[y][x] == '1' || glb->map_clone[y][x] == 'Q')
 				draw_square(glb, screen_x, screen_y, 1);
 			else if (glb->map_clone[y][x] == 'D' || glb->map_clone[y][x] == '3')
 				draw_square(glb, screen_x, screen_y, 4);
-			else if (glb->map_clone[y][x] == 'Q')
-				draw_square(glb, screen_x, screen_y, 5);
 			else
 				draw_square(glb, screen_x, screen_y, 2);
 		}
