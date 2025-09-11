@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:52:07 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 16:32:08 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/11 16:48:55 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,24 @@ void	calculate_step_and_side_dist(t_global *glb)
 	}
 }
 
-static int  is_dda_hit(t_global *glb)
+static int	is_dda_hit(t_global *glb)
 {
-    int  x = glb->ray.map_x;
-    int  y = glb->ray.map_y;
-    char tile;
+	int		x;
+	int		y;
+	char	tile;
 
-    if (!is_valid_map_position(glb, x, y))
-        return 1;
-
-    tile = glb->map[y][x];
-
-    if (tile == '1')
-        return 1;
-
-    if (tile == 'D' || tile == '3')
-        return 1;
-
-    if (glb->el_muros_invisible && tile == 'Q')
-        return 1;
-
-    return 0;
+	x = glb->ray.map_x;
+	y = glb->ray.map_y;
+	if (!is_valid_map_position(glb, x, y))
+		return (1);
+	tile = glb->map[y][x];
+	if (tile == '1')
+		return (1);
+	if (tile == 'D' || tile == '3')
+		return (1);
+	if (glb->el_muros_invisible && tile == 'Q')
+		return (1);
+	return (0);
 }
 
 void	perform_dda(t_global *glb)

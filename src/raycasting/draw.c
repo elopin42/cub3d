@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 16:32:48 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/11 16:48:38 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	draw_vertical_line(t_global *glb, int x)
 	calculate_wall_distance(glb);
 	draw_ceiling_and_sky(glb, x);
 	tex = select_wall_texture(glb);
-	if (!tex)	
+	if (!tex)
 		return (false);
 	draw_wall_texture(glb, x, tex);
 	draw_floor(glb, x);

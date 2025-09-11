@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 16:39:34 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 17:10:54 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/11 17:01:59 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,46 @@ void	draw_wall_texture(t_global *glb, int x, t_img *tex)
 		color = get_wall_pixel_color(glb, tex, &vars);
 		put_pixel(&glb->img, x, y, color);
 	}
+}
+
+unsigned int	handle_sky_part(t_global *glb, int x, int y)
+{
+	int		tex_x_sky;
+	int		tex_y_sky;
+	char	*pixel_sky;
+
+	tex_x_sky = (x * glb->texture.sky.width) / glb->w;
+	tex_y_sky = (y * glb->texture.sky.height) / (glb->h / 2);
+	pixel_sky = glb->texture.sky.addr + (tex_y_sky
+			* glb->texture.sky.line_length + tex_x_sky * (glb->texture.sky.bpp
+				/ 8));
+	return (*(unsigned int *)pixel_sky);
+}
+
+unsigned int	handle_floor_part(t_global *glb, int y)
+{
+	double			floor_x;
+	double			floor_y;
+	unsigned int	color;
+	int				tex_x_floor;
+	int				tex_y_floor;
+
+	double (dist) = (double)glb->h / (2.0 * (double)y - (double)glb->h);
+	if (dist < 0.0)
+		dist = 0.0;
+	if (glb->texture.sol.is_rgb == false)
+	{
+		floor_x = glb->player.x + dist * glb->ray.ray_dir_x;
+		floor_y = glb->player.y + dist * glb->ray.ray_dir_y;
+		tex_x_floor = (int)(floor_x * glb->texture.sol.width)
+			% glb->texture.sol.width;
+		tex_y_floor = (int)(floor_y * glb->texture.sol.height)
+			% glb->texture.sol.height;
+		color = *(unsigned int *)(glb->texture.sol.addr + tex_y_floor
+				* glb->texture.sol.line_length + tex_x_floor
+				* (glb->texture.sol.bpp / 8));
+	}
+	else
+		color = ft_uni(glb->texture.sol.rgb);
+	return (apply_distance_effect(color, dist, glb->light_pwr));
 }

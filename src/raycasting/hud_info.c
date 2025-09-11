@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:06:55 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/11 14:16:45 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:49:13 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	put_timer(t_global *glb)
 	long	minutes;
 	long	secondes;
 
-
 	elapsed = glb->now - glb->start;
 	remaining = TOTAL_TIME - elapsed;
 	minutes = (remaining / 1000) % 60;
@@ -31,20 +30,23 @@ void	put_timer(t_global *glb)
 
 static inline void	put_timer_hud(t_global *glb, long minutes, long secondes)
 {
-	char *min;
-	char *sec;
+	char	*min;
+	char	*sec;
 
 	min = ft_itoa(minutes);
 	sec = ft_itoa(secondes);
 	if (min)
 	{
-		mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win, CENTER_X + 10, 10, 0xFFFFFFFF, min);
+		mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win, CENTER_X + 10, 10,
+			0xFFFFFFFF, min);
 		free(min);
 	}
-	mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win, CENTER_X, 9, 0xFFFFFFFF, ":");
+	mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win, CENTER_X, 9, 0xFFFFFFFF,
+		":");
 	if (sec)
 	{
-		mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win, CENTER_X - 10, 10, 0xFFFFFFFF, sec);
+		mlx_string_put(glb->smlx.mlx, glb->smlx.mlx_win, CENTER_X - 10, 10,
+			0xFFFFFFFF, sec);
 		free(sec);
 	}
 }
