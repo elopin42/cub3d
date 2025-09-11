@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 14:22:01 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 14:33:28 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ bool	fps_lock(t_global *glb)
 
 	frame_time = 1000 / 60;
 	glb->now = get_current_time_ms();
-	if (glb->now - glb->start >= 10000000)
+	if (glb->now - glb->start >= TOTAL_TIME)
 		game_over(glb);
 	if (glb->now - last_frame < frame_time)
 		return (true);

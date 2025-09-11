@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:12:56 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 14:19:26 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 14:26:43 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,4 @@ void	draw_scene(t_global *glb)
 		0);
 	put_fps_counter(glb);
 	put_timer(glb);
-		printhelp(glb)
-}
-
-{
-	if (glb->phelp ==falsse)
-		return
 }
