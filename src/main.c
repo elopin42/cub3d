@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:03:41 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/11 14:04:29 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/11 14:22:01 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,6 @@ int	key_press(int keycode, t_global *glb)
 		glb->key_d = true;
 	if (keycode == KEY_TABU)
 		glb->key_tabu = true;
-	if (keycode == KEY_Q)
-  {
-    if (glb->key_q)
-		  glb->key_q = false;
-    else
-      glb->key_q = true;
-  }
 	return (0);
 }
 
@@ -87,19 +80,31 @@ int	key_release(int keycode, t_global *glb)
 	if (keycode == KEY_D)
 		glb->key_d = false;
 	if (keycode == XK_f)
-		flashlight_switch(&glb->lightoff);
+		switch_bool(&glb->lightoff);
+	if (keycode == XK_q)
+		switch_bool(&glb->key_q);
 	return (0);
 }
 
-/* bool	lock_update()
+bool	fps_lock(t_global *glb)
 {
-	return (true);
-} */
+	static long	last_frame;
+	double		frame_time;
+
+	frame_time = 1000 / 60;
+	glb->now = get_current_time_ms();
+	if (glb->now - glb->start >= 10000000)
+		game_over(glb);
+	if (glb->now - last_frame < frame_time)
+		return (true);
+	last_frame = glb->now;
+	return (false);
+}
 
 int	update(t_global *glb)
 {
-  if (get_current_time_ms() - glb->start >= 120000)
-    game_over(glb);
+	if (fps_lock(glb) == true)
+		return (0);
 	if (glb->key_w)
 		move_player(glb, 1);
 	if (glb->key_s)

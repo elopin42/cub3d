@@ -6,11 +6,11 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 14:44:34 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 00:03:47 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 01:20:07 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static char		*lightxpm(int i);
 static double	lightpwr(int i);

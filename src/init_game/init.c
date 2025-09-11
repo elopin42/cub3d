@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:04 by lle-cout          #+#    #+#             */
-/*   Updated: 2025/09/10 20:17:13 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 01:20:14 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_game(t_global *glb, t_parsing *parser)
 	if (!glb->smlx.mlx_win)
 		init_mlx_error(glb, parser, MLXIMGADDR);
 	parser->config = ft_free_array(parser->config);
-  glb->start = get_current_time_ms();
+	glb->start = get_current_time_ms();
 }
 
 void	init_glb_values(t_global *glb, t_parsing *parser)
@@ -31,7 +31,7 @@ void	init_glb_values(t_global *glb, t_parsing *parser)
 	glb->h = WIN_HEIGHT;
 	glb->map = parser->map;
 	glb->map_clone = parser->map_copy;
-	glb->lightoff = false;
+	glb->lightoff = true;
 	if (parser->ceiling_set == true)
 	{
 		glb->texture.sky.is_rgb = true;

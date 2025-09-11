@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   flashlight.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 20:25:22 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 16:10:47 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/10 23:27:27 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	flashlight_switch(bool *state)
+void	switch_bool(bool *state)
 {
 	if (*state == true)
 		*state = false;

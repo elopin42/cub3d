@@ -6,7 +6,7 @@
 /*   By: lle-cout <lle-cout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:00 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/10 19:10:48 by lle-cout         ###   ########.fr       */
+/*   Updated: 2025/09/11 14:13:14 by lle-cout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,10 +171,13 @@ unsigned int	handle_floor_part(t_global *glb, int y);
 void			draw_wall_texture(t_global *glb, int x, t_img *tex);
 
 // flashlight.c
-void			flashlight_switch(bool *state);
+void			switch_bool(bool *state);
 void			update_light_state(t_global *glb);
 void			handle_torch_on(t_global *glb);
 void			handle_glitch_effect(t_global *glb, long now);
+
+// hud_info.c
+void			put_timer(t_global *glb);
 
 // minimap.c
 void			draw_square(t_global *glb, int x, int y, int d);
@@ -218,6 +221,6 @@ void			draw_flashlight(t_global *glb, double offset_y,
 					double offset_x);
 
 // game_over.c
-void      game_over(t_global *glb);
+void			game_over(t_global *glb);
 
 #endif
