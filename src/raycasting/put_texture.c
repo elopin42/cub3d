@@ -26,6 +26,8 @@ t_img	*select_wall_texture(t_global *glb)
 		glb->ray.map_y = 0;
 	if (glb->ray.map_x < 0)
 		glb->ray.map_x = 0;
+  if (glb->ray.map_y == glb->m_h || glb->ray.map_x == glb->m_w)
+    return (NULL);
 	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'Q')
 		return (&glb->texture.exit);
 	if (glb->map[glb->ray.map_y][glb->ray.map_x] == 'D')
